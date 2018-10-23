@@ -1,6 +1,6 @@
 
 public class Vehicule {
-	String idVehicule;
+	protected String idVehicule;
 	
 
 
