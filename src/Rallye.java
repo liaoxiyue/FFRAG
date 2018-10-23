@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import java.util.ArrayList;
 
 public class Rallye {
@@ -11,3 +12,5 @@ public class Rallye {
 	}
 }
 
+=======
+>>>>>>> 4c9514f7897aa84e16c5fd5ccc8eaba3d6b2e18b
