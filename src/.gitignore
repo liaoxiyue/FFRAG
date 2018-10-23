@@ -1,11 +1,21 @@
 /Coureur.class
 /Vehicule.class
 /Voiture.class
+<<<<<<< HEAD
 /Camion.class
 /Participant.class
 /Courir.class
 /Edition.class
 /Etape.class
 /Rallye.class
+=======
+/Edition.class
+/Etape.class
+/Participant.class
+/Rallye.class
+/main.class
+/Courir.class
+/Camion.class
+>>>>>>> master
 /Parametres.class
 /RunRallye.class

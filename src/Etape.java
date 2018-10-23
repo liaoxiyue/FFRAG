@@ -1,24 +1,21 @@
-import java.util.Date;
-import java.util.HashMap;
-
+import java.util.*;
 public class Etape {
 	int codeEtape;
 	float distanceEtape;
 	private HashMap<Participant, Courir> tabParticipants;
+	Date dateDep;
 	
 	public Etape(int code, float distance) {
 		this.codeEtape = code;
 		this.distanceEtape = distance;
 		this.tabParticipants = new HashMap<Participant, Courir>();
 	}
-
 	
 
 	public void ajouterTemps(Participant p, Date temps) {
 		this.tabParticipants.put(p,new Courir(temps));
 	}
 	
-
 	public int getCodeEtape() {
 		return codeEtape;
 	}
@@ -44,5 +41,13 @@ public class Etape {
 			
 		}
 	}
+	public void organiser (Edition edition) {
+		for(Participant part : edition.getListPart()) {
+			tabParticipants.put(part, null);
+			}
+	}
 	
+	public void enregistreTemp(Participant part, Courir courir) {
+		tabParticipants.put(part, courir);
+	}
 }

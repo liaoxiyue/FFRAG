@@ -1,20 +1,11 @@
-import java.text.SimpleDateFormat;
+
 import java.util.*;
-
-public class Courir {
-
-	private Date tempsEtape;
-
-	public Courir(Date t) {
-		this.tempsEtape = t;
-
+public class Courir {	
+	Date tempsEtape;
+	public Courir(Date temps) {
+		this.tempsEtape = temps;
 	}
-
 	public Date getTempsEtape() {
 		return tempsEtape;
 	}
-	
-	
-	
-	
 }

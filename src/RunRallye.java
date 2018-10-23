@@ -21,7 +21,8 @@ public class RunRallye {
 	et1 = new Etape(1, 400);
 	et2 = new Etape(2, 500);
 	
-	e1.
+	e1.organiserEtape(et1);
+	
 	}
 
 }
