@@ -7,6 +7,12 @@ public class Courir {
 		this.tempsEtape = t;
 
 	}
+
+	public int getTempsEtape() {
+		return tempsEtape;
+	}
+	
+	
 	
 	
 }

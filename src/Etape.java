@@ -14,18 +14,9 @@ public class Etape {
 
 	
 
-	public void ajouterTemps(Participant p, float temps) {
-		
+	public void ajouterTemps(Participant p, int temps) {
+		this.tabparticipants.put(p,new Courir(temps));
 	}
-
-    public boolean PrendreDepart(Participant numeroPart) {
-
-        if (tabparticipants.containsKey(numeroPart)) {
-        	if(tabparticipants.containsKey)
-        	
-        }
-return true;
-    }
 	
 
 	public int getCodeEtape() {
