@@ -1,10 +1,7 @@
 import java.util.*;
-
-public class Courir {
-	
+public class Courir {	
 	Date tempsEtape;
 	public Courir(Date temps) {
 		this.tempsEtape = temps;
 	}
-
 }

@@ -15,4 +15,3 @@ public class Rallye {
 		listeEdition.add(edition);
 	}
 }
-
