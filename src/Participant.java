@@ -15,6 +15,7 @@ public class Participant {
         this.dateInscription = dateEnreg;
         this.coureur = c;
         this.vehicule = v;
+        
     }
     
     /**
@@ -30,9 +31,6 @@ public class Participant {
     	return prendreDepart;
     }
     
-    public calculerTempsFinal() {
-    	Date tempsFinal = 0;
-    	return tempsFinal;
-    }
+  
 
 }

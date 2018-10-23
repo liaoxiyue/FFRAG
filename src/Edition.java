@@ -5,7 +5,7 @@ public class Edition {
 	private Date dateDebER;
 	private Date dateFinER;
 	private ArrayList<Etape> listEtape = new ArrayList<Etape>();
-
+	
 	
 	public Edition(int noE, Date deb, Date fin) {
 		this.noEdition = noE;

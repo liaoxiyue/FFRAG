@@ -2,20 +2,20 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class Etape {
-	private HashMap<Participant, Courir> tabparticipants;
 	int codeEtape;
 	float distanceEtape;
+	private HashMap<Participant, Courir> tabParticipants;
 	
 	public Etape(int code, float distance) {
 		this.codeEtape = code;
 		this.distanceEtape = distance;
-		this.tabparticipants = new HashMap<Participant, Courir>();
+		this.tabParticipants = new HashMap<Participant, Courir>();
 	}
 
 	
 
 	public void ajouterTemps(Participant p, Date temps) {
-		this.tabparticipants.put(p,new Courir(temps));
+		this.tabParticipants.put(p,new Courir(temps));
 	}
 	
 
@@ -28,7 +28,21 @@ public class Etape {
 	}
 	
 	public HashMap<Participant, Courir> getTabparticipants() {
-		return tabparticipants;
+		return tabParticipants;
+	}
+	
+	public void validerClassement() {
+		//disqualifier 
+		
+		for(Participant p: this.tabParticipants.keySet()) {
+			
+			if(p.prendreDepart(this)){
+				continue;
+			}else {
+				this.tabParticipants.remove(p);
+			}
+			
+		}
 	}
 	
 }
