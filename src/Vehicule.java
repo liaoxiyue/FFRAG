@@ -8,5 +8,10 @@ public Vehicule(String v) {
 }
 
 
+public String getIdVehicule() {
+	return idVehicule;
+}
+
+
 
 }

@@ -9,6 +9,16 @@ public class Etape {
 	public Etape(int code, float distance) {
 		this.codeEtape = code;
 		this.distanceEtape = distance;
+		this.tabparticipants = new HashMap<Participant, Courir>();
+	}
+
+
+	public int getCodeEtape() {
+		return codeEtape;
+	}
+
+	public float getDistanceEtape() {
+		return distanceEtape;
 	}
 	
 }
