@@ -1,6 +1,6 @@
 
 public class Camion extends Vehicule {
-	private float poidsC;
+	private float poidsC; //en kg
 	private Parametres coefC = new Parametres();
 	public Camion(String v, float p) {
 		super(v);

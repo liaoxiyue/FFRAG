@@ -14,7 +14,7 @@ public class Etape {
 
 	
 
-	public void ajouterTemps(Participant p, int temps) {
+	public void ajouterTemps(Participant p, Date temps) {
 		this.tabparticipants.put(p,new Courir(temps));
 	}
 	

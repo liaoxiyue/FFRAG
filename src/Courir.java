@@ -1,14 +1,15 @@
+import java.util.*;
 
 public class Courir {
 
-	private int tempsEtape;
+	private Date tempsEtape;
 
-	public Courir( int t) {
+	public Courir(Date t) {
 		this.tempsEtape = t;
 
 	}
 
-	public int getTempsEtape() {
+	public Date getTempsEtape() {
 		return tempsEtape;
 	}
 	

@@ -6,11 +6,11 @@ public class Participant {
 
     private int noInscription;
     private Date dateInscription;
-    private float tempsFinal;
+    private Date tempsFinal;
     private Coureur coureur;
     private Vehicule vehicule;
     
-    public Participant(int numInscr, Date dateEnreg, Coureur c, Vehicule v, Edition edition) {
+    public Participant(int numInscr, Date dateEnreg, Coureur c, Vehicule v) {
         this.noInscription = numInscr;
         this.dateInscription = dateEnreg;
         this.coureur = c;
@@ -30,5 +30,9 @@ public class Participant {
     	return prendreDepart;
     }
     
+    public calculerTempsFinal() {
+    	Date tempsFinal = 0;
+    	return tempsFinal;
+    }
 
 }
