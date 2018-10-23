@@ -1,28 +1,52 @@
 import java.util.*;
 
 public class Etape {
+	private HashMap<Participant, Courir> tabparticipants;
 	int codeEtape;
 	float distanceEtape;
 	Date dateDep;
-	Edition edition;
-	HashMap<Participant, Courir> listCourir;
-	ArrayList<Participant> listPart;
 	
-	public Etape(int code, float distance, Date dep, Edition edition) {
+	public Etape(int code, float distance, Date dep) {
 		this.codeEtape = code;
 		this.distanceEtape = distance;
 		this.dateDep = dep;
-		this.edition = edition;
-		this.listCourir = new HashMap<Participant, Courir>();
+		this.tabparticipants = new HashMap<Participant, Courir>();
+	}
+
+	
+
+	public void ajouterTemps(Participant p, float temps) {
+		
+	}
+
+    public boolean PrendreDepart(Participant numeroPart) {
+
+        if (tabparticipants.containsKey(numeroPart)) {
+        	if(tabparticipants.containsKey)
+        	
+        }
+    }
+	
+
+	public int getCodeEtape() {
+		return codeEtape;
+	}
+
+	public float getDistanceEtape() {
+		return distanceEtape;
 	}
 	
-	public void organiser () {
+	public HashMap<Participant, Courir> getTabparticipants() {
+		return tabparticipants;
+	}
+	
+	public void organiser (Edition edition) {
 		for(Participant part : edition.getListPart()) {
-			listPart.add(part);
-		}
+			tabparticipants.put(part, null);
+			}
 	}
 	
 	public void enregistreTemp(Participant part, Courir courir) {
-		listCourir.put(part, courir);
+		tabparticipants.put(part, courir);
 	}
 }
