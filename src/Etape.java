@@ -1,5 +1,4 @@
 import java.util.*;
-
 public class Etape {
 	private HashMap<Participant, Courir> tabparticipants;
 	int codeEtape;
@@ -16,6 +15,16 @@ public class Etape {
 		
 	}
 	
+	public Etape(int code, float distance) {
+		this.codeEtape = code;
+		this.distanceEtape = distance;
+		this.tabparticipants = new HashMap<Participant, Courir>();
+	}
+	
+	public void ajouterTemps(Participant p, Date temps) {
+		this.tabparticipants.put(p,new Courir(temps));
+	}
+	
 	public int getCodeEtape() {
 		return codeEtape;
 	}
@@ -27,7 +36,6 @@ public class Etape {
 	public HashMap<Participant, Courir> getTabparticipants() {
 		return tabparticipants;
 	}
-	
 	public void organiser (Edition edition) {
 		for(Participant part : edition.getListPart()) {
 			tabparticipants.put(part, null);

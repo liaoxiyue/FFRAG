@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-
+import java.util.*;
 public class Participant {
 
     private int noInscription;
@@ -9,15 +6,13 @@ public class Participant {
     private float tempsFinal;
     private Coureur coureur;
     private Vehicule vehicule;
-    private Edition edition;
-
-    public Participant(int numInscr, Date dateEnreg, Coureur c, Vehicule v, Edition edition) {
+    
+    public Participant(int numInscr, Date dateEnreg, Coureur c, Vehicule v) {
 
         this.noInscription = numInscr;
         this.dateInscription = dateEnreg;
         this.coureur = c;
         this.vehicule = v;
-        this.edition = edition;
     }
 
     public boolean prendreDepart(Etape e) {
@@ -26,9 +21,6 @@ public class Participant {
     			prendreDepart=false;
     		};
     	return prendreDepart;
-    	
     }
-    
-    
-
+   
 }
