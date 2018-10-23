@@ -1,17 +1,19 @@
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Participant {
 
-    private int NoInscription;
-    private Date DateInscription;
-    private float TempsFinal;
+    private int noInscription;
+    private Date dateInscription;
+    private float tempsFinal;
     private Coureur coureur;
     private Vehicule vehicule;
+    private ArrayList listeParticipants;
 
     public Participant(int numInscr, Date dateEnreg, Coureur c, Vehicule v) {
 
-        this.NoInscription = numInscr;
-        this.DateInscription = dateEnreg;
+        this.noInscription = numInscr;
+        this.dateInscription = dateEnreg;
         this.coureur = c;
         this.vehicule = v;
 
