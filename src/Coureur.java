@@ -1,6 +1,7 @@
+import java.util.Date;
 
 public class Coureur {
-	String nonCoureur;
-	String prenomCoureur;
-	
+	private String nonCoureur;
+	private String prenomCoureur;
+	private Date dateNaissanceC;
 }
