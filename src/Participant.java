@@ -2,15 +2,16 @@ import java.util.Date;
 
 public class Participant {
 
-    private int NoInscription;
-    private Date DateInscription;
-    private float TempsFinal;
+    private int noInscription;
+    private Date dateInscription;
+    private float tempsFinal;
 
-    public void inscrire() {
-
+    public Participant(int noInscrption) {
+    	
     }
 
-    public void prendreDepart() {
-
+    public boolean prendreDepart(Etape etape) {
+    	etape.
+    	return true;
     }
 }
