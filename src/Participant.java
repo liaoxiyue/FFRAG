@@ -20,13 +20,11 @@ public class Participant {
         this.edition = edition;
     }
 
-    public boolean prendreDepart() {
+    public boolean prendreDepart(Etape e) {
     	boolean prendreDepart = true;
-    	for(Etape e : edition.getListEtape()) {
-    		if(e.getTabparticipants().get(this)==null) {
+   		if(e.getTabparticipants().get(this)==null) {
     			prendreDepart=false;
     		};
-    	}
     	return prendreDepart;
     	
     }

@@ -12,22 +12,10 @@ public class Etape {
 		this.dateDep = dep;
 		this.tabparticipants = new HashMap<Participant, Courir>();
 	}
-
-	
-
 	public void ajouterTemps(Participant p, float temps) {
 		
 	}
-
-    public boolean PrendreDepart(Participant numeroPart) {
-
-        if (tabparticipants.containsKey(numeroPart)) {
-        	if(tabparticipants.containsKey)
-        	
-        }
-    }
 	
-
 	public int getCodeEtape() {
 		return codeEtape;
 	}
