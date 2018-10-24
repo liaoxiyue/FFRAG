@@ -1,3 +1,4 @@
+package FFRAG;
 
 public class Parametres {
 	public float coefCorrectifV = (float) 0.05;
@@ -9,11 +10,4 @@ public class Parametres {
 	public float getCoefCorrectifC() {
 		return coefCorrectifC;
 	}
-	
-	//public float affecterCoeff() {
-	//	if()
-	//}
-	
-	
-	
 }

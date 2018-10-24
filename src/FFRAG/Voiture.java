@@ -1,3 +1,4 @@
+package FFRAG;
 
 public class Voiture extends Vehicule{
 	private int puissanceV ;
@@ -6,8 +7,6 @@ public class Voiture extends Vehicule{
 	public Voiture(String v, int p) {
 		super(v);
 		this.puissanceV = p;
-		// TODO Auto-generated constructor stub
-		
 	}
 
 	public int getPuissanceV() {
@@ -15,7 +14,6 @@ public class Voiture extends Vehicule{
 	}
 
 	public float getCoef() {
-		
 		float coefV = 1 + (puissanceV - 20)*this.coefV.getCoefCorrectifV();
 		return coefV;
 	}

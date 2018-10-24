@@ -1,12 +1,10 @@
+package FFRAG;
 import java.util.*;
 public class Courir {	
 	int milleSeconde;
+
 	public Courir(int hh, int mm, int ss, int ms) {
 		this.milleSeconde = ((hh * 60 + mm) * 60 + ss) * 1000 + ms;
-	}
-	
-	public int getMilleSeconde() {
-		return milleSeconde;
 	}
 	
 	public String getTemps() {
@@ -18,5 +16,13 @@ public class Courir {
 		temps += hh + ":" + mm + ":" + ss + ":" + mm + ":" + ms;
 		return temps;
 	}
-		
+
+	public void setMilleSeconde(int milleSeconde) {
+		this.milleSeconde = milleSeconde;
+	}
+
+	
+	public int getMilleSeconde() {
+		return milleSeconde;
+	}
 }
