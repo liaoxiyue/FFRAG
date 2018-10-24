@@ -1,11 +1,21 @@
-
-import java.util.*;
 public class Courir {	
-	String tempsEtape;
-	public Courir(String temps) {
-		this.tempsEtape = temps;
+	int milleSeconde;
+	public Courir(int hh, int mm, int ss, int ms) {
+		this.milleSeconde = ((hh * 60 + mm) * 60 + ss) * 1000 + ms;
 	}
-	public String getTempsEtape() {
-		return tempsEtape;
+	
+	public int getMilleSeconde() {
+		return milleSeconde;
 	}
+	
+	public String getTemps() {
+		String temps = "";
+		int ms = milleSeconde % 1000;
+		int ss = (milleSeconde / 1000) % 60;
+		int mm = milleSeconde / 1000 / 60 % 60;
+		int hh = milleSeconde / 1000 / 60 / 60;
+		temps += hh + ":" + mm + ":" + ss + ":" + mm + ":" + ms;
+		return temps;
+	}
+		
 }

@@ -1,19 +1,18 @@
 import java.util.*;
 public class Etape {
-	int codeEtape;
-	float distanceEtape;
-	private HashMap<Participant, Courir> tabParticipants;
-	Date dateDep;
+	private int codeEtape;
+	private float distanceEtape;
+	private HashMap<Participant,Integer> tabParticipants;
+	private Date dateDep;
+
 	
-	public Etape(int code, float distance) {
+	
+	
+	public Etape(int code, float distance, Date dep) {
 		this.codeEtape = code;
 		this.distanceEtape = distance;
-		this.tabParticipants = new HashMap<Participant, Courir>();
-	}
-	
-
-	public void ajouterTemps(Participant p, String temps) {
-		this.tabParticipants.put(p,new Courir(temps));
+		this.dateDep = dep;
+		this.tabParticipants = new HashMap<Participant, Integer>();
 	}
 	
 	public int getCodeEtape() {
@@ -24,27 +23,32 @@ public class Etape {
 		return distanceEtape;
 	}
 	
-	public HashMap<Participant, Courir> getTabparticipants() {
+	public HashMap<Participant, Integer> getTabParticipants() {
 		return tabParticipants;
 	}
 	
-	public void validerClassement() {
-		//disqualifier 
-		
-		for(Participant p: this.tabParticipants.keySet()) {
-			
-			if(p.prendreDepart(this)){
-				continue;
-			}else {
-				this.tabParticipants.remove(p);
-			}
-			
-		}
-	}
+	
+	//affecter les participants ¨¤ l'¨¦pate
 	public void organiser (Edition edition) {
 		for(Participant part : edition.getListPart()) {
 			tabParticipants.put(part, null);
 			}
 	}
 	
+
+	public void enregistreTemp(Participant part, int hh, int mm, int ss, int ms) {
+		Courir courir = new Courir(hh, mm, ss, ms);
+		int temps = courir.getMilleSeconde();
+		tabParticipants.put(part, temps);
+	}
+	
+	public boolean validerClassement(Participant p) {
+		if(!p.prendreDepart(this)) {
+			tabParticipants.remove(p);
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 }
