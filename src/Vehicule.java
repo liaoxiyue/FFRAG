@@ -5,6 +5,7 @@ public abstract class Vehicule {
 
 public Vehicule(int v) {
 	this.idVehicule=v;
+	
 }
 
 
