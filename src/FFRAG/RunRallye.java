@@ -24,8 +24,8 @@ public class RunRallye {
 		Date today = dateformat.parse("2018-10-04");	
 		Coureur co1 = new Coureur("sf","sef",today);
 		Coureur co2 = new Coureur("sef","sef",today);
-		Participant p1 = new Participant(123,today,co1,c1);
-		Participant p2 = new Participant(124,today,co2,v1);
+		Participant p1 = new Participant(today,co1,c1);
+		Participant p2 = new Participant(today,co2,v1);
 		Etape et1 = new Etape(1,(float) (235.1),today);
 		
 		et1.enregistreTemp(p2, 1,35,59,1);

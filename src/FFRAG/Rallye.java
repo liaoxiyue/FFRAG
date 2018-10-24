@@ -2,15 +2,21 @@ package FFRAG;
 import java.util.*;
 public class Rallye {
 	private String nomRallye;
-	private String lieuRallye;
+	private String ville;
+	private String pays;
 	private ArrayList<Edition> listeEdition;
 	private Coureur championPlusJeune;
 	
 
-	public Rallye(String nom, String lieu) {
+	public Rallye(String nom, String ville, String pays) {
 		this.nomRallye = nom;
-		this.lieuRallye = lieu;
+		this.ville = ville;
+		this.pays = pays;
 		listeEdition = new ArrayList<Edition>();
+	}
+	
+	public String getNomRallye() {
+		return this.nomRallye;
 	}
 	
 	public void organiser(Edition edition) {
