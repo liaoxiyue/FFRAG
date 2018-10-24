@@ -15,6 +15,7 @@ public class Edition {
 		this.dateFinER = fin;
 		this.listEtape = new ArrayList<Etape>();
 		this.listPart = new ArrayList<Participant>();
+		this.listTempsGeneral = new HashMap<Participant, Integer>();
 	}
 
 	public void organiserEtape(int code, float distance, Date dep) {
@@ -35,7 +36,6 @@ public class Edition {
 	}
 	
 	public void validerClassement(int etape) {
-		HashMap<Participant, Integer> listTempsGeneral = new HashMap<Participant, Integer>();
 		for(Participant p : listPart) {
 			if (listEtape.get(etape-1).validerClassement(p)) {
 				listTempsGeneral.put(p, null);

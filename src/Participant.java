@@ -3,21 +3,22 @@ import java.util.*;
 public class Participant {
 
     private int noInscription;
-    private Date dateInscription;
+	private Date dateInscription;
     private int tempsFinal;
     private Coureur coureur;
     private Vehicule vehicule;
-    private Edition edition;
-
-    public Participant(int numInscr, Date dateEnreg, Coureur c, Vehicule v, Edition e) {
-
+   
+	public Participant(int numInscr, Date dateEnreg, Coureur c, Vehicule v) {
         this.noInscription = numInscr;
         this.dateInscription = dateEnreg;
         this.coureur = c;
         this.vehicule = v;
-        this.edition = e;
     }
     
+	public int getTempsFinal() {
+		return this.tempsFinal;
+	}
+	
     public void setTempsFinal(int temps) {
     	this.tempsFinal = temps;
     }
@@ -28,5 +29,14 @@ public class Participant {
     			prendreDepart=false;
     		};
     	return prendreDepart;
-    }
+    } 
+    
+    public Vehicule getVehicule() {
+		return vehicule;
+	}
+    
+    public int getNoInscription() {
+		return noInscription;
+	}
+
 }
