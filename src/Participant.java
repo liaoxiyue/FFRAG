@@ -4,7 +4,7 @@ public class Participant {
 
     private int noInscription;
 	private Date dateInscription;
-    private float tempsFinal;
+    private int tempsFinal;
     private Coureur coureur;
     private Vehicule vehicule;
    
@@ -15,6 +15,10 @@ public class Participant {
         this.vehicule = v;
     }
     
+	public int getTempsFinal() {
+		return this.tempsFinal;
+	}
+	
     public void setTempsFinal(int temps) {
     	this.tempsFinal = temps;
     }

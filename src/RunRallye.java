@@ -30,6 +30,23 @@ public class RunRallye {
 		et1.enregistreTemp(p2, 1,35,59,1);
 		et1.enregistreTemp(p1, 0,20,35,220);
 		et1.calculerClassement();
+		
+		Edition ed1 = new Edition(21,today,today);
+		ed1.organiserEtape(1,(float) (235.1),today);
+		ed1.organiserEtape(2,(float) (235.5),today);
+		ed1.organiserPart(p2);ed1.organiserPart(p1);
+		ed1.getListEtape().get(0).enregistreTemp(p2, 1,35,59,1);
+		ed1.getListEtape().get(0).enregistreTemp(p1, 0,20,35,220);
+		ed1.getListEtape().get(1).enregistreTemp(p2, 1,35,59,1);
+		ed1.getListEtape().get(1).enregistreTemp(p1, 0,20,35,220);
+		
+		ed1.calculerClassement(1);
+		ed1.calculerClassement(2);
+		int nom = ed1.getChampion().getNoInscription();
+		System.out.println("Le champion est le" + nom);
+		
+		ed1.setTempFinal();
+		System.out.println("Le temps final du participant " + p1.getNoInscription() + " est de " + p1.getTempsFinal());
 
 	}
 }

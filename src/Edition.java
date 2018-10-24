@@ -15,6 +15,7 @@ public class Edition {
 		this.dateFinER = fin;
 		this.listEtape = new ArrayList<Etape>();
 		this.listPart = new ArrayList<Participant>();
+		this.listTempsGeneral = new HashMap<Participant, Integer>();
 	}
 
 	public void organiserEtape(int code, float distance, Date dep) {
@@ -34,21 +35,21 @@ public class Edition {
 		return listPart;
 	}
 	
-	public void validerClassement(Etape etape) {
-		HashMap<Participant, Integer> listTempsGeneral = new HashMap<Participant, Integer>();
+	public void validerClassement(int etape) {
+		//listTempsGeneral = new HashMap<Participant, Integer>();
 		for(Participant p : listPart) {
-			if (etape.validerClassement(p)) {
+			if (listEtape.get(etape-1).validerClassement(p)) {
 				listTempsGeneral.put(p, null);
 			}
 		}
 		
 	}
 	
-	public void calculerClassement(Etape etape) {
+	public void calculerClassement(int etape) {
 		this.validerClassement(etape);
 		for(Participant p : listTempsGeneral.keySet()) {
 			int temps = 0;
-			for (int i = 0; i <= listEtape.indexOf(etape); i++ ) {
+			for (int i = 0; i < etape; i++ ) {
 				temps += listEtape.get(i).getTabParticipants().get(p);
 			}
 			listTempsGeneral.put(p, temps);
@@ -67,8 +68,8 @@ public class Edition {
 	}
 	
 	public void setTempFinal() {
-		int indexEtape = listEtape.size() - 1;
-		this.calculerClassement(listEtape.get(indexEtape));
+		int indexEtape = listEtape.size();
+		this.calculerClassement(indexEtape);
 		for(Participant p : listPart) {
 			int temps = listTempsGeneral.get(p);
 			p.setTempsFinal(temps);
