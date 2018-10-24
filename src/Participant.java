@@ -2,12 +2,13 @@ import java.util.*;
 public class Participant {
 
     private int noInscription;
-    private Date dateInscription;
+
+	private Date dateInscription;
     private float tempsFinal;
     private Coureur coureur;
     private Vehicule vehicule;
-    
-    public Participant(int numInscr, Date dateEnreg, Coureur c, Vehicule v) {
+   
+	public Participant(int numInscr, Date dateEnreg, Coureur c, Vehicule v) {
 
         this.noInscription = numInscr;
         this.dateInscription = dateEnreg;
@@ -21,6 +22,14 @@ public class Participant {
     			prendreDepart=false;
     		};
     	return prendreDepart;
-    }
-   
+    } 
+    
+    public Vehicule getVehicule() {
+		return vehicule;
+	}
+    
+    public int getNoInscription() {
+		return noInscription;
+	}
+
 }
