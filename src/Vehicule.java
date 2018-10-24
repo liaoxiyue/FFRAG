@@ -1,14 +1,14 @@
 
 public abstract class Vehicule {
-	protected String idVehicule;
+	protected int idVehicule;
 	
 
-public Vehicule(String v) {
+public Vehicule(int v) {
 	this.idVehicule=v;
 }
 
 
-public String getIdVehicule() {
+public int getIdVehicule() {
 	return idVehicule;
 }
 
