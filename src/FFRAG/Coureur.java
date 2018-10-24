@@ -1,3 +1,4 @@
+package FFRAG;
 import java.util.*;
 
 public class Coureur {
@@ -9,6 +10,10 @@ public class Coureur {
 		this.nomCoureur = nom;
 		this.prenomCoureur = prenom;
 		this.dateNaissanceC = datene;
+	}
+
+	public Date getDateNaissanceC() {
+		return dateNaissanceC;
 	}
 	
 }

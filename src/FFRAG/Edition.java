@@ -1,3 +1,4 @@
+package FFRAG;
 import java.util.*;
 
 public class Edition {
@@ -65,15 +66,6 @@ public class Edition {
 			}
 		});
 		
-	}
-	
-	public void setTempFinal() {
-		int indexEtape = listEtape.size();
-		this.calculerClassement(indexEtape);
-		for(Participant p : listPart) {
-			int temps = listTempsGeneral.get(p);
-			p.setTempsFinal(temps);
-		}
 	}
 	
 	public Participant getChampion() {

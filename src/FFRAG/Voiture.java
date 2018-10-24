@@ -1,3 +1,4 @@
+package FFRAG;
 
 public class Voiture extends Vehicule{
 	private int puissanceV ;

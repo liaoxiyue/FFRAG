@@ -1,3 +1,4 @@
+package FFRAG;
 import java.util.*;
 
 public class Participant {
@@ -6,7 +7,9 @@ public class Participant {
 	private Date dateInscription;
     private int tempsFinal;
     private Coureur coureur;
-    private Vehicule vehicule;
+    
+
+	private Vehicule vehicule;
    
 	public Participant(int numInscr, Date dateEnreg, Coureur c, Vehicule v) {
         this.noInscription = numInscr;
@@ -38,5 +41,8 @@ public class Participant {
     public int getNoInscription() {
 		return noInscription;
 	}
-
+    
+    public Coureur getCoureur() {
+		return coureur;
+	}
 }

@@ -1,3 +1,4 @@
+package FFRAG;
 import java.util.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -45,8 +46,6 @@ public class RunRallye {
 		int nom = ed1.getChampion().getNoInscription();
 		System.out.println("Le champion est le" + nom);
 		
-		ed1.setTempFinal();
-		System.out.println("Le temps final du participant " + p1.getNoInscription() + " est de " + p1.getTempsFinal());
 
 	}
 }
