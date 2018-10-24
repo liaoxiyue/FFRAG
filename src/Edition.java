@@ -6,7 +6,8 @@ public class Edition {
 	private Date dateFinER;
 	private ArrayList<Etape> listEtape;
 	private ArrayList<Participant> listPart;
-	private HashMap<Participant, Integer> classementGeneral;
+	private HashMap<Participant, Integer> listTempsGeneral;
+	private ArrayList<HashMap.Entry<Participant, Integer>> classementGeneral;
 	
 	public Edition(int noE, Date deb, Date fin) {
 		this.noEdition = noE;
@@ -34,10 +35,10 @@ public class Edition {
 	}
 	
 	public void validerClassement(Etape etape) {
-		HashMap<Participant, Integer> classementGeneral = new HashMap<Participant, Integer>();
+		HashMap<Participant, Integer> listTempsGeneral = new HashMap<Participant, Integer>();
 		for(Participant p : listPart) {
 			if (etape.validerClassement(p)) {
-				classementGeneral.put(p, null);
+				listTempsGeneral.put(p, null);
 			}
 		}
 		
@@ -45,23 +46,39 @@ public class Edition {
 	
 	public void calculerClassement(Etape etape) {
 		this.validerClassement(etape);
-		for(Participant p : classementGeneral.keySet()) {
+		for(Participant p : listTempsGeneral.keySet()) {
 			int temps = 0;
 			for (int i = 0; i <= listEtape.indexOf(etape); i++ ) {
 				temps += listEtape.get(i).getTabParticipants().get(p);
 			}
-			classementGeneral.put(p, temps);
+			listTempsGeneral.put(p, temps);
 		}
+		
+		//metrre dans l'ordre
+		Set<HashMap.Entry<Participant, Integer>> entryset = listTempsGeneral.entrySet();
+		classementGeneral = new ArrayList<HashMap.Entry<Participant, Integer>>(entryset);
+		Collections.sort(classementGeneral, new Comparator<HashMap.Entry<Participant, Integer>>(){
+			@Override
+			public int compare(HashMap.Entry<Participant, Integer> c1, HashMap.Entry<Participant, Integer> c2) {
+				return c1.getValue().compareTo(c2.getValue());
+			}
+		});
 		
 	}
 	
 	public void setTempFinal() {
-		int noEtape = listEtape.size() - 1;
-		this.calculerClassement(listEtape.get(noEtape));
+		int indexEtape = listEtape.size() - 1;
+		this.calculerClassement(listEtape.get(indexEtape));
 		for(Participant p : listPart) {
-			int temps = classementGeneral.get(p);
+			int temps = listTempsGeneral.get(p);
 			p.setTempsFinal(temps);
 		}
+	}
+	
+	public Participant getChampion() {
+		Participant champion;
+		champion = classementGeneral.get(0).getKey();
+		return champion;
 	}
 
 }
