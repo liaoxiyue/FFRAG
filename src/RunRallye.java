@@ -7,10 +7,10 @@ public class RunRallye {
 
 
 	public static void main(String[] args) {
-		Camion c1 = new Camion("cme", 2250);
-		System.out.println(c1.getCoef());
+		//Camion c1 = new Camion(45, 2250);
+		//System.out.println(c1.getCoef());
 
-		Voiture v1 = new Voiture("vme", 50);
+		Voiture v1 = new Voiture(50, 50);
 		System.out.println(v1.getCoef());
 		
 		

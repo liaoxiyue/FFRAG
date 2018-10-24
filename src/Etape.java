@@ -3,17 +3,16 @@ public class Etape {
 	private int codeEtape;
 	private float distanceEtape;
 	private HashMap<Participant,Integer> tabParticipants;
-	private Date dateDep;
 
 	
 	
 	
-	public Etape(int code, float distance, Date dep) {
+	public Etape(int code, float distance) {
 		this.codeEtape = code;
 		this.distanceEtape = distance;
-		this.dateDep = dep;
 		this.tabParticipants = new HashMap<Participant, Integer>();
 	}
+	
 	
 	public int getCodeEtape() {
 		return codeEtape;

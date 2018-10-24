@@ -17,8 +17,8 @@ public class Edition {
 	}
 
 
-	public void organiserEtape(int code, float distance, Date dep) {
-		Etape etape = new Etape(code, distance, dep);
+	public void organiserEtape(int code, float distance) {
+		Etape etape = new Etape(code, distance);
 		listEtape.add(etape);
 	}
 	
