@@ -1,30 +1,19 @@
 import java.util.*;
 public class Etape {
-	private HashMap<Participant, Courir> tabparticipants;
+	private HashMap<Participant, Integer> tabParticipants;
 	int codeEtape;
 	float distanceEtape;
 	Date dateDep;
+	
 	
 	public Etape(int code, float distance, Date dep) {
 		this.codeEtape = code;
 		this.distanceEtape = distance;
 		this.dateDep = dep;
-		this.tabparticipants = new HashMap<Participant, Courir>();
-	}
-	public void ajouterTemps(Participant p, float temps) {
-		
+		this.tabParticipants = new HashMap<Participant, Integer>();
 	}
 	
-	public Etape(int code, float distance) {
-		this.codeEtape = code;
-		this.distanceEtape = distance;
-		this.tabparticipants = new HashMap<Participant, Courir>();
-	}
-	
-	public void ajouterTemps(Participant p, Date temps) {
-		this.tabparticipants.put(p,new Courir(temps));
-	}
-	
+	//getter
 	public int getCodeEtape() {
 		return codeEtape;
 	}
@@ -33,16 +22,32 @@ public class Etape {
 		return distanceEtape;
 	}
 	
-	public HashMap<Participant, Courir> getTabparticipants() {
-		return tabparticipants;
+	public HashMap<Participant, Integer> getTabParticipants() {
+		return tabParticipants;
 	}
+	
+	
+	//affecter les participants ¨¤ l'¨¦pate
 	public void organiser (Edition edition) {
 		for(Participant part : edition.getListPart()) {
-			tabparticipants.put(part, null);
+			tabParticipants.put(part, null);
 			}
 	}
 	
-	public void enregistreTemp(Participant part, Courir courir) {
-		tabparticipants.put(part, courir);
+	
+	public void enregistreTemp(Participant part, int hh, int mm, int ss, int ms) {
+		Courir courir = new Courir(hh, mm, ss, ms);
+		int temps = courir.getMilleSeconde();
+		tabParticipants.put(part, temps);
+	}
+	
+	public boolean validerClassement(Participant p) {
+		if(!p.prendreDepart(this)) {
+			tabParticipants.remove(p);
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 }

@@ -3,7 +3,7 @@ public class Participant {
 
     private int noInscription;
     private Date dateInscription;
-    private float tempsFinal;
+    private int tempsFinal;
     private Coureur coureur;
     private Vehicule vehicule;
     
@@ -14,10 +14,14 @@ public class Participant {
         this.coureur = c;
         this.vehicule = v;
     }
-
+    
+    public void setTempsFinal(int temps) {
+    	this.tempsFinal = temps;
+    }
+    
     public boolean prendreDepart(Etape e) {
     	boolean prendreDepart = true;
-   		if(e.getTabparticipants().get(this)==null) {
+   		if(e.getTabParticipants().get(this)==null) {
     			prendreDepart=false;
     		};
     	return prendreDepart;
