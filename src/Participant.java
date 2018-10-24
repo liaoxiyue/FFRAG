@@ -1,4 +1,5 @@
 import java.util.*;
+
 public class Participant {
 
     private int noInscription;
@@ -6,13 +7,15 @@ public class Participant {
     private int tempsFinal;
     private Coureur coureur;
     private Vehicule vehicule;
-    
-    public Participant(int numInscr, Date dateEnreg, Coureur c, Vehicule v) {
+    private Edition edition;
+
+    public Participant(int numInscr, Date dateEnreg, Coureur c, Vehicule v, Edition e) {
 
         this.noInscription = numInscr;
         this.dateInscription = dateEnreg;
         this.coureur = c;
         this.vehicule = v;
+        this.edition = e;
     }
     
     public void setTempsFinal(int temps) {
@@ -26,5 +29,4 @@ public class Participant {
     		};
     	return prendreDepart;
     }
-   
 }

@@ -9,11 +9,4 @@ public class Parametres {
 	public float getCoefCorrectifC() {
 		return coefCorrectifC;
 	}
-	
-	//public float affecterCoeff() {
-	//	if()
-	//}
-	
-	
-	
 }
