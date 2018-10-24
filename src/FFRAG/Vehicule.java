@@ -1,3 +1,4 @@
+package FFRAG;
 
 public abstract class Vehicule {
 	protected String idVehicule;

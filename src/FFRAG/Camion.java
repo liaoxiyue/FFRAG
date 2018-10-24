@@ -1,3 +1,4 @@
+package FFRAG;
 
 public class Camion extends Vehicule {
 	private float poidsC;

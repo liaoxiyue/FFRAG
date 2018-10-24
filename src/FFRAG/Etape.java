@@ -1,3 +1,4 @@
+package FFRAG;
 import java.util.*;
 public class Etape {
 

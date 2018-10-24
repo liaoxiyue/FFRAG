@@ -1,3 +1,4 @@
+package FFRAG;
 import java.util.*;
 
 public class Participant {
@@ -7,12 +8,14 @@ public class Participant {
     private int tempsFinal;
     private Coureur coureur;
     private Vehicule vehicule;
+    private int position;
    
 	public Participant(int numInscr, Date dateEnreg, Coureur c, Vehicule v) {
         this.noInscription = numInscr;
         this.dateInscription = dateEnreg;
         this.coureur = c;
         this.vehicule = v;
+        this.coureur.affecterParticipation(this);
     }
     
 	public int getTempsFinal() {
@@ -23,7 +26,16 @@ public class Participant {
     	this.tempsFinal = temps;
     }
     
-    public boolean prendreDepart(Etape e) {
+    
+    public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
+
+	public boolean prendreDepart(Etape e) {
     	boolean prendreDepart = true;
    		if(e.getTabParticipants().get(this)==null) {
     			prendreDepart=false;
