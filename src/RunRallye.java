@@ -1,4 +1,3 @@
-
 public class RunRallye {
 
 	public static void main(String[] args) {
