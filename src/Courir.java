@@ -1,11 +1,11 @@
 
 import java.util.*;
 public class Courir {	
-	Date tempsEtape;
-	public Courir(Date temps) {
+	String tempsEtape;
+	public Courir(String temps) {
 		this.tempsEtape = temps;
 	}
-	public Date getTempsEtape() {
+	public String getTempsEtape() {
 		return tempsEtape;
 	}
 }

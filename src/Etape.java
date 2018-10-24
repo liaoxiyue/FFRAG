@@ -12,7 +12,7 @@ public class Etape {
 	}
 	
 
-	public void ajouterTemps(Participant p, Date temps) {
+	public void ajouterTemps(Participant p, String temps) {
 		this.tabParticipants.put(p,new Courir(temps));
 	}
 	
@@ -47,7 +47,4 @@ public class Etape {
 			}
 	}
 	
-	public void enregistreTemp(Participant part, Courir courir) {
-		tabParticipants.put(part, courir);
-	}
 }
