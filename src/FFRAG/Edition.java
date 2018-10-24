@@ -37,7 +37,6 @@ public class Edition {
 	}
 	
 	public void validerClassement(int etape) {
-		//listTempsGeneral = new HashMap<Participant, Integer>();
 		for(Participant p : listPart) {
 			if (listEtape.get(etape-1).validerClassement(p)) {
 				listTempsGeneral.put(p, null);
@@ -66,6 +65,15 @@ public class Edition {
 			}
 		});
 		
+	}
+	
+	public void setTempFinal() {
+		for(int i = 0; i < classementGeneral.size(); i++) {
+			int temps = classementGeneral.get(i).getValue();
+			int position = i + 1;
+			classementGeneral.get(i).getKey().setTempsFinal(temps);
+			classementGeneral.get(i).getKey().setPosition(position);
+		}
 	}
 	
 	public Participant getChampion() {

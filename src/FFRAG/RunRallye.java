@@ -46,6 +46,13 @@ public class RunRallye {
 		int nom = ed1.getChampion().getNoInscription();
 		System.out.println("Le champion est le" + nom);
 		
+		ed1.setTempFinal();
+		System.out.println("Le temps final du participant " + p1.getNoInscription() + " est de " + p1.getTempsFinal());
+		System.out.println("La position finale du participant " + p1.getNoInscription() + " est de " + p1.getPosition());
+		
+		System.out.println("Le temps final du participant " + p2.getNoInscription() + " est de " + p2.getTempsFinal());
+		System.out.println("La position finale du participant " + p2.getNoInscription() + " est de " + p2.getPosition());
+
 
 	}
 }
