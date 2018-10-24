@@ -1,15 +1,15 @@
 
 public class Voiture extends Vehicule {
-	private int puissanceV;
+	private float puissanceV;
 	private Parametres coefV = new Parametres();
 
-	public Voiture(int v, int p) {
+	public Voiture(int v, float p) {
 		super(v);
 		this.puissanceV = p;
 
 	}
 
-	public int getPuissanceV() {
+	public float getPuissanceV() {
 		return puissanceV;
 	}
 

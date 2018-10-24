@@ -7,7 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class CSV {
+public class CSVValThorens {
 	
 	
 
@@ -15,7 +15,7 @@ public class CSV {
     	
     
         String csvPath = "C:/Users/andri/Documents/GitHub/";
-    	String csv = "SuperBesse.csv";
+    	String csv = "ValThorens.csv";
 
 
         BufferedReader br = null;

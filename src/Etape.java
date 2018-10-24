@@ -26,14 +26,6 @@ public class Etape {
 		return tabParticipants;
 	}
 	
-	
-	//affecter les participants ¨¤ l'¨¦pate
-	public void organiser (Edition edition) {
-		for(Participant part : edition.getListPart()) {
-			tabParticipants.put(part, null);
-			}
-	}
-	
 
 	public void enregistreTemp(Participant part, int hh, int mm, int ss, int ms) {
 		Courir courir = new Courir(hh, mm, ss, ms);

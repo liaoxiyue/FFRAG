@@ -3,12 +3,13 @@ import java.util.*;
 public class Coureur {
 	private String nomCoureur;
 	private String prenomCoureur;
-	private Date dateNaissanceC;
-	
-	public Coureur(String nom, String prenom, Date datene){
+	private String groupeSanguin;
+	private String nationalite;
+	public Coureur(String nom, String prenom, String g, String n){
 		this.nomCoureur = nom;
 		this.prenomCoureur = prenom;
-		this.dateNaissanceC = datene;
+		this.groupeSanguin = g;
+		this.nationalite =n;
 	}
 	
 }

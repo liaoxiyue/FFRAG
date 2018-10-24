@@ -22,8 +22,12 @@ public class Edition {
 		listEtape.add(etape);
 	}
 	
+
 	public void organiserPart(Participant part) {
 		listPart.add(part);
+		for (Etape etape : listEtape) {
+			etape.getTabParticipants().put(part, null);
+		}
 	}
 	
 	public ArrayList<Etape> getListEtape() {
