@@ -1,8 +1,7 @@
 import java.util.*;
-import java.text.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.Temporal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class RunRallye {
 
 	public static void main(String[] args) throws ParseException {
@@ -18,7 +17,7 @@ public class RunRallye {
 		Courir cou2 = new Courir(0,5,12,5);
 		System.out.println(cou1.getMilleSeconde());
 		System.out.println(cou1.getTemps());
-
+		
 		//test calculer
 		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 		Date today = dateformat.parse("2018-10-04");	
@@ -28,13 +27,9 @@ public class RunRallye {
 		Participant p2 = new Participant(124,today,co2,v1);
 		Etape et1 = new Etape(1,(float) (235.1),today);
 		
-		et1.enregistreTemp(p2, 123456789);
-		et1.enregistreTemp(p1, 12345);
+		et1.enregistreTemp(p2, 1,35,59,1);
+		et1.enregistreTemp(p1, 0,20,35,220);
 		et1.calculerClassement();
-		
-		
+
 	}
-
-
-
 }

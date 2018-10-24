@@ -1,13 +1,22 @@
 /Coureur.class
 /Vehicule.class
 /Voiture.class
+<<<<<<< HEAD
+=======
+/Camion.class
+/Courir.class
+>>>>>>> e71ac2b0a690c6116b96df6d21f0b37180ec794b
 /Edition.class
 /Etape.class
 /Participant.class
 /Rallye.class
+<<<<<<< HEAD
 /main.class
 /Etape$1.class
 /Camion.class
 /Courir.class
 /Parametres.class
+=======
+>>>>>>> e71ac2b0a690c6116b96df6d21f0b37180ec794b
 /RunRallye.class
+/Edition$1.class
