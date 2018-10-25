@@ -10,8 +10,6 @@ import FFRAG.Participant;
 import FFRAG.Rallye;
 import FFRAG.Voiture;
 import vue.Bienvenue;
-import vue.CreationEdition;
-import vue.CreationRallye;
 
 import java.awt.EventQueue;
 import java.text.ParseException;
@@ -23,48 +21,53 @@ public class RunRallye {
 		
 		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 		Date today = dateformat.parse("2018-10-04");
-		
 		FFRAG ffrag = new FFRAG();
 		
-		/*EventQueue.invokeLater(new Runnable() {
-			
-			public void run() {
-				try {
-					CreationRallye frame = new CreationRallye(ffrag);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});*/
+		//creation rallye
 		ffrag.creationRallye("r1","v1","p1");
-		ffrag.creationRallye("r2","v2","p1");
-		ffrag.insertCoureur("sf","sef",today);
-		ffrag.insertCoureur("sef","sef",today);
-		System.out.println(ffrag.getListRallye().get(0).getNomRallye());
-		System.out.println(ffrag.getListRallye().get(1).getNomRallye());
-		ffrag.creationRallye("Grand prix Canada", "Montr¨¦al", "Canada");
-		ffrag.creationRallye("Grand prix France", "Montr¨¦al", "Canada");
-		ffrag.creationRallye("Grand prix Suisse", "Montr¨¦al", "Canada");
-		ffrag.creationRallye("Grand prix Pyr¨¦n¨¦en", "Montr¨¦al", "Canada");
-		ffrag.creationRallye("Grand prix Aples", "Montr¨¦al", "Canada");
-		System.out.println(ffrag.getListRallye().size());
+		ffrag.creationRallye("r2","v2","p2");
+		ffrag.creationRallye("r3","v3","p3");
+		ffrag.creationRallye("r4","v4","p4");
 		
+		//creation coureur
+		ffrag.insertCoureur("lala","lala",today);
+		ffrag.insertCoureur("riri","riri",today);
+		ffrag.insertCoureur("toto","toto",today);
+		ffrag.insertCoureur("fufu","fufu",today);
+		ffrag.insertCoureur("didi","didi",today);
+		
+		//creation vehicule
 		Camion c1 = new Camion("cme", 2250);
-		System.out.println(c1.getCoef());
-
 		Voiture v1 = new Voiture("vme", 25);
-		System.out.println(v1.getCoef());
 		
+		//creation edition
+		for(int i = 0; i < ffrag.getListRallye().size(); i++) {
+			for(int j = 1; j < 5; j++) {
+				ffrag.getListRallye().get(i).organiser(j, today, today);
+			}
+		}
+		
+		
+		//creation etape
+		ffrag.getListRallye().get(0).getListeEdition().get(0).organiserEtape(1, 123);
+		ffrag.getListRallye().get(0).getListeEdition().get(0).organiserEtape(2, 123);
+		ffrag.getListRallye().get(0).getListeEdition().get(0).organiserEtape(3, 123);
+		ffrag.getListRallye().get(0).getListeEdition().get(0).organiserEtape(4, 123);
+		ffrag.getListRallye().get(0).getListeEdition().get(0).organiserEtape(5, 123);
+
+		
+		
+		//creation participant
+		//ffrag.getListRallye().get(0).getListeEdition().get(0).organiserPart(part);
 		
 		//test temps
 		Courir cou1 = new Courir(1,3,28,6);
 		Courir cou2 = new Courir(0,5,12,5);
-		System.out.println(cou1.getMilleSeconde());
-		System.out.println(cou1.getTemps());
+		Courir cou3 = new Courir(2,52,18,5);
+		Courir cou4 = new Courir(1,6,52,558);
+		Courir cou5 = new Courir(0,59,10,125);
 		
-		//test calculer
-			
+		//test calculer			
 		Coureur co1 = new Coureur("sf","sef",today);
 		Coureur co2 = new Coureur("sef","sef",today);
 		Participant p1 = new Participant(1,today,co1,c1);
@@ -99,12 +102,6 @@ public class RunRallye {
 		System.out.println("Le champion est le" + nom);
 		
 		ed1.setTempFinal();
-		System.out.println("Le temps final du participant " + p1.getNoInscription() + " est de " + p1.getTempsFinal());
-		System.out.println("La position finale du participant " + p1.getNoInscription() + " est de " + p1.getPosition());
-		
-		System.out.println("Le temps final du participant " + p2.getNoInscription() + " est de " + p2.getTempsFinal());
-		System.out.println("La position finale du participant " + p2.getNoInscription() + " est de " + p2.getPosition());
-	
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -124,7 +121,7 @@ public class RunRallye {
 			ligneRallye.add(r.getPays());
 			rallye.add(ligneRallye);
 		}
-		TestCSV test = new TestCSV();
-		test.Array2CSV(rallye, "test.csv");
+		//TestCSV test = new TestCSV();
+		//test.Array2CSV(rallye, "test.csv");
 	}
 }

@@ -5,6 +5,7 @@ public class Edition {
 	private int noEdition;
 	private Date dateDebER;
 	private Date dateFinER;
+	private String saison;
 	private ArrayList<Etape> listEtape;
 	private ArrayList<Participant> listPart;
 	private HashMap<Participant, Integer> listTempsGeneral;
@@ -18,6 +19,26 @@ public class Edition {
 		this.listPart = new ArrayList<Participant>();
 		this.listTempsGeneral = new HashMap<Participant, Integer>();
 	}
+
+	
+	
+	public String getSaison() {
+		return saison;
+	}
+
+
+
+	public ArrayList<HashMap.Entry<Participant, Integer>> getClassementGeneral() {
+		return classementGeneral;
+	}
+
+
+
+	public void setSaison(String saison) {
+		this.saison = saison;
+	}
+
+
 
 	public void organiserEtape(int code, int distance) {
 		Etape etape = new Etape(code, distance);

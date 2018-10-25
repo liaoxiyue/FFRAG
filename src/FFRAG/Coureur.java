@@ -36,6 +36,11 @@ public class Coureur {
 	public String getPrenomCoureur() {
 		return prenomCoureur;
 	}
+
+	public ArrayList<Participant> getListParticipation() {
+		return listParticipation;
+	}
+	
 }
 
 

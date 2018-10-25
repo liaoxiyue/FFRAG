@@ -42,6 +42,7 @@ public class Rallye {
 	public ArrayList<Edition> getListeEdition() {
 		return listeEdition;
 	}
+	
 	public Edition getEdition(int noEdition) {
 		Edition edition = null;
 		for(Edition e : listeEdition) {

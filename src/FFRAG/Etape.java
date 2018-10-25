@@ -30,6 +30,12 @@ public class Etape {
 	}
 	
 	
+	
+	
+	public ArrayList<HashMap.Entry<Participant, Integer>> getClassementEtape() {
+		return classementEtape;
+	}
+
 	//affecter les participants ¨¤ l'¨¦pate
 	public void organiser (Edition edition) {
 		for(Participant part : edition.getListPart()) {
