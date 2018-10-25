@@ -25,16 +25,17 @@ public class CSVValThorens {
         int n = 0;//id vehicule
         int nume = 1; //num étape
     
-        
 
-	        try {
-	        	int i=0;//on ne traite pas l'entête des tableaux
-		            br = new BufferedReader(new FileReader(csvPath+csv));
-		            while ((line = br.readLine()) != null) 
-		            	if(i!=0) {
+
+	    try {
+	        int i=0;//on ne traite pas l'entête des tableaux
+		    br = new BufferedReader(new FileReader(csvPath+csv));
+
+		    while ((line = br.readLine()) != null) {
+		            if(i!=0) {
 		            		 // use comma as separator
 			                String[] tab = line.split(cvsSplitBy);
-			              
+
 			                //Coureur 
 			                String name = tab[0];
 			                String lastName = "";
@@ -46,10 +47,10 @@ public class CSVValThorens {
 			                	    					}
 			                else{
 			                	  firstName = name;
-			                	    }
+			                	 }
 			                
 			                Coureur c = new Coureur(firstName, lastName, tab[1], tab[2]);
-			                
+			            
 			                //Vehicule
 			                
 			                
@@ -64,7 +65,7 @@ public class CSVValThorens {
 			                
 			                // Inscription 
 			                
-			                int nIns = Integer.parseInt(tab[2]);
+			                int nIns = Integer.parseInt(tab[4]);
 			                
 			               // Participant
 			                Participant p = new Participant(nIns, now,c, v); 
@@ -72,7 +73,6 @@ public class CSVValThorens {
 			                //Rallye
 			                String n1 = csv.substring(0, csv.lastIndexOf("."));
 			                Rallye r = new Rallye (n1,"Val Thorens");
-			                
 			                
 			                
 			              //Edition
@@ -83,10 +83,12 @@ public class CSVValThorens {
 			                Date dateFin = new Date() ;
 			                dateFin = dateformat.parse("28-01-2018");
 			                Edition e = new Edition(ne, dateDeb, dateFin);
+			                System.out.println(e.getNoEdition());
+
 			               	ne++;
 
 			                //Etape 
-			                for (int j= 3; j<tab.length; j++) {
+			                for (int j= 6; j<tab.length; j++) {
 			                	int h = Integer.parseInt(tab[j].substring(0,2));
 			                	int m = Integer.parseInt( tab[j].substring(3,5));
 			                	int sec = Integer.parseInt(tab[j].substring(6,8));
@@ -98,12 +100,12 @@ public class CSVValThorens {
 			                	nume++;
 			                }
 			                
-		            		
+
 		            	}
 		               
 		               	i++;
 	       
-						        
+		    }       
 					            
 					    } catch (FileNotFoundException e) {
 					        e.printStackTrace();

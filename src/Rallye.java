@@ -9,6 +9,18 @@ public class Rallye {
 		listeEdition = new ArrayList<Edition>();
 	}
 	
+	public String getNomRallye() {
+		return nomRallye;
+	}
+
+	public String getLieuRallye() {
+		return lieuRallye;
+	}
+
+	public ArrayList<Edition> getListeEdition() {
+		return listeEdition;
+	}
+
 	public void organiser(Edition edition) {
 		listeEdition.add(edition);
 	}

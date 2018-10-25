@@ -5,6 +5,25 @@ public class Edition {
 	private Date dateDebER;
 	private Date dateFinER;	
 	private ArrayList<Participant> listPart;
+	public int getNoEdition() {
+		return noEdition;
+	}
+
+
+	public Date getDateDebER() {
+		return dateDebER;
+	}
+
+
+	public Date getDateFinER() {
+		return dateFinER;
+	}
+
+
+	public HashMap<Participant, Integer> getClassementGeneral() {
+		return classementGeneral;
+	}
+
 	private ArrayList<Etape> listEtape;
 	private HashMap<Participant, Integer> classementGeneral;
 	
