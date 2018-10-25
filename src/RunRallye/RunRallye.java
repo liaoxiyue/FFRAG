@@ -1,8 +1,15 @@
 package RunRallye;
-import java.util.*;
-import FFRAG.Camion;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Date;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
+
 import FFRAG.Coureur;
-import FFRAG.Courir;
 import FFRAG.Edition;
 import FFRAG.Etape;
 import FFRAG.FFRAG;
@@ -10,121 +17,434 @@ import FFRAG.Participant;
 import FFRAG.Rallye;
 import FFRAG.Voiture;
 import vue.Bienvenue;
-import vue.CreationEdition;
-import vue.CreationRallye;
 
-import java.awt.EventQueue;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
 public class RunRallye {
-
-	public static void main(String[] args) throws ParseException {
-		
-		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-		Date today = dateformat.parse("2018-10-04");
-		
-		FFRAG ffrag = new FFRAG();
-		
-		/*EventQueue.invokeLater(new Runnable() {
-			
-			public void run() {
-				try {
-					CreationRallye frame = new CreationRallye(ffrag);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});*/
-		ffrag.creationRallye("r1","v1","p1");
-		ffrag.creationRallye("r2","v2","p1");
-		ffrag.insertCoureur("sf","sef",today);
-		ffrag.insertCoureur("sef","sef",today);
-		System.out.println(ffrag.getListRallye().get(0).getNomRallye());
-		System.out.println(ffrag.getListRallye().get(1).getNomRallye());
-		ffrag.creationRallye("Grand prix Canada", "Montr¨¦al", "Canada");
-		ffrag.creationRallye("Grand prix France", "Montr¨¦al", "Canada");
-		ffrag.creationRallye("Grand prix Suisse", "Montr¨¦al", "Canada");
-		ffrag.creationRallye("Grand prix Pyr¨¦n¨¦en", "Montr¨¦al", "Canada");
-		ffrag.creationRallye("Grand prix Aples", "Montr¨¦al", "Canada");
-		System.out.println(ffrag.getListRallye().size());
-		
-		Camion c1 = new Camion("cme", 2250);
-		System.out.println(c1.getCoef());
-
-		Voiture v1 = new Voiture("vme", 25);
-		System.out.println(v1.getCoef());
-		
-		
-		//test temps
-		Courir cou1 = new Courir(1,3,28,6);
-		Courir cou2 = new Courir(0,5,12,5);
-		System.out.println(cou1.getMilleSeconde());
-		System.out.println(cou1.getTemps());
-		
-		//test calculer
-			
-		Coureur co1 = new Coureur("sf","sef",today);
-		Coureur co2 = new Coureur("sef","sef",today);
-		Participant p1 = new Participant(1,today,co1,c1);
-		Participant p2 = new Participant(2,today,co2,v1);
-		Etape et1 = new Etape(1,(int) (235));
-		
-		et1.enregistreTemp(p2, 1,35,59,1);
-		et1.enregistreTemp(p1, 0,20,35,220);
-		et1.calculerClassement();
-		
-		Edition ed1 = new Edition(21,today,today);
-		Edition ed2 = new Edition(22,today,today);
-		Edition ed3 = new Edition(23,today,today);
-		ffrag.getListRallye().get(0).organiser(21,today,today);
-		ffrag.getListRallye().get(0).organiser(22,today,today);
-		ffrag.getListRallye().get(1).organiser(22,today,today);
-		ffrag.getListRallye().get(1).organiser(23,today,today);
-		
-		ffrag.getListRallye().get(0).getListeEdition().get(0).organiserEtape(1,(int) (235));
-		ffrag.getListRallye().get(0).getListeEdition().get(0).organiserEtape(2,(int) (235));
-		ed1.organiserEtape(1,235);
-		ed1.organiserEtape(2,541);
-		ed1.organiserPart(p2);ed1.organiserPart(p1);
-		ed1.getListEtape().get(0).enregistreTemp(p2, 1,35,59,1);
-		ed1.getListEtape().get(0).enregistreTemp(p1, 0,20,35,220);
-		ed1.getListEtape().get(1).enregistreTemp(p2, 1,35,59,1);
-		ed1.getListEtape().get(1).enregistreTemp(p1, 0,20,35,220);
-		
-		ed1.calculerClassement(1);
-		ed1.calculerClassement(2);
-		int nom = ed1.getChampion().getNoInscription();
-		System.out.println("Le champion est le" + nom);
-		
-		ed1.setTempFinal();
-		System.out.println("Le temps final du participant " + p1.getNoInscription() + " est de " + p1.getTempsFinal());
-		System.out.println("La position finale du participant " + p1.getNoInscription() + " est de " + p1.getPosition());
-		
-		System.out.println("Le temps final du participant " + p2.getNoInscription() + " est de " + p2.getTempsFinal());
-		System.out.println("La position finale du participant " + p2.getNoInscription() + " est de " + p2.getPosition());
 	
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Bienvenue frame = new Bienvenue(ffrag);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+	
+
+    public static void main(String[] args) throws IOException,FileNotFoundException, ParseException {
+    	
+    	FFRAG ffrag = new FFRAG();
+    	
+        String csvPath = "data/";
+    	String csv = "Coureurs.csv";
+    	String csvVal = "ValThorens.csv";
+    	String csvPuiss = "Puissances.csv";
+    	String csvSuper = "SuperBesse.csv";
+        SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+        BufferedReader br = null;
+        String line = "";
+        String cvsSplitBy = ";";
+        int numins= 0;
+        int ned = 1;
+    	
+        
+        // récupérer les coureurs 
+	     try {
+	    	 int i=0;//on ne traite pas l'entête des tableaux
+		     br = new BufferedReader(new FileReader(csvPath+csv));
+		     while ((line = br.readLine()) != null) {
+		    	 if(i!=0) {
+		    		 String[] tab = line.split(cvsSplitBy);
+			         //Coureur 
+			         String name = tab[0];
+			         String lastName = "";
+			         String firstName= "";
+			         if(name.split(" ").length>1){
+			        	 lastName = name.substring(name.lastIndexOf(" ")+1);//dernier caractère avec l'espace
+			              firstName = name.substring(0, name.lastIndexOf(" "));
+			          }else{
+			               firstName = name;
+			          }
+		              Date d = dateformat.parse(tab[1]);
+		              ffrag.insertCoureur(lastName, firstName, d, tab[2], tab[3]);
+
+			      }
+		    	 i++;
+		     }
+		     
+	     	} finally {
+				if (br != null) {
+					try {
+						br.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+					    }
+					 }
 				}
-			}
-		});
-		
-		ArrayList<ArrayList<String>> rallye = new ArrayList<ArrayList<String>>();
-		for (Rallye r:ffrag.getListRallye()) {
-			ArrayList<String> ligneRallye = new ArrayList<String>();
-			ligneRallye.add(r.getNomRallye());
-			ligneRallye.add(r.getVille());
-			ligneRallye.add(r.getPays());
-			rallye.add(ligneRallye);
-		}
-		TestCSV test = new TestCSV();
-		test.Array2CSV(rallye, "test.csv");
-	}
+				
+	    
+	        //creation des rallyes
+	        ffrag.creationRallye("ValThorens", "ValThorens", "France");
+	        ffrag.creationRallye("SuperBesse", "Besse", "France");
+	        
+	        Date datedebV = dateformat.parse("08/12/2017");	 
+	        Date datefinV = dateformat.parse("01/01/2018");	        
+	        Date datedebS = dateformat.parse("27/01/2018");	 
+	        Date datefinS = dateformat.parse("01/02/2018");	 
+	        
+	        //création edition de Val Thorens
+	        for(Rallye r: ffrag.getListRallye()) {
+	        	if(r.getNomRallye() == "ValThorens") {
+	        		r.organiser(ned, datedebV, datefinV, "2017 / 2018");
+	        		for(Edition eV : r.getListeEdition()) {
+	        			if(eV.getNoEdition()==ned) {
+		        			eV.organiserEtape(1, 347);
+		        			eV.organiserEtape(2, 305);
+		        			eV.organiserEtape(3, 552);
+		        			eV.organiserEtape(4, 180);
+		        			eV.organiserEtape(5, 210);
+		        			eV.organiserEtape(6, 380);
+		        			eV.organiserEtape(7, 645);
+		        			eV.organiserEtape(8, 325);
+		        			eV.organiserEtape(9, 305);
+		        			eV.organiserEtape(10, 179);
+		        			
+	        			}
+	        		}
+	        	}
+	        }
+		   
+	        //récupérer véhicules 
+	        
+	        
+	        try {
+	        	int j=0;//on ne traite pas l'entête des tableaux
+		        br = new BufferedReader(new FileReader(csvPath+csvPuiss));
+		        while ((line = br.readLine()) != null) {
+		        	if(j!=0) {
+		        		String[] tabPuiss = line.split(cvsSplitBy);
+				        float pui = Float.parseFloat(tabPuiss[1]); 
+			            ffrag.insertVoiture(tabPuiss[0], pui);
+			        }
+		            j++;
+
+ 		      }
+		        
+	        } finally {
+				if (br != null) {
+					try {
+						br.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+					    }
+					 }
+				}
+	        
+	        
+	        
+	        
+	        
+
+	        //Créer participants pour ValThorens
+	      
+	        for(Rallye r: ffrag.getListRallye()) {
+	        	if(r.getNomRallye() == "ValThorens") {
+	        		for(Edition eV : r.getListeEdition()) {
+	        			if(eV.getNoEdition()==ned) {
+	        				
+	        				 try {
+	        			        	int k=0;//on ne traite pas l'entête des tableaux
+	        				        br = new BufferedReader(new FileReader(csvPath+csvVal));
+	        				        while ((line = br.readLine()) != null) {
+
+	        				            	if(k!=0) {
+	        					                String[] tab = line.split(cvsSplitBy);
+	        					              
+	        					                //Coureur 
+	        					                String name = tab[0];
+	        					                String lastName = "";
+	        					                String firstName= "";
+	        					                
+	        					                if(name.split(" ").length>1){
+	        					                	lastName = name.substring(name.lastIndexOf(" ")+1);//dernier caractère avec l'espace
+	        					                	firstName = name.substring(0, name.lastIndexOf(" "));
+	        					                	    					}
+	        					                else{
+	        					                	  firstName = name;
+	        					                	    }
+	        					                for(Coureur c: ffrag.getListCoureur()) {
+
+	    		        			        		if(c.getNomCoureur().equals(lastName) &&c.getPrenomCoureur().equals(firstName)) {
+	    		        			        			int nIns = Integer.parseInt(tab[2]);
+	    			        					        Date dateIns = dateformat.parse("03/03/2017");
+	    			        					        for(Voiture v: ffrag.getListVoiture()){
+	    			        					        	
+	    			        					        	if(v.getModele().equals(tab[1])) {
+	    			        					        		eV.organiserPart(new Participant(nIns,dateIns,c, v));
+		 	    			        			                numins++;
+
+	    			        					        	}
+	    			        					        }
+	    			        					    }
+	    			        			               
+
+	    			        			      }
+	    			        			  }
+	        				              
+	        				            k++;
+    
+	        					                
+	        					                
+	        				        }
+
+	        				 	}
+				 
+							finally {
+								if (br != null) {
+									try {
+										br.close();
+										} catch (IOException e) {
+											e.printStackTrace();
+									    }
+									 }
+								}
+			        				
+	        			}
+	        		}
+	        	}
+	        }
+	        
+	        
+	        //enregistrer temps des coureurs edition Valthorens
+	        for(Rallye r: ffrag.getListRallye()) {
+	        	if(r.getNomRallye() == "ValThorens") {
+	        		for(Edition eV : r.getListeEdition()) {
+	        			if(eV.getNoEdition()==ned) {
+	        				for(Etape et: eV.getListEtape()){
+	        					
+	        					for(Participant p : eV.getListPart()){
+	        						
+	        						try {
+
+		        			        	int m=0;//on ne traite pas l'entête des tableaux
+		        				        br = new BufferedReader(new FileReader(csvPath+csvVal));
+		        				        while ((line = br.readLine()) != null) {
+
+		        				            	if(m!=0) {
+		        					                String[] tab = line.split(cvsSplitBy);
+    		        			        			int nIns = Integer.parseInt(tab[2]);
+    		        			        			
+    		        			        			
+		        					                if(p.getNoInscription()==nIns){
+		        					                	
+		        					                	
+		        					                	int h = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(0,2)); //tableau fixe
+		        					                	int mm = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(3,5));
+		        					                	int sec = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(6,8));
+		        					                	System.out.println(h + " " + mm +" " + sec);
+		        					              
+
+		        					                	et.enregistreTemp(p, h, mm, sec,00);
+		        					                
+
+		        					                }
+		        				            	}
+		        				               	
+		        				            	
+		        				            	m++;
+	    
+		        					                
+		        					                
+		        				        }
+
+	        						}
+								 
+									finally {
+										if (br != null) {
+											try {
+												br.close();
+												} catch (IOException e) {
+													e.printStackTrace();
+											    }
+											 }
+										}
+
+	        					}
+	        				}
+		        					        			
+	        			}
+	        		}
+	        	}
+	        }
+	        
+	        
+	        //créer edition pour SuperBesse
+	        
+	        for(Rallye r: ffrag.getListRallye()) {
+	        	if(r.getNomRallye() == "SuperBesse") {
+	        		r.organiser(ned, datedebV, datefinV, "2018/2019");
+	        		for(Edition eV : r.getListeEdition()) {
+	        			if(eV.getNoEdition()==ned) {
+		        			eV.organiserEtape(1, 360);
+		        			eV.organiserEtape(2, 325);
+		        			eV.organiserEtape(3, 658);
+		        			eV.organiserEtape(4, 157);
+		        			eV.organiserEtape(5, 285);
+		        			eV.organiserEtape(6, 423);
+		        			eV.organiserEtape(7, 592);
+		        			eV.organiserEtape(8, 227);
+		        			eV.organiserEtape(9, 219);
+		        			eV.organiserEtape(10, 280);
+		        			eV.organiserEtape(11, 267);
+		        			eV.organiserEtape(12, 302);
+
+		        			
+	        			}
+	        		}
+	        	}
+	        }
+	        
+	        
+	        
+	        
+	        //créer participants pour SuperBesse
+
+	        for(Rallye r: ffrag.getListRallye()) {
+	        	if(r.getNomRallye() == "SuperBesse") {
+	        		for(Edition eV : r.getListeEdition()) {
+	        			if(eV.getNoEdition()==ned) {
+	        				
+	        				 try {
+	        			        	int l=0;//on ne traite pas l'entête des tableaux
+	        				        br = new BufferedReader(new FileReader(csvPath+csvSuper));
+	        				        while ((line = br.readLine()) != null) {
+
+	        				            	if(l!=0) {
+	        					                String[] tab = line.split(cvsSplitBy);
+	        					              
+	        					                //Coureur 
+	        					                String name = tab[0];
+	        					                String lastName = "";
+	        					                String firstName= "";
+	        					                
+	        					                if(name.split(" ").length>1){
+	        					                	lastName = name.substring(name.lastIndexOf(" ")+1);//dernier caractère avec l'espace
+	        					                	firstName = name.substring(0, name.lastIndexOf(" "));
+	        					                	    					}
+	        					                else{
+	        					                	  firstName = name;
+	        					                	    }
+	        					                for(Coureur c: ffrag.getListCoureur()) {
+
+	    		        			        		if(c.getNomCoureur().equals(lastName) &&c.getPrenomCoureur().equals(firstName)) {
+
+	    		        			        			int nIns = Integer.parseInt(tab[2]);
+	    			        					        Date dateIns = dateformat.parse("31/12/2017");
+	    			        					        for(Voiture v: ffrag.getListVoiture()){
+	    			        					        	
+	    			        					        	if(v.getModele().equals(tab[1])) {
+	    			        					        		eV.organiserPart(new Participant(nIns,dateIns,c, v));
+		 	    			        			                numins++;
+
+	    			        					        	}
+	    			        					        }
+	    			        					    }
+	    			        			      }
+	    			        			  }
+
+	        				            	l++;       
+	        					                
+	        				        }
+
+	        				 	}
+	        					finally {
+	        						if (br != null) {
+	        							try {
+	        								br.close();
+	        								} catch (IOException e) {
+	        									e.printStackTrace();
+	        							    }
+	        							 }
+	        						}
+	        			}
+	        		}
+	        	}
+	        }
+
+	        //enregistrer temps des coureurs edition SuperBesse
+	        for(Rallye r: ffrag.getListRallye()) {
+	        	if(r.getNomRallye() == "SuperBesse") {
+	        		for(Edition eV : r.getListeEdition()) {
+	        			if(eV.getNoEdition()==ned) {
+	        				for(Etape et: eV.getListEtape()){
+	        					
+	        					for(Participant p : eV.getListPart()){
+	        						
+	        						try {
+
+		        			        	int m=0;//on ne traite pas l'entête des tableaux
+		        				        br = new BufferedReader(new FileReader(csvPath+csvSuper));
+		        				        while ((line = br.readLine()) != null) {
+
+		        				            	if(m!=0) {
+		        					                String[] tab = line.split(cvsSplitBy);
+    		        			        			int nIns = Integer.parseInt(tab[2]);
+    		        			        			
+    		        			        			
+		        					                if(p.getNoInscription()==nIns){
+		        					                	
+		        					                	
+		        					                	int h = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(0,2)); //tableau fixe
+		        					                	int mm = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(3,5));
+		        					                	int sec = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(6,8));
+		        					                	System.out.println(h + " " + mm +" " + sec);
+		        					              
+
+		        					                	et.enregistreTemp(p, h, mm, sec,00);
+
+		    			        			      }
+		    			        			  }
+		        				               	
+		        				            m++;		                
+		        					                
+		        				       }
+
+	        						}
+					 
+									finally {
+										if (br != null) {
+											try {
+												br.close();
+												} catch (IOException e) {
+													e.printStackTrace();
+											    }
+											 }
+										}
+	        							
+	        					}
+	        				}
+		        					        			
+	        			}
+	        		}
+	        	}
+	        }
+	        System.out.println(ffrag.getListCoureur().get(0).getNomCoureur());
+	        EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						Bienvenue frame = new Bienvenue(ffrag);
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+    }
 }
+	        				
+	        				
+	        		
+	        				
+	        				
+	        				
+	        				
+	        				
+	        				
+	        				
+	        				
+	        			
+	        				        	
+

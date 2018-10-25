@@ -10,9 +10,9 @@ public class Participant {
     private Vehicule vehicule;
     private int position;
    
-	public Participant(int noIscription, Date dateEnreg, Coureur c, Vehicule v) {
-		this.noInscription = noIscription;
-        this.dateInscription = dateEnreg;
+	public Participant (int nIns, Date dateIns, Coureur c, Vehicule v) {
+		this.noInscription = nIns;
+		this.dateInscription = dateIns;
         this.coureur = c;
         this.vehicule = v;
         this.coureur.affecterParticipation(this);
@@ -50,8 +50,20 @@ public class Participant {
     public int getNoInscription() {
 		return noInscription;
 	}
+    public void setNoInscription(int noInscription) {
+		this.noInscription = noInscription;
+	}
+
     
     public Coureur getCoureur() {
 		return coureur;
+	}
+
+	public Date getDateInscription() {
+		return dateInscription;
+	}
+
+	public void setDateInscription(Date dateInscription) {
+		this.dateInscription = dateInscription;
 	}
 }

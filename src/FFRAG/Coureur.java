@@ -5,15 +5,23 @@ public class Coureur {
 	private String nomCoureur;
 	private String prenomCoureur;
 	private Date dateNaissanceC;
+	private String sanguin;
+	private String nationalite;
 	private ArrayList<Participant> listParticipation;
 	
-	public Coureur(String nom, String prenom, Date datene){
+	public Coureur(String nom, String prenom, Date datene, String nationalite, String sanguin){
 		this.nomCoureur = nom;
 		this.prenomCoureur = prenom;
 		this.dateNaissanceC = datene;
+		this.nationalite = nationalite;
+		this.sanguin = sanguin;
 		this.listParticipation = new ArrayList<Participant>();
 	}
 	
+	public ArrayList<Participant> getListParticipation() {
+		return listParticipation;
+	}
+
 	public Date getDateNaissanceC() {
 		return dateNaissanceC;
 	}

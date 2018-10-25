@@ -4,8 +4,8 @@ public class Voiture extends Vehicule{
 	private int puissanceV ;
 	private Parametres coefV = new Parametres();
 	
-	public Voiture(String v, int p) {
-		super(v);
+	public Voiture(String m, int p) {
+		super(m);
 		this.puissanceV = p;
 	}
 

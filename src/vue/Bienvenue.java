@@ -66,9 +66,29 @@ public class Bienvenue extends JFrame {
 
 			}
 		});
+		
 		btnCreationEdition.setFont(new Font("Calibri", Font.BOLD, 15));
 		btnCreationEdition.setBounds(56, 138, 156, 27);
 		contentPane.add(btnCreationEdition);
+		
+		JButton btnInscription = new JButton("Inscription");
+		btnInscription.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							LogCoureur frame = new LogCoureur(ffrag);
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		btnInscription.setFont(new Font("Calibri", Font.BOLD, 15));
+		btnInscription.setBounds(344, 137, 156, 27);
+		contentPane.add(btnInscription);
 		
 		JLabel lblBienvenuPour = new JLabel("Bienvenue ! ");
 		lblBienvenuPour.setFont(new Font("Eras Bold ITC", Font.PLAIN, 27));
@@ -111,5 +131,7 @@ public class Bienvenue extends JFrame {
 		this.getLayeredPane().add(back, new Integer(Integer.MIN_VALUE));
 		((JPanel)this.getContentPane()).setOpaque(false);
 		contentPane.add(back);
+		
+		
 	}
 }

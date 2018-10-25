@@ -3,8 +3,8 @@ package FFRAG;
 public class Camion extends Vehicule {
 	private float poidsC;
 	private Parametres coefC = new Parametres();
-	public Camion(String v, float p) {
-		super(v);
+	public Camion(String m, float p) {
+		super(m);
 		this.poidsC = p;
 	}
 	public float getPoidsC() {
