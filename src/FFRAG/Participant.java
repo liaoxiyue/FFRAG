@@ -10,16 +10,13 @@ public class Participant {
     private Vehicule vehicule;
     private int position;
    
-	public Participant(Date dateEnreg, Coureur c, Vehicule v) {
+	public Participant(int noIscription, Date dateEnreg, Coureur c, Vehicule v) {
+		this.noInscription = noIscription;
         this.dateInscription = dateEnreg;
         this.coureur = c;
         this.vehicule = v;
         this.coureur.affecterParticipation(this);
     }
-    
-	public void setNoInscription(int no){
-		this.noInscription = no;
-	}
 	
 	public int getTempsFinal() {
 		return this.tempsFinal;

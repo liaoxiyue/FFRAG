@@ -4,15 +4,13 @@ public class Etape {
 
 	private HashMap<Participant, Integer> tabParticipants;
 	int codeEtape;
-	float distanceEtape;
-	Date dateDep;
+	int distanceEtape;
 	ArrayList<HashMap.Entry<Participant, Integer>> classementEtape;
 	
 	
-	public Etape(int code, float distance, Date dep) {
+	public Etape(int code, int distance) {
 		this.codeEtape = code;
 		this.distanceEtape = distance;
-		this.dateDep = dep;
 		this.tabParticipants = new HashMap<Participant, Integer>();
 		this.classementEtape = new ArrayList<HashMap.Entry<Participant, Integer>>();
 	}

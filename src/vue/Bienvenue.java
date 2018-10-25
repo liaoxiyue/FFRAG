@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
-public class Bienvenu extends JFrame {
+public class Bienvenue extends JFrame {
 
 	private JPanel contentPane;
 	private FFRAG ffrag;
@@ -41,7 +41,7 @@ public class Bienvenu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Bienvenu(FFRAG ffrag) {
+	public Bienvenue(FFRAG ffrag) {
 		this.ffrag=ffrag;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 815, 539);
@@ -70,9 +70,9 @@ public class Bienvenu extends JFrame {
 		btnCreationEdition.setBounds(56, 138, 156, 27);
 		contentPane.add(btnCreationEdition);
 		
-		JLabel lblBienvenuPour = new JLabel("Bienvenu ! ");
+		JLabel lblBienvenuPour = new JLabel("Bienvenue ! ");
 		lblBienvenuPour.setFont(new Font("Eras Bold ITC", Font.PLAIN, 27));
-		lblBienvenuPour.setBounds(285, 34, 156, 53);
+		lblBienvenuPour.setBounds(285, 34, 202, 53);
 		contentPane.add(lblBienvenuPour);
 		
 		JButton btnCreationRallye = new JButton("Creation Rallye");
@@ -106,7 +106,7 @@ public class Bienvenu extends JFrame {
 		contentPane.add(btnConsultationInfosRallye);
 		
 		JLabel back = new JLabel();
-		back.setIcon(new ImageIcon(Bienvenu.class.getResource("/image/background.jpeg")));
+		back.setIcon(new ImageIcon(Bienvenue.class.getResource("/image/background.jpeg")));
 		back.setBounds(0, 0, 800, 533);
 		this.getLayeredPane().add(back, new Integer(Integer.MIN_VALUE));
 		((JPanel)this.getContentPane()).setOpaque(false);

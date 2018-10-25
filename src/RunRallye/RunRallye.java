@@ -9,7 +9,7 @@ import FFRAG.FFRAG;
 import FFRAG.Participant;
 import FFRAG.Rallye;
 import FFRAG.Voiture;
-import vue.Bienvenu;
+import vue.Bienvenue;
 import vue.CreationEdition;
 import vue.CreationRallye;
 
@@ -67,9 +67,9 @@ public class RunRallye {
 			
 		Coureur co1 = new Coureur("sf","sef",today);
 		Coureur co2 = new Coureur("sef","sef",today);
-		Participant p1 = new Participant(today,co1,c1);
-		Participant p2 = new Participant(today,co2,v1);
-		Etape et1 = new Etape(1,(float) (235.1),today);
+		Participant p1 = new Participant(1,today,co1,c1);
+		Participant p2 = new Participant(2,today,co2,v1);
+		Etape et1 = new Etape(1,(int) (235));
 		
 		et1.enregistreTemp(p2, 1,35,59,1);
 		et1.enregistreTemp(p1, 0,20,35,220);
@@ -83,8 +83,8 @@ public class RunRallye {
 		ffrag.getListRallye().get(1).organiser(22,today,today);
 		ffrag.getListRallye().get(1).organiser(23,today,today);
 		
-		ed1.organiserEtape(1,(float) (235.1),today);
-		ed1.organiserEtape(2,(float) (235.5),today);
+		ed1.organiserEtape(1,(int) (235));
+		ed1.organiserEtape(2,(int) (235));
 		ed1.organiserPart(p2);ed1.organiserPart(p1);
 		ed1.getListEtape().get(0).enregistreTemp(p2, 1,35,59,1);
 		ed1.getListEtape().get(0).enregistreTemp(p1, 0,20,35,220);
@@ -106,7 +106,7 @@ public class RunRallye {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Bienvenu frame = new Bienvenu(ffrag);
+					Bienvenue frame = new Bienvenue(ffrag);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
