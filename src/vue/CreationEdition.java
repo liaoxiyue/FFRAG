@@ -23,18 +23,6 @@ public class CreationEdition extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CreationEdition frame = new CreationEdition();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -54,9 +42,9 @@ public class CreationEdition extends JFrame {
 		contentPane.add(lblCrationEdition);
 		
 		JComboBox comboBox = new JComboBox();
-		String[] listRallye = new String[]{};
-		for(int i = 0; i < ffrag.getListRallye().size(); i++) {
-			listRallye[i] = ffrag.getListRallye().get(i).getNomRallye();
+		String[] listRallye = new String[ffrag.getListRallye().size()+1];
+		for(int i = 1; i <= ffrag.getListRallye().size(); i++) {
+			listRallye[i] = ffrag.getListRallye().get(i-1).getNomRallye();
 		}
 		comboBox.setModel(new DefaultComboBoxModel(listRallye));
 		comboBox.setEditable(true);

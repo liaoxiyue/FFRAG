@@ -29,6 +29,12 @@ public class Coureur {
 		}
 		return titreReporte;
 	}
+	public String getNomCoureur() {
+		return this.nomCoureur;
+	}
+	public String getPrenomCoureur() {
+		return prenomCoureur;
+	}
 }
 
 

@@ -7,7 +7,6 @@ public class Rallye {
 	private ArrayList<Edition> listeEdition;
 	private Coureur championPlusJeune;
 	
-
 	public Rallye(String nom, String ville, String pays) {
 		this.nomRallye = nom;
 		this.ville = ville;
@@ -38,5 +37,8 @@ public class Rallye {
 	
 	public Coureur getChampionPlusJeune() {		
 		return this.championPlusJeune;
+	}
+	public ArrayList<Edition> getListeEdition() {
+		return listeEdition;
 	}
 }

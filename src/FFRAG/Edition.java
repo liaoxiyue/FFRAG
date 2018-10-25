@@ -11,9 +11,9 @@ public class Edition {
 	private ArrayList<HashMap.Entry<Participant, Integer>> classementGeneral;
 	
 	public Edition(int noE, Date deb, Date fin) {
-		this.noEdition = noE;
-		this.dateDebER = deb;
-		this.dateFinER = fin;
+		this.noEdition=noE;
+		this.dateDebER=deb;
+		this.dateFinER=fin;
 		this.listEtape = new ArrayList<Etape>();
 		this.listPart = new ArrayList<Participant>();
 		this.listTempsGeneral = new HashMap<Participant, Integer>();
@@ -80,6 +80,18 @@ public class Edition {
 		Participant champion;
 		champion = classementGeneral.get(0).getKey();
 		return champion;
+	}
+
+	public int getNoEdition() {
+		return noEdition;
+	}
+
+	public Date getDateDebER() {
+		return dateDebER;
+	}
+
+	public Date getDateFinER() {
+		return dateFinER;
 	}
 
 }
