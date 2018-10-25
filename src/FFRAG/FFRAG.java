@@ -6,23 +6,35 @@ import java.util.*;
 public class FFRAG {
 	private ArrayList<Rallye> listRallye;
 	private ArrayList<Coureur> listCoureur;
+	private ArrayList<Voiture> listVoiture;
+
 	SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public FFRAG() {
 		this.listRallye = new ArrayList<Rallye>();
-		this.listCoureur = new ArrayList<Coureur>();		
+		this.listCoureur = new ArrayList<Coureur>();
+		this.listVoiture = new ArrayList<Voiture>();
 	}
 	
+	
+	
+	public ArrayList<Voiture> getListVoiture() {
+		return listVoiture;
+	}
+
+
+
 	public void creationRallye(String nom, String ville, String pays){
 		Rallye rallye = new Rallye(nom, ville, pays);
 		this.listRallye.add(rallye);
 		
 	}
 	
-	public void insertCoureur(String nom,String prenom,Date dateNe) {
-		Coureur coureur = new Coureur(nom, prenom, dateNe);
+	public void insertCoureur(String nom,String prenom, Date dateNe, String nationalite, String sanguin) {
+		Coureur coureur = new Coureur(nom, prenom, dateNe, nationalite, sanguin);
 		this.listCoureur.add(coureur);
 	}
+
 	
 	public ArrayList<Rallye> getListRallye() {
 		return listRallye;
@@ -42,6 +54,7 @@ public class FFRAG {
 		return rallye;
 	}
 	
+
 	public Coureur getCoureur(String nomCoureur, String prenomCoureur, String date) {
 		Coureur coureur = null;
 		for(Coureur c : listCoureur) {
@@ -51,6 +64,17 @@ public class FFRAG {
 		}
 		return coureur;
 	}
+
+	public Coureur confirmeCoureur(String nomCoureur, String prenomCoureur) {
+		Coureur coureur = null;
+		for(Coureur c : listCoureur) {
+			if(c.getNomCoureur().equals(nomCoureur) && c.getPrenomCoureur().equals(prenomCoureur)) {
+				coureur = c;
+			}
+		}
+		return coureur;
+	}
+
 	
 	public int getNbPartSaison(Coureur coureur, String saison) {
 		ArrayList<Edition> editionSaison = new ArrayList<Edition>();
@@ -117,5 +141,10 @@ public class FFRAG {
 			}
 		}
 		return detailClassement;
+	}
+
+
+	public void insertVoiture(String string, int pui) {
+		this.listVoiture.add(new Voiture(string, pui));
 	}
 }

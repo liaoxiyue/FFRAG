@@ -9,19 +9,18 @@ public class Edition {
 	private ArrayList<Etape> listEtape;
 	private ArrayList<Participant> listPart;
 	private HashMap<Participant, Integer> listTempsGeneral;
-	private ArrayList<HashMap.Entry<Participant, Integer>> classementGeneral;
+	private ArrayList<HashMap.Entry<Participant, Integer>> classementGeneral = new ArrayList<HashMap.Entry<Participant, Integer>>();
 	
-	public Edition(int noE, Date deb, Date fin) {
+	public Edition(int noE, Date deb, Date fin, String saison) {
 		this.noEdition=noE;
 		this.dateDebER=deb;
 		this.dateFinER=fin;
+		this.saison = saison;
 		this.listEtape = new ArrayList<Etape>();
 		this.listPart = new ArrayList<Participant>();
 		this.listTempsGeneral = new HashMap<Participant, Integer>();
 	}
 
-	
-	
 	public String getSaison() {
 		return saison;
 	}
@@ -33,13 +32,6 @@ public class Edition {
 	}
 
 
-
-	public void setSaison(String saison) {
-		this.saison = saison;
-	}
-
-
-
 	public void organiserEtape(int code, int distance) {
 		Etape etape = new Etape(code, distance);
 		listEtape.add(etape);
@@ -47,6 +39,7 @@ public class Edition {
 	
 	public void organiserPart(Participant part) {
 		listPart.add(part);
+		part.setNoInscription((int) (listPart.size()));
 	}
 	
 	public ArrayList<Etape> getListEtape() {
@@ -98,8 +91,10 @@ public class Edition {
 	}
 	
 	public Participant getChampion() {
-		Participant champion;
-		champion = classementGeneral.get(0).getKey();
+		Participant champion = null;
+		if (classementGeneral.size()>0){
+			champion = classementGeneral.get(0).getKey();
+		}
 		return champion;
 	}
 

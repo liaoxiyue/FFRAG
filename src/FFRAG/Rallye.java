@@ -18,8 +18,8 @@ public class Rallye {
 		return this.nomRallye;
 	}
 	
-	public void organiser(int noE, Date deb, Date fin) {
-		Edition edition = new Edition(noE, deb, fin);
+	public void organiser(int noE, Date deb, Date fin, String saison) {
+		Edition edition = new Edition(noE, deb, fin, saison);
 		listeEdition.add(edition);
 	}
 	
@@ -36,7 +36,7 @@ public class Rallye {
 		this.championPlusJeune = plusJeune;
 	}
 	
-	public Coureur getChampionPlusJeune() {		
+	public Coureur getChampionPlusJeune() {	
 		return this.championPlusJeune;
 	}
 	public ArrayList<Edition> getListeEdition() {

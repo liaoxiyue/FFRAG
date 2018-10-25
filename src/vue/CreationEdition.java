@@ -374,9 +374,10 @@ public class CreationEdition extends JFrame {
 					e1.printStackTrace();
 				} 
 				
+				String saison = textFieldSaison.getText().toString();
 				dispose();
 				Rallye rallye = ffrag.getRallye(comboBoxRallye.getSelectedItem().toString());
-				rallye.organiser(rallye.getListeEdition().size()+1, deb, fin);
+				rallye.organiser(rallye.getListeEdition().size()+1, deb, fin, saison);
 				Edition edition = rallye.getListeEdition().get(rallye.getListeEdition().size()-1);
 				for(int i = 1; i < table.getRowCount(); i++) {
 					System.out.println(table.getValueAt(i, 0));

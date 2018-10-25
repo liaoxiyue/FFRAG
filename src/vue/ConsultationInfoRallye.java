@@ -24,6 +24,7 @@ import FFRAG.Rallye;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.JScrollPane;
+import javax.swing.JRadioButton;
 
 public class ConsultationInfoRallye extends JFrame {
 
@@ -52,8 +53,9 @@ public class ConsultationInfoRallye extends JFrame {
 	 */
 	public ConsultationInfoRallye(FFRAG ffrag) {
 		this.ffrag = ffrag;
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 661, 433);
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 662, 772);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -91,7 +93,7 @@ public class ConsultationInfoRallye extends JFrame {
 		contentPane.add(cBoxEdition);
 		
 		tabInfoRallye = new JTable();
-		tabInfoRallye.setBounds(27, 145, 571, 32);
+		tabInfoRallye.setBounds(27, 145, 571, 84);
 		tabInfoRallye.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"Rallye", "Edition", "Date D\u00E9but", "Date Fin"},
@@ -110,7 +112,7 @@ public class ConsultationInfoRallye extends JFrame {
 		contentPane.add(tabInfoRallye);
 		
 		tabInfoEtape = new JTable();
-		tabInfoEtape.setBounds(27, 242, 338, 64);
+		tabInfoEtape.setBounds(27, 242, 333, 470);
 		tabInfoEtape.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"Etape", "Distance"},
@@ -149,13 +151,29 @@ public class ConsultationInfoRallye extends JFrame {
 		label_1.setFont(new Font("Calibri", Font.BOLD, 15));
 		contentPane.add(label_1);
 		
+		JLabel lblChampionPlusJeune = new JLabel("Champion Plus Jeune :");
+		lblChampionPlusJeune.setFont(new Font("Calibri", Font.BOLD, 15));
+		lblChampionPlusJeune.setBounds(333, 114, 160, 18);
+		contentPane.add(lblChampionPlusJeune);
+		
+		JLabel jeune = new JLabel("");
+		jeune.setFont(new Font("Calibri", Font.BOLD, 15));
+		jeune.setBounds(487, 113, 79, 18);
+		contentPane.add(jeune);
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
+		rdbtnNewRadioButton.setBounds(454, 20, 157, 27);
+		contentPane.add(rdbtnNewRadioButton);
+		
 		
 		cBoxRallye.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				Rallye choix = ffrag.getRallye(cBoxRallye.getSelectedItem().toString());
 				ville.setText(choix.getVille());
 				pays.setText(choix.getPays());
-				
+				if(!(choix.getChampionPlusJeune()==null)) {
+					jeune.setText(choix.getChampionPlusJeune().getNomCoureur()+" "+choix.getChampionPlusJeune().getPrenomCoureur());
+				}
 				String[] listEdition = new String[choix.getListeEdition().size()+1];
 				listEdition[0] = "---Choix Edition---";
 				for(int i = 1; i <= choix.getListeEdition().size(); i++) {
@@ -181,7 +199,6 @@ public class ConsultationInfoRallye extends JFrame {
 				tabInfoRallye.getColumnModel().getColumn(1).setPreferredWidth(50);
 				tabInfoRallye.getColumnModel().getColumn(2).setPreferredWidth(150);
 				tabInfoRallye.getColumnModel().getColumn(3).setPreferredWidth(150);
-				tabInfoRallye.setBounds(27, 145, 573, 64);
 				contentPane.add(tabInfoRallye);
 				
 			}
@@ -189,7 +206,11 @@ public class ConsultationInfoRallye extends JFrame {
 		cBoxEdition.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				Edition choix = ffrag.getRallye(cBoxRallye.getSelectedItem().toString()).getEdition(Integer.valueOf(cBoxEdition.getSelectedItem().toString()));
+				if(!(choix.getChampion()==null)) {
+					jeune.setText(choix.getChampion().getCoureur().getNomCoureur()+" "+choix.getChampion().getCoureur().getPrenomCoureur());
+				}
 				Object[][] etape = new Object[choix.getListEtape().size()+1][2];
+				System.out.println(choix.getListEtape().size());
 				etape[0][0]="Etape"; etape[0][1]="Distance";
 				for(int i=0;i<choix.getListEtape().size();i++) {
 					etape[i+1][0]=choix.getListEtape().get(i).getCodeEtape();
@@ -199,7 +220,6 @@ public class ConsultationInfoRallye extends JFrame {
 						new String[] {
 								"Etape", "Distance"
 				}));
-				tabInfoEtape.setBounds(27, 242, 338, 64);
 				contentPane.add(tabInfoEtape);
 			}
 		});

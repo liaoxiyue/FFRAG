@@ -1,16 +1,20 @@
 package FFRAG;
 
 public abstract class Vehicule {
-	protected String idVehicule;
+	protected String modele;
 	
 
-	public Vehicule(String v) {
-		this.idVehicule=v;
+	public Vehicule(String modele) {
+		this.modele = modele;
 	}
 
-	public String getIdVehicule() {
-		return idVehicule;
+
+
+	public String getModele() {
+		return modele;
 	}
+
+
 
 	public abstract float getCoef();
 

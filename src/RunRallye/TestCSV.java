@@ -4,6 +4,9 @@ import java.io.*;
 import java.io.InputStreamReader;
 import java.util.*;
 
+import FFRAG.FFRAG;
+import FFRAG.Rallye;
+
 public class TestCSV {
 	public static void Array2CSV(ArrayList<ArrayList<String>> data, String path)
     {
@@ -59,4 +62,17 @@ public class TestCSV {
           }
 
     }
+	
+	public static void enregistreRallye(FFRAG ffrag) {
+		ArrayList<ArrayList<String>> rallye = new ArrayList<ArrayList<String>>();
+		for (Rallye r:ffrag.getListRallye()) {
+			ArrayList<String> ligneRallye = new ArrayList<String>();
+			ligneRallye.add(r.getNomRallye());
+			ligneRallye.add(r.getVille());
+			ligneRallye.add(r.getPays());
+			rallye.add(ligneRallye);
+		}
+		TestCSV test = new TestCSV();
+		test.Array2CSV(rallye, "test.csv");
+	}
 }
