@@ -29,7 +29,7 @@ public class Bienvenue extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Bienvenu frame = new Bienvenu();
+					Bienvenue frame = new Bienvenue();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -102,7 +102,7 @@ public class Bienvenue extends JFrame {
 			}
 		});
 		btnConsultationInfosRallye.setFont(new Font("Calibri", Font.BOLD, 15));
-		btnConsultationInfosRallye.setBounds(56, 246, 187, 27);
+		btnConsultationInfosRallye.setBounds(56, 246, 220, 27);
 		contentPane.add(btnConsultationInfosRallye);
 		
 		JLabel back = new JLabel();

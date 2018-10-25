@@ -17,11 +17,13 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import FFRAG.Edition;
 import FFRAG.FFRAG;
 import FFRAG.Rallye;
 
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import javax.swing.JScrollPane;
 
 public class ConsultationInfoRallye extends JFrame {
 
@@ -58,16 +60,17 @@ public class ConsultationInfoRallye extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblConsultationInformationsRallye = new JLabel("Consultation Informations Rallye");
-		lblConsultationInformationsRallye.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
 		lblConsultationInformationsRallye.setBounds(27, 13, 307, 38);
+		lblConsultationInformationsRallye.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
 		contentPane.add(lblConsultationInformationsRallye);
 		
 		JLabel lblVille = new JLabel("Ville :");
+		lblVille.setBounds(27, 114, 79, 18);
 		lblVille.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblVille.setBounds(27, 95, 79, 18);
 		contentPane.add(lblVille);
 		
 		JComboBox cBoxRallye = new JComboBox();
+		cBoxRallye.setBounds(106, 60, 154, 24);
 		String[] listRallye = new String[ffrag.getListRallye().size()+1];
 		listRallye[0]="---choix du Rallye---";
 		for(int i = 1; i <= ffrag.getListRallye().size(); i++) {
@@ -76,12 +79,11 @@ public class ConsultationInfoRallye extends JFrame {
 		cBoxRallye.setModel(new DefaultComboBoxModel(listRallye));
 		cBoxRallye.setEditable(true);
 		cBoxRallye.setToolTipText("");
-		cBoxRallye.setBounds(106, 60, 154, 24);
 		contentPane.add(cBoxRallye);
 		
 		JLabel lblChoixEdition = new JLabel("Choix Edition");
-		lblChoixEdition.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblChoixEdition.setBounds(274, 64, 101, 18);
+		lblChoixEdition.setFont(new Font("Calibri", Font.BOLD, 15));
 		contentPane.add(lblChoixEdition);
 		
 		JComboBox cBoxEdition = new JComboBox();
@@ -89,6 +91,7 @@ public class ConsultationInfoRallye extends JFrame {
 		contentPane.add(cBoxEdition);
 		
 		tabInfoRallye = new JTable();
+		tabInfoRallye.setBounds(27, 145, 571, 32);
 		tabInfoRallye.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"Rallye", "Edition", "Date D\u00E9but", "Date Fin"},
@@ -104,19 +107,10 @@ public class ConsultationInfoRallye extends JFrame {
 		tabInfoRallye.getColumnModel().getColumn(1).setPreferredWidth(50);
 		tabInfoRallye.getColumnModel().getColumn(2).setPreferredWidth(150);
 		tabInfoRallye.getColumnModel().getColumn(3).setPreferredWidth(150);
-		tabInfoRallye.setBounds(27, 126, 573, 64);
 		contentPane.add(tabInfoRallye);
 		
-		JLabel lblChoixEtape = new JLabel("Choix Etape");
-		lblChoixEtape.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblChoixEtape.setBounds(27, 209, 79, 18);
-		contentPane.add(lblChoixEtape);
-		
-		JComboBox cBoxEtape = new JComboBox();
-		cBoxEtape.setBounds(120, 205, 98, 24);
-		contentPane.add(cBoxEtape);
-		
 		tabInfoEtape = new JTable();
+		tabInfoEtape.setBounds(27, 242, 338, 64);
 		tabInfoEtape.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"Etape", "Distance"},
@@ -128,33 +122,40 @@ public class ConsultationInfoRallye extends JFrame {
 				"Etape", "Distance"
 			}
 		));
-		tabInfoEtape.setBounds(27, 242, 338, 64);
 		contentPane.add(tabInfoEtape);
 		
 		JLabel label = new JLabel("Choix Rallye");
-		label.setFont(new Font("Calibri", Font.BOLD, 15));
 		label.setBounds(27, 64, 79, 18);
+		label.setFont(new Font("Calibri", Font.BOLD, 15));
 		contentPane.add(label);
 		
 		JLabel lblPays = new JLabel("Pays :");
+		lblPays.setBounds(181, 113, 79, 18);
 		lblPays.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblPays.setBounds(181, 94, 79, 18);
 		contentPane.add(lblPays);
 		
 		JLabel ville = new JLabel("");
+		ville.setBounds(88, 113, 79, 18);
 		ville.setFont(new Font("Calibri", Font.BOLD, 15));
-		ville.setBounds(88, 94, 79, 18);
 		contentPane.add(ville);
 		
 		JLabel pays = new JLabel("");
+		pays.setBounds(229, 113, 79, 18);
 		pays.setFont(new Font("Calibri", Font.BOLD, 15));
-		pays.setBounds(229, 94, 79, 18);
 		contentPane.add(pays);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setBounds(229, 94, 79, 18);
+		label_1.setFont(new Font("Calibri", Font.BOLD, 15));
+		contentPane.add(label_1);
 		
 		
 		cBoxRallye.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				Rallye choix = ffrag.getRallye(cBoxRallye.getSelectedItem().toString());
+				ville.setText(choix.getVille());
+				pays.setText(choix.getPays());
+				
 				String[] listEdition = new String[choix.getListeEdition().size()+1];
 				listEdition[0] = "---Choix Edition---";
 				for(int i = 1; i <= choix.getListeEdition().size(); i++) {
@@ -176,9 +177,31 @@ public class ConsultationInfoRallye extends JFrame {
 						new String[] {
 								"Rallye", "Edition", "Date D\u00E9but", "Date Fin"
 				}));
+				tabInfoRallye.getColumnModel().getColumn(0).setPreferredWidth(150);
+				tabInfoRallye.getColumnModel().getColumn(1).setPreferredWidth(50);
+				tabInfoRallye.getColumnModel().getColumn(2).setPreferredWidth(150);
+				tabInfoRallye.getColumnModel().getColumn(3).setPreferredWidth(150);
+				tabInfoRallye.setBounds(27, 145, 573, 64);
+				contentPane.add(tabInfoRallye);
 				
 			}
 		});
-		
+		cBoxEdition.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				Edition choix = ffrag.getRallye(cBoxRallye.getSelectedItem().toString()).getEdition(Integer.valueOf(cBoxEdition.getSelectedItem().toString()));
+				Object[][] etape = new Object[choix.getListEtape().size()+1][2];
+				etape[0][0]="Etape"; etape[0][1]="Distance";
+				for(int i=0;i<choix.getListEtape().size();i++) {
+					etape[i+1][0]=choix.getListEtape().get(i).getCodeEtape();
+					etape[i+1][1]=choix.getListEtape().get(i).getDistanceEtape()+" km";
+				}
+				tabInfoEtape.setModel(new DefaultTableModel(etape,
+						new String[] {
+								"Etape", "Distance"
+				}));
+				tabInfoEtape.setBounds(27, 242, 338, 64);
+				contentPane.add(tabInfoEtape);
+			}
+		});
 	}
 }

@@ -83,8 +83,10 @@ public class RunRallye {
 		ffrag.getListRallye().get(1).organiser(22,today,today);
 		ffrag.getListRallye().get(1).organiser(23,today,today);
 		
-		ed1.organiserEtape(1,(int) (235));
-		ed1.organiserEtape(2,(int) (235));
+		ffrag.getListRallye().get(0).getListeEdition().get(0).organiserEtape(1,(int) (235));
+		ffrag.getListRallye().get(0).getListeEdition().get(0).organiserEtape(2,(int) (235));
+		ed1.organiserEtape(1,235);
+		ed1.organiserEtape(2,541);
 		ed1.organiserPart(p2);ed1.organiserPart(p1);
 		ed1.getListEtape().get(0).enregistreTemp(p2, 1,35,59,1);
 		ed1.getListEtape().get(0).enregistreTemp(p1, 0,20,35,220);
@@ -113,5 +115,16 @@ public class RunRallye {
 				}
 			}
 		});
+		
+		ArrayList<ArrayList<String>> rallye = new ArrayList<ArrayList<String>>();
+		for (Rallye r:ffrag.getListRallye()) {
+			ArrayList<String> ligneRallye = new ArrayList<String>();
+			ligneRallye.add(r.getNomRallye());
+			ligneRallye.add(r.getVille());
+			ligneRallye.add(r.getPays());
+			rallye.add(ligneRallye);
+		}
+		TestCSV test = new TestCSV();
+		test.Array2CSV(rallye, "test.csv");
 	}
 }
