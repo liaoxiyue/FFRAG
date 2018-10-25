@@ -21,7 +21,7 @@ public class FFRAG {
 		Coureur coureur = new Coureur(nom, prenom, dateNe);
 		this.listCoureur.add(coureur);
 	}
-
+	
 	public ArrayList<Rallye> getListRallye() {
 		return listRallye;
 	}
@@ -49,6 +49,4 @@ public class FFRAG {
 		}
 		return coureur;
 	}
-
-	
 }

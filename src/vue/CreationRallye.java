@@ -127,5 +127,15 @@ public class CreationRallye extends JFrame {
 		btnAnnuler.setBackground(Color.LIGHT_GRAY);
 		btnAnnuler.setBounds(295, 281, 109, 30);
 		contentPane.add(btnAnnuler);
+		
+		btnAnnuler.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
 	}
 }
+
+
+

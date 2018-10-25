@@ -1,6 +1,5 @@
 package RunRallye;
 import java.util.*;
-
 import FFRAG.Camion;
 import FFRAG.Coureur;
 import FFRAG.Courir;
@@ -27,17 +26,6 @@ public class RunRallye {
 		
 		FFRAG ffrag = new FFRAG();
 		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Bienvenu frame = new Bienvenu(ffrag);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		
 		/*EventQueue.invokeLater(new Runnable() {
 			
 			public void run() {
@@ -55,6 +43,12 @@ public class RunRallye {
 		ffrag.insertCoureur("sef","sef",today);
 		System.out.println(ffrag.getListRallye().get(0).getNomRallye());
 		System.out.println(ffrag.getListRallye().get(1).getNomRallye());
+		ffrag.creationRallye("Grand prix Canada", "Montr¨¦al", "Canada");
+		ffrag.creationRallye("Grand prix France", "Montr¨¦al", "Canada");
+		ffrag.creationRallye("Grand prix Suisse", "Montr¨¦al", "Canada");
+		ffrag.creationRallye("Grand prix Pyr¨¦n¨¦en", "Montr¨¦al", "Canada");
+		ffrag.creationRallye("Grand prix Aples", "Montr¨¦al", "Canada");
+		System.out.println(ffrag.getListRallye().size());
 		
 		Camion c1 = new Camion("cme", 2250);
 		System.out.println(c1.getCoef());
@@ -84,10 +78,10 @@ public class RunRallye {
 		Edition ed1 = new Edition(21,today,today);
 		Edition ed2 = new Edition(22,today,today);
 		Edition ed3 = new Edition(23,today,today);
-		ffrag.getListRallye().get(0).organiser(ed1);
-		ffrag.getListRallye().get(0).organiser(ed2);
-		ffrag.getListRallye().get(1).organiser(ed2);
-		ffrag.getListRallye().get(1).organiser(ed3);
+		ffrag.getListRallye().get(0).organiser(21,today,today);
+		ffrag.getListRallye().get(0).organiser(22,today,today);
+		ffrag.getListRallye().get(1).organiser(22,today,today);
+		ffrag.getListRallye().get(1).organiser(23,today,today);
 		
 		ed1.organiserEtape(1,(float) (235.1),today);
 		ed1.organiserEtape(2,(float) (235.5),today);
@@ -108,7 +102,16 @@ public class RunRallye {
 		
 		System.out.println("Le temps final du participant " + p2.getNoInscription() + " est de " + p2.getTempsFinal());
 		System.out.println("La position finale du participant " + p2.getNoInscription() + " est de " + p2.getPosition());
-		
-		
+	
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Bienvenu frame = new Bienvenu(ffrag);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }

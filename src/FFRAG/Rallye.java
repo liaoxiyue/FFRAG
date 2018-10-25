@@ -18,7 +18,8 @@ public class Rallye {
 		return this.nomRallye;
 	}
 	
-	public void organiser(Edition edition) {
+	public void organiser(int noE, Date deb, Date fin) {
+		Edition edition = new Edition(noE, deb, fin);
 		listeEdition.add(edition);
 	}
 	

@@ -62,10 +62,10 @@ public class ConsultationInfoRallye extends JFrame {
 		lblConsultationInformationsRallye.setBounds(27, 13, 307, 38);
 		contentPane.add(lblConsultationInformationsRallye);
 		
-		JLabel lblChoixRallye = new JLabel("Choix Rallye");
-		lblChoixRallye.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblChoixRallye.setBounds(27, 64, 79, 18);
-		contentPane.add(lblChoixRallye);
+		JLabel lblVille = new JLabel("Ville :");
+		lblVille.setFont(new Font("Calibri", Font.BOLD, 15));
+		lblVille.setBounds(27, 95, 79, 18);
+		contentPane.add(lblVille);
 		
 		JComboBox cBoxRallye = new JComboBox();
 		String[] listRallye = new String[ffrag.getListRallye().size()+1];
@@ -104,16 +104,16 @@ public class ConsultationInfoRallye extends JFrame {
 		tabInfoRallye.getColumnModel().getColumn(1).setPreferredWidth(50);
 		tabInfoRallye.getColumnModel().getColumn(2).setPreferredWidth(150);
 		tabInfoRallye.getColumnModel().getColumn(3).setPreferredWidth(150);
-		tabInfoRallye.setBounds(27, 109, 573, 64);
+		tabInfoRallye.setBounds(27, 126, 573, 64);
 		contentPane.add(tabInfoRallye);
 		
 		JLabel lblChoixEtape = new JLabel("Choix Etape");
 		lblChoixEtape.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblChoixEtape.setBounds(27, 203, 79, 18);
+		lblChoixEtape.setBounds(27, 209, 79, 18);
 		contentPane.add(lblChoixEtape);
 		
 		JComboBox cBoxEtape = new JComboBox();
-		cBoxEtape.setBounds(120, 199, 98, 24);
+		cBoxEtape.setBounds(120, 205, 98, 24);
 		contentPane.add(cBoxEtape);
 		
 		tabInfoEtape = new JTable();
@@ -130,6 +130,26 @@ public class ConsultationInfoRallye extends JFrame {
 		));
 		tabInfoEtape.setBounds(27, 242, 338, 64);
 		contentPane.add(tabInfoEtape);
+		
+		JLabel label = new JLabel("Choix Rallye");
+		label.setFont(new Font("Calibri", Font.BOLD, 15));
+		label.setBounds(27, 64, 79, 18);
+		contentPane.add(label);
+		
+		JLabel lblPays = new JLabel("Pays :");
+		lblPays.setFont(new Font("Calibri", Font.BOLD, 15));
+		lblPays.setBounds(181, 94, 79, 18);
+		contentPane.add(lblPays);
+		
+		JLabel ville = new JLabel("");
+		ville.setFont(new Font("Calibri", Font.BOLD, 15));
+		ville.setBounds(88, 94, 79, 18);
+		contentPane.add(ville);
+		
+		JLabel pays = new JLabel("");
+		pays.setFont(new Font("Calibri", Font.BOLD, 15));
+		pays.setBounds(229, 94, 79, 18);
+		contentPane.add(pays);
 		
 		
 		cBoxRallye.addItemListener(new ItemListener() {

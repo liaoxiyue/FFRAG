@@ -13,6 +13,7 @@ public class Coureur {
 		this.dateNaissanceC = datene;
 		this.listParticipation = new ArrayList<Participant>();
 	}
+	
 	public Date getDateNaissanceC() {
 		return dateNaissanceC;
 	}
