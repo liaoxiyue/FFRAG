@@ -72,7 +72,7 @@ public class Bienvenue extends JFrame {
 		
 		JLabel lblBienvenuPour = new JLabel("Bienvenue ! ");
 		lblBienvenuPour.setFont(new Font("Eras Bold ITC", Font.PLAIN, 27));
-		lblBienvenuPour.setBounds(285, 34, 156, 53);
+		lblBienvenuPour.setBounds(285, 34, 202, 53);
 		contentPane.add(lblBienvenuPour);
 		
 		JButton btnCreationRallye = new JButton("Creation Rallye");

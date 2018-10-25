@@ -19,8 +19,8 @@ public class Edition {
 		this.listTempsGeneral = new HashMap<Participant, Integer>();
 	}
 
-	public void organiserEtape(int code, float distance, Date dep) {
-		Etape etape = new Etape(code, distance, dep);
+	public void organiserEtape(int code, int distance) {
+		Etape etape = new Etape(code, distance);
 		listEtape.add(etape);
 	}
 	
