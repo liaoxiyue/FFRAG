@@ -378,7 +378,7 @@ public class CreationEdition extends JFrame {
 				Rallye rallye = ffrag.getRallye(comboBoxRallye.getSelectedItem().toString());
 				rallye.organiser(rallye.getListeEdition().size()+1, deb, fin);
 				Edition edition = rallye.getListeEdition().get(rallye.getListeEdition().size()-1);
-				for(int i = 0; i < table.getRowCount(); i++) {
+				for(int i = 1; i < table.getRowCount(); i++) {
 					System.out.println(table.getValueAt(i, 0));
 					System.out.println(table.getValueAt(i, 1));
 					int noEtape = Integer.valueOf(table.getValueAt(i, 0).toString());
@@ -386,9 +386,6 @@ public class CreationEdition extends JFrame {
 					Etape etape = new Etape(noEtape, distance);
 					edition.getListEtape().add(etape);
 				}
-				System.out.println(rallye.getListeEdition().get(rallye.getListeEdition().size()-1).getNoEdition());
-				System.out.println(rallye.getListeEdition().get(rallye.getListeEdition().size()-1).getDateDebER());
-				System.out.println(rallye.getListeEdition().get(rallye.getListeEdition().size()-1).getDateFinER());
 			}
 		});
 		
