@@ -9,7 +9,7 @@ import FFRAG.FFRAG;
 import FFRAG.Participant;
 import FFRAG.Rallye;
 import FFRAG.Voiture;
-import vue.Bienvenu;
+import vue.Bienvenue;
 import vue.CreationEdition;
 import vue.CreationRallye;
 
@@ -83,6 +83,8 @@ public class RunRallye {
 		ffrag.getListRallye().get(1).organiser(22,today,today);
 		ffrag.getListRallye().get(1).organiser(23,today,today);
 		
+		ffrag.getListRallye().get(0).getListeEdition().get(0).organiserEtape(1,(float) (235.1),today);
+		ffrag.getListRallye().get(0).getListeEdition().get(0).organiserEtape(2,(float) (235.5),today);
 		ed1.organiserEtape(1,(float) (235.1),today);
 		ed1.organiserEtape(2,(float) (235.5),today);
 		ed1.organiserPart(p2);ed1.organiserPart(p1);
@@ -106,12 +108,23 @@ public class RunRallye {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Bienvenu frame = new Bienvenu(ffrag);
+					Bienvenue frame = new Bienvenue(ffrag);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+		
+		ArrayList<ArrayList<String>> rallye = new ArrayList<ArrayList<String>>();
+		for (Rallye r:ffrag.getListRallye()) {
+			ArrayList<String> ligneRallye = new ArrayList<String>();
+			ligneRallye.add(r.getNomRallye());
+			ligneRallye.add(r.getVille());
+			ligneRallye.add(r.getPays());
+			rallye.add(ligneRallye);
+		}
+		TestCSV test = new TestCSV();
+		test.Array2CSV(rallye, "test.csv");
 	}
 }

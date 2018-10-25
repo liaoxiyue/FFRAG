@@ -9,8 +9,8 @@ public class Rallye {
 	
 	public Rallye(String nom, String ville, String pays) {
 		this.nomRallye = nom;
-		this.ville = ville;
-		this.pays = pays;
+		this.ville=ville;
+		this.pays=pays;
 		listeEdition = new ArrayList<Edition>();
 	}
 	
@@ -42,4 +42,21 @@ public class Rallye {
 	public ArrayList<Edition> getListeEdition() {
 		return listeEdition;
 	}
+	public Edition getEdition(int noEdition) {
+		Edition edition = null;
+		for(Edition e : listeEdition) {
+			if(e.getNoEdition() == noEdition) {
+				edition = e;
+			}
+		}
+		return edition;
+	}
+
+	public String getVille() {
+		return ville;
+	}
+	public String getPays() {
+		return pays;
+	}
+
 }
