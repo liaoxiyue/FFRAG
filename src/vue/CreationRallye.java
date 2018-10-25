@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import FFRAG.FFRAG;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -20,11 +23,11 @@ public class CreationRallye extends JFrame {
 	private JTextField txtNomRallye;
 	private JTextField txtVille;
 	private JTextField txtPays;
-
+	private FFRAG ffrag;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -35,12 +38,13 @@ public class CreationRallye extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public CreationRallye() {
+	public CreationRallye(FFRAG ffrag) {
+		this.ffrag = ffrag;
 		setFont(new Font("Eras Bold ITC", Font.PLAIN, 16));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 539, 470);
@@ -97,5 +101,35 @@ public class CreationRallye extends JFrame {
 		btnAnnuler.setBackground(Color.LIGHT_GRAY);
 		btnAnnuler.setBounds(295, 281, 109, 30);
 		contentPane.add(btnAnnuler);
+		
+		btnAnnuler.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
+		btnEnregistrer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ffrag.creationRallye(txtNomRallye.getText(), txtVille.getText(), txtPays.getText());
+				System.out.println("Bien enregistre le Rallye "+ffrag.getListRallye().get(ffrag.getListRallye().size()-1).getNomRallye());
+				txtNomRallye.setText("");
+				txtVille.setText("");
+				txtPays.setText("");
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							CreationEdition frame = new CreationEdition(ffrag);
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				dispose();
+			}
+		});
 	}
 }
+
+
+

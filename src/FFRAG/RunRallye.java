@@ -1,11 +1,24 @@
 package FFRAG;
 import java.util.*;
+
+import vue.CreationEdition;
+
+import java.awt.EventQueue;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class RunRallye {
 
 	public static void main(String[] args) throws ParseException {
+		FFRAG ffrag = new FFRAG();
+		ffrag.creationRallye("Grand prix Canada", "Montr¨¦al", "Canada");
+		ffrag.creationRallye("Grand prix France", "Montr¨¦al", "Canada");
+		ffrag.creationRallye("Grand prix Suisse", "Montr¨¦al", "Canada");
+		ffrag.creationRallye("Grand prix Pyr¨¦n¨¦en", "Montr¨¦al", "Canada");
+		ffrag.creationRallye("Grand prix Aples", "Montr¨¦al", "Canada");
+		System.out.println(ffrag.getListRallye().size());
+		
+		
 		Camion c1 = new Camion("cme", 2250);
 		System.out.println(c1.getCoef());
 
@@ -52,7 +65,16 @@ public class RunRallye {
 		
 		System.out.println("Le temps final du participant " + p2.getNoInscription() + " est de " + p2.getTempsFinal());
 		System.out.println("La position finale du participant " + p2.getNoInscription() + " est de " + p2.getPosition());
-
-
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					CreationEdition frame = new CreationEdition(ffrag);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }

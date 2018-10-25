@@ -13,6 +13,18 @@ public class Coureur {
 		this.dateNaissanceC = datene;
 		this.listParticipation = new ArrayList<Participant>();
 	}
+	
+	
+	public String getNomCoureur() {
+		return nomCoureur;
+	}
+
+
+	public String getPrenomCoureur() {
+		return prenomCoureur;
+	}
+
+
 	public Date getDateNaissanceC() {
 		return dateNaissanceC;
 	}

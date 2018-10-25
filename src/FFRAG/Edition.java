@@ -19,6 +19,22 @@ public class Edition {
 		this.listTempsGeneral = new HashMap<Participant, Integer>();
 	}
 
+	
+	public int getNoEdition() {
+		return noEdition;
+	}
+
+
+	public Date getDateDebER() {
+		return dateDebER;
+	}
+
+
+	public Date getDateFinER() {
+		return dateFinER;
+	}
+
+
 	public void organiserEtape(int code, float distance, Date dep) {
 		Etape etape = new Etape(code, distance, dep);
 		listEtape.add(etape);
