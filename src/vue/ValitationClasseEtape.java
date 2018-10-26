@@ -183,7 +183,7 @@ public class ValitationClasseEtape extends JFrame {
 
 				int i = 0;
 				for(Participant p : tabParticipants.keySet()) {
-					classement[i+1][0] = "" + p.getCoureur().getNomCoureur() + " " + p.getCoureur().getPrenomCoureur();
+					classement[i+1][0] = "" + p.getCoureur().getPrenomCoureur() + " " + p.getCoureur().getNomCoureur();
 					if(tabParticipants.get(p)==null) {
 						classement[i+1][1] = tabParticipants.get(p);
 					}else {
@@ -201,9 +201,21 @@ public class ValitationClasseEtape extends JFrame {
 				));
 				contentPane.add(table);
 				table.getColumnModel().getColumn(0).setResizable(false);
-				table.getColumnModel().getColumn(0).setPreferredWidth(75);
+				table.getColumnModel().getColumn(0).setPreferredWidth(155);
 				table.getColumnModel().getColumn(1).setResizable(false);
 				table.getColumnModel().getColumn(1).setPreferredWidth(145);
+				
+				table_1 = new JTable();
+				table_1.setModel(new DefaultTableModel(
+					new Object[][] {
+						{null, null, null},
+					},
+					new String[] {
+						"New column", "New column", "New column"
+					}
+				));
+				table_1.setBounds(409, 125, 340, 481);
+				contentPane.add(table_1);
 			}
 		});
 		

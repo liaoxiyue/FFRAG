@@ -26,7 +26,6 @@ public class Participant {
     	this.tempsFinal = temps;
     }
     
-    
     public int getPosition() {
 		return position;
 	}
@@ -34,15 +33,7 @@ public class Participant {
 	public void setPosition(int position) {
 		this.position = position;
 	}
-
-	public boolean prendreDepart(Etape e) {
-    	boolean prendreDepart = true;
-   		if(e.getTabParticipants().get(this)==null) {
-    			prendreDepart=false;
-    		};
-    	return prendreDepart;
-    } 
-    
+	
     public Vehicule getVehicule() {
 		return vehicule;
 	}
@@ -50,11 +41,11 @@ public class Participant {
     public int getNoInscription() {
 		return noInscription;
 	}
+    
     public void setNoInscription(int noInscription) {
 		this.noInscription = noInscription;
 	}
 
-    
     public Coureur getCoureur() {
 		return coureur;
 	}
@@ -66,4 +57,19 @@ public class Participant {
 	public void setDateInscription(Date dateInscription) {
 		this.dateInscription = dateInscription;
 	}
+	
+	/**
+	 * Cette methode permet de v¨¦rifier si le participant a bien pris le d¨¦part ¨¤ une ¨¦tape afin de le disqualifier ensuite dans l'etape
+	 * @param e : objet etape pour lequel on va verifier la participation
+	 * @return
+	 */
+	public boolean prendreDepart(Etape e) {
+    	boolean prendreDepart = true;
+   		if(e.getTabParticipants().get(this)==null) {
+    			prendreDepart=false;
+    		};
+    	return prendreDepart;
+    } 
+    
+
 }
