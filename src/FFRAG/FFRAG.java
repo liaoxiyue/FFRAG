@@ -134,7 +134,7 @@ public class FFRAG {
 	}
 
 
-	public void insertVoiture(String string, int pui) {
+	public void insertVoiture(String string, float pui) {
 		this.listVoiture.add(new Voiture(string, pui));
 	}
 }

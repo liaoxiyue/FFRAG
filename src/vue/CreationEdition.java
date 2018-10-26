@@ -378,8 +378,6 @@ public class CreationEdition extends JFrame {
 				rallye.organiser(rallye.getListeEdition().size()+1, deb, fin, saison);
 				Edition edition = rallye.getListeEdition().get(rallye.getListeEdition().size()-1);
 				for(int i = 1; i < table.getRowCount(); i++) {
-					System.out.println(table.getValueAt(i, 0));
-					System.out.println(table.getValueAt(i, 1));
 					int noEtape = Integer.valueOf(table.getValueAt(i, 0).toString());
 					int distance = Integer.valueOf(table.getValueAt(i, 1).toString());
 					Etape etape = new Etape(noEtape, distance);

@@ -190,10 +190,6 @@ public class ConsultationClassementR extends JFrame {
 							etape = et;
 						}
 					}
-					for(Participant p : edition.getListPart()){
-						etape.validerClassement(p);
-					}
-					etape.calculerClassement();
 					
 					ArrayList<HashMap.Entry<Participant, Integer>> classementEtape = etape.getClassementEtape();
 					

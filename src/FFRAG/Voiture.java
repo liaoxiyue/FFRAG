@@ -1,15 +1,15 @@
 package FFRAG;
 
 public class Voiture extends Vehicule{
-	private int puissanceV ;
+	private float puissanceV ;
 	private Parametres coefV = new Parametres();
 	
-	public Voiture(String m, int p) {
+	public Voiture(String m, float pui) {
 		super(m);
-		this.puissanceV = p;
+		this.puissanceV = pui;
 	}
 
-	public int getPuissanceV() {
+	public float getPuissanceV() {
 		return puissanceV;
 	}
 
