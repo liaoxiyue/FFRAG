@@ -28,7 +28,7 @@ public class RunRallye {
     	
     	FFRAG ffrag = new FFRAG();
     	
-        String csvPath = "data/";
+        String csvPath = "src/data/";
     	String csv = "Coureurs.csv";
     	String csvVal = "ValThorens.csv";
     	String csvPuiss = "Puissances.csv";
@@ -174,7 +174,7 @@ public class RunRallye {
 	    			        					        	if(v.getModele().equals(tab[1])) {
 	    			        					        		eV.organiserPart(new Participant(nIns,dateIns,c, v));
 		 	    			        			                numins++;
-
+		 	    			        			                
 	    			        					        	}
 	    			        					        }
 	    			        					    }
@@ -233,9 +233,6 @@ public class RunRallye {
 		        					                	int h = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(0,2)); //tableau fixe
 		        					                	int mm = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(3,5));
 		        					                	int sec = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(6,8));
-		        					                	System.out.println(h + " " + mm +" " + sec);
-		        					              
-
 		        					                	et.enregistreTemp(p, h, mm, sec,00);
 		        					                
 
@@ -274,7 +271,7 @@ public class RunRallye {
 	        
 	        for(Rallye r: ffrag.getListRallye()) {
 	        	if(r.getNomRallye() == "SuperBesse") {
-	        		r.organiser(ned, datedebV, datefinV, "2018/2019");
+	        		r.organiser(ned, datedebV, datefinV, "2018 / 2019");
 	        		for(Edition eV : r.getListeEdition()) {
 	        			if(eV.getNoEdition()==ned) {
 		        			eV.organiserEtape(1, 360);
@@ -328,7 +325,7 @@ public class RunRallye {
 	        					                	    }
 	        					                for(Coureur c: ffrag.getListCoureur()) {
 
-	    		        			        		if(c.getNomCoureur().equals(lastName) &&c.getPrenomCoureur().equals(firstName)) {
+	    		        			        		if(c.getNomCoureur().equals(lastName) && c.getPrenomCoureur().equals(firstName)) {
 
 	    		        			        			int nIns = Integer.parseInt(tab[2]);
 	    			        					        Date dateIns = dateformat.parse("31/12/2017");
@@ -386,10 +383,10 @@ public class RunRallye {
 		        					                if(p.getNoInscription()==nIns){
 		        					                	
 		        					                	
-		        					                	int h = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(0,2)); //tableau fixe
-		        					                	int mm = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(3,5));
-		        					                	int sec = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(6,8));
-		        					                	System.out.println(h + " " + mm +" " + sec);
+		        					                	int h = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(0,1)); //tableau fixe
+		        					                	int mm = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(3,4));
+		        					                	int sec = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(6,7));
+
 		        					              
 
 		        					                	et.enregistreTemp(p, h, mm, sec,00);
@@ -397,7 +394,7 @@ public class RunRallye {
 		    			        			      }
 		    			        			  }
 		        				               	
-		        				            m++;		                
+		        				            m++;
 		        					                
 		        				       }
 
@@ -420,8 +417,27 @@ public class RunRallye {
 	        		}
 	        	}
 	        }
-	        System.out.println(ffrag.getListCoureur().get(0).getNomCoureur());
-	        EventQueue.invokeLater(new Runnable() {
+	        
+	        int etape = ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().size()-1;
+	        ffrag.getListRallye().get(0).getListeEdition().get(0).calculerClassement(etape);
+	        ffrag.getListRallye().get(0).getListeEdition().get(0).setTempFinal();
+	        
+	        int etape1 = ffrag.getListRallye().get(1).getListeEdition().get(0).getListEtape().size()-1;
+	        ffrag.getListRallye().get(1).getListeEdition().get(0).calculerClassement(etape1);
+	        ffrag.getListRallye().get(1).getListeEdition().get(0).setTempFinal();
+	        /*ffrag.getListRallye().get(0).getListeEdition().get(0).calculerClassement(etape);
+	        System.out.println(ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().get(0).getTabParticipants().size());
+	        int qqqq = 0;
+	        for(Participant p : ffrag.getListRallye().get(0).getListeEdition().get(0).getListPart()) {
+	        	 ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().get(0).validerClassement(p);
+	        	 System.out.println(ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().get(0).getTabParticipants().get(p));
+	        	 System.out.println(ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().get(0).validerClassement(p));
+	        	 qqqq++;
+	        	 System.out.println(qqqq);
+	        }
+	        System.out.println(ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().get(0).getTabParticipants().size());*/
+	        
+	        /*EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
 						Bienvenue frame = new Bienvenue(ffrag);
@@ -430,7 +446,10 @@ public class RunRallye {
 						e.printStackTrace();
 					}
 				}
-			});
+			});*/
+	        System.out.println(ffrag.getMeilleurSaison(ffrag.confirmeCoureur("Tambay", "Adrien"), "2017 / 2018"));
+	        System.out.println(ffrag.getNbPartSaison(ffrag.confirmeCoureur("Tambay", "Adrien"), "2017 / 2018"));
+	        System.out.println(ffrag.getDetailSaison(ffrag.confirmeCoureur("Tambay", "Adrien"), "2017 / 2018"));
     }
 }
 	        				

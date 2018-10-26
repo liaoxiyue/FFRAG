@@ -53,17 +53,6 @@ public class FFRAG {
 		}
 		return rallye;
 	}
-	
-
-	public Coureur getCoureur(String nomCoureur, String prenomCoureur, String date) {
-		Coureur coureur = null;
-		for(Coureur c : listCoureur) {
-			if(c.getNomCoureur() == nomCoureur && c.getPrenomCoureur() == prenomCoureur && dateformat.format(c.getDateNaissanceC()) == date) {
-				coureur = c;
-			}
-		}
-		return coureur;
-	}
 
 	public Coureur confirmeCoureur(String nomCoureur, String prenomCoureur) {
 		Coureur coureur = null;
@@ -105,6 +94,7 @@ public class FFRAG {
 				}
 			}
 		}
+		System.out.println(editionSaison.size());
 		int position=100;
 		for(int i = 0; i < coureur.getListParticipation().size(); i++) {
 			for(Edition e : editionSaison) {

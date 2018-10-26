@@ -32,6 +32,8 @@ public class ConsultationClassementR extends JFrame {
 	private JPanel contentPane;
 	private JTable tableFinal;
 	private FFRAG ffrag;
+	private JTable tableEtape;
+	private JTable tableGeneral;
 
 	/**
 	 * Launch the application.
@@ -55,7 +57,7 @@ public class ConsultationClassementR extends JFrame {
 	public ConsultationClassementR(FFRAG ffrag) {
 		this.ffrag = ffrag;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 977, 452);
+		setBounds(100, 100, 1356, 597);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -69,12 +71,12 @@ public class ConsultationClassementR extends JFrame {
 		}
 		comboBoxRallye.setModel(new DefaultComboBoxModel(listRallye));
 		comboBoxRallye.setFont(new Font("Calibri", Font.PLAIN, 15));
-		comboBoxRallye.setBounds(65, 60, 101, 30);
+		comboBoxRallye.setBounds(53, 61, 155, 30);
 		contentPane.add(comboBoxRallye);
 		
 		JLabel lblConsultationClassement = new JLabel("Consultation Classement");
 		lblConsultationClassement.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
-		lblConsultationClassement.setBounds(114, 21, 225, 30);
+		lblConsultationClassement.setBounds(559, 20, 225, 30);
 		contentPane.add(lblConsultationClassement);
 		
 		JLabel lblRallye = new JLabel("Rallye");
@@ -84,19 +86,27 @@ public class ConsultationClassementR extends JFrame {
 		
 		JComboBox comboBoxEdition = new JComboBox();
 		comboBoxEdition.setFont(new Font("Calibri", Font.PLAIN, 15));
-		comboBoxEdition.setBounds(326, 60, 101, 30);
+		comboBoxEdition.setBounds(289, 61, 146, 30);
 		contentPane.add(comboBoxEdition);
 		
 		JLabel lblEdition = new JLabel("Edition");
 		lblEdition.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblEdition.setBounds(271, 68, 45, 15);
+		lblEdition.setBounds(234, 69, 45, 15);
 		contentPane.add(lblEdition);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(41, 116, 373, 266);
-		contentPane.add(scrollPane);
+		JLabel lblEtape = new JLabel("Etape");
+		lblEtape.setFont(new Font("Calibri", Font.BOLD, 15));
+		lblEtape.setBounds(778, 70, 45, 15);
+		contentPane.add(lblEtape);
+		
+		JComboBox comboBoxEtape = new JComboBox();
+		comboBoxEtape.setFont(new Font("Calibri", Font.PLAIN, 15));
+		comboBoxEtape.setBounds(833, 61, 139, 30);
+		contentPane.add(comboBoxEtape);
 		
 		tableFinal = new JTable();
+		tableFinal.setBounds(67, 116, 334, 420);
+		contentPane.add(tableFinal);
 		tableFinal.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"Position", "Coureur", "Temps"},
@@ -105,21 +115,18 @@ public class ConsultationClassementR extends JFrame {
 				"Position", "Coureur", "Temps"
 			}
 		));
-		scrollPane.setColumnHeaderView(tableFinal);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(547, 116, 373, 266);
-		contentPane.add(scrollPane_1);
+		tableEtape = new JTable();
+		tableEtape.setBounds(494, 116, 385, 420);
+		contentPane.add(tableEtape);
 		
-		JLabel lblEtape = new JLabel("Etape");
-		lblEtape.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblEtape.setBounds(547, 69, 45, 15);
-		contentPane.add(lblEtape);
-		
-		JComboBox comboBoxEtape = new JComboBox();
-		comboBoxEtape.setFont(new Font("Calibri", Font.PLAIN, 15));
-		comboBoxEtape.setBounds(602, 60, 101, 30);
-		contentPane.add(comboBoxEtape);
+		tableGeneral = new JTable();
+		tableGeneral.setBounds(898, 116, 385, 420);
+		contentPane.add(tableGeneral);
+		tableFinal.getColumnModel().getColumn(0).setResizable(false);
+		tableFinal.getColumnModel().getColumn(0).setPreferredWidth(75);
+		tableFinal.getColumnModel().getColumn(1).setResizable(false);
+		tableFinal.getColumnModel().getColumn(1).setPreferredWidth(145);
 		
 		comboBoxRallye.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
@@ -134,32 +141,115 @@ public class ConsultationClassementR extends JFrame {
 		});
 		comboBoxEdition.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				Edition choix = ffrag.getRallye(comboBoxRallye.getSelectedItem().toString()).getEdition(Integer.valueOf(comboBoxEdition.getSelectedItem().toString()));
-				String[] listEtape = new String[choix.getListEtape().size()+1];
-				listEtape[0] = "---Choix Etape---";
-				for(int i = 1; i <= choix.getListEtape().size(); i++) {
-					listEtape[i] = "" + choix.getListEtape().get(i-1).getCodeEtape();
+				if(ItemEvent.SELECTED == e.getStateChange()) {
+					Edition choix = ffrag.getRallye(comboBoxRallye.getSelectedItem().toString()).getEdition(Integer.valueOf(comboBoxEdition.getSelectedItem().toString()));
+					String[] listEtape = new String[choix.getListEtape().size()+1];
+					listEtape[0] = "---Choix Etape---";
+					for(int i = 1; i <= choix.getListEtape().size(); i++) {
+						listEtape[i] = "" + choix.getListEtape().get(i-1).getCodeEtape();
+					}
+					comboBoxEtape.setModel(new DefaultComboBoxModel(listEtape));
+					int finalEtape = choix.getListEtape().size();
+					choix.calculerClassement(finalEtape);
+					ArrayList<HashMap.Entry<Participant, Integer>> classementDefinitif = choix.getClassementGeneral();
+					
+					Object[][] classement = new Object[choix.getClassementGeneral().size()+1][3];
+					classement[0][0] = "Position";
+					classement[0][1] = "Coureur";
+					classement[0][2] = "Temps";
+					
+					for(int i=0;i<choix.getClassementGeneral().size();i++) {
+						classement[i+1][0] = classementDefinitif.get(i).getKey().getPosition();					
+						classement[i+1][1] = "" + classementDefinitif.get(i).getKey().getCoureur().getPrenomCoureur() + " " + classementDefinitif.get(i).getKey().getCoureur().getNomCoureur();
+						Courir t = new Courir(0,0,0,0);
+						t.setMilleSeconde(classementDefinitif.get(i).getKey().getTempsFinal());
+						classement[i+1][2] = t.getTemps();
+					}
+					tableFinal.setModel(new DefaultTableModel(
+							classement,
+							new String[] {
+									"Position", "Coureur", "Temps"
+							}
+					));
+					contentPane.add(tableFinal);
+					tableFinal.getColumnModel().getColumn(0).setResizable(false);
+					tableFinal.getColumnModel().getColumn(0).setPreferredWidth(75);
+					tableFinal.getColumnModel().getColumn(1).setResizable(false);
+					tableFinal.getColumnModel().getColumn(1).setPreferredWidth(145);
 				}
-				comboBoxEtape.setModel(new DefaultComboBoxModel(listEtape));
-				int finalEtape = choix.getListEtape().size();
-				choix.calculerClassement(finalEtape);
-				ArrayList<HashMap.Entry<Participant, Integer>> classementDefinitif = choix.getClassementGeneral();
-				
-				Object[][] classement = new Object[choix.getClassementGeneral().size()+1][3];
-				for(int i=0;i<choix.getListEtape().size();i++) {
-					classement[i+1][0] = classementDefinitif.get(i).getKey().getPosition();					
-					classement[i+1][1] = "" + classementDefinitif.get(i).getKey().getCoureur().getPrenomCoureur() + classementDefinitif.get(i).getKey().getCoureur().getNomCoureur();
-					Courir t = new Courir(0,0,0,0);
-					t.setMilleSeconde(classementDefinitif.get(i).getKey().getTempsFinal());
-					classement[i+1][2] = t.getTemps();
+			}
+		});
+		
+		comboBoxEtape.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(ItemEvent.SELECTED == e.getStateChange()) {
+					Etape etape = null;
+					Edition edition = ffrag.getRallye(comboBoxRallye.getSelectedItem().toString()).getEdition(Integer.valueOf(comboBoxEdition.getSelectedItem().toString()));
+					for(Etape et : edition.getListEtape()) {
+						if(et.getCodeEtape() == (Integer.valueOf(comboBoxEtape.getSelectedItem().toString()))){
+							etape = et;
+						}
+					}
+					for(Participant p : edition.getListPart()){
+						etape.validerClassement(p);
+					}
+					etape.calculerClassement();
+					
+					ArrayList<HashMap.Entry<Participant, Integer>> classementEtape = etape.getClassementEtape();
+					
+					Object[][] classement = new Object[etape.getClassementEtape().size()+1][3];
+					classement[0][0] = "Position";
+					classement[0][1] = "Coureur";
+					classement[0][2] = "Temps";
+					
+					for(int i=0;i<classementEtape.size();i++) {
+						classement[i+1][0] = i+1;					
+						classement[i+1][1] = "" + classementEtape.get(i).getKey().getCoureur().getPrenomCoureur() + " " + classementEtape.get(i).getKey().getCoureur().getNomCoureur();
+						Courir t = new Courir(0,0,0,0);
+						t.setMilleSeconde(classementEtape.get(i).getValue());
+						classement[i+1][2] = t.getTemps();
+					}
+					tableEtape.setModel(new DefaultTableModel(
+							classement,
+							new String[] {
+									"Position", "Coureur", "Temps"
+							}
+					));
+					contentPane.add(tableEtape);
+					tableEtape.getColumnModel().getColumn(0).setResizable(false);
+					tableEtape.getColumnModel().getColumn(0).setPreferredWidth(75);
+					tableEtape.getColumnModel().getColumn(1).setResizable(false);
+					tableEtape.getColumnModel().getColumn(1).setPreferredWidth(145);
+					
+					
+					edition.calculerClassement(etape.getCodeEtape());
+					ArrayList<HashMap.Entry<Participant, Integer>> classementGeneral = edition.getClassementGeneral();
+					
+					Object[][] classementG = new Object[edition.getClassementGeneral().size()+1][3];
+					classementG[0][0] = "Position";
+					classementG[0][1] = "Coureur";
+					classementG[0][2] = "Temps";
+					
+					for(int i = 0; i < edition.getClassementGeneral().size();i++) {
+						classementG[i+1][0] = i+1;					
+						classementG[i+1][1] = "" + classementGeneral.get(i).getKey().getCoureur().getPrenomCoureur() + " " + classementGeneral.get(i).getKey().getCoureur().getNomCoureur();
+						Courir t = new Courir(0,0,0,0);
+						t.setMilleSeconde(classementGeneral.get(i).getValue());
+						classementG[i+1][2] = t.getTemps();
+					}
+					tableGeneral.setModel(new DefaultTableModel(
+							classementG,
+							new String[] {
+									"Position", "Coureur", "Temps"
+							}
+					));
+					contentPane.add(tableGeneral);
+					tableGeneral.getColumnModel().getColumn(0).setResizable(false);
+					tableGeneral.getColumnModel().getColumn(0).setPreferredWidth(75);
+					tableGeneral.getColumnModel().getColumn(1).setResizable(false);
+					tableGeneral.getColumnModel().getColumn(1).setPreferredWidth(145);
+					
 				}
-				tableFinal.setModel(new DefaultTableModel(classement,
-						new String[] {
-								"Etape", "Distance"
-				}));
-				tableFinal.setBounds(27, 242, 338, 64);
-				contentPane.add(scrollPane);
-				scrollPane.add(tableFinal);
 			}
 		});
 	}

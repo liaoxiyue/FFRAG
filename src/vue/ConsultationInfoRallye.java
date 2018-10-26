@@ -54,7 +54,7 @@ public class ConsultationInfoRallye extends JFrame {
 	public ConsultationInfoRallye(FFRAG ffrag) {
 		this.ffrag = ffrag;
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 662, 772);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

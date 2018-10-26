@@ -43,7 +43,7 @@ public class Bienvenue extends JFrame {
 	 */
 	public Bienvenue(FFRAG ffrag) {
 		this.ffrag=ffrag;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 815, 539);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -125,12 +125,32 @@ public class Bienvenue extends JFrame {
 		btnConsultationInfosRallye.setBounds(56, 246, 220, 27);
 		contentPane.add(btnConsultationInfosRallye);
 		
+		JButton btnClassementRallye = new JButton("Classement Rallye");
+		btnClassementRallye.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+					EventQueue.invokeLater(new Runnable() {
+						public void run() {
+							try {
+								ConsultationClassementR frame = new ConsultationClassementR(ffrag);
+								frame.setVisible(true);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					});
+			}
+		});
+		btnClassementRallye.setFont(new Font("Calibri", Font.BOLD, 15));
+		btnClassementRallye.setBounds(344, 194, 156, 27);
+		contentPane.add(btnClassementRallye);
+		
 		JLabel back = new JLabel();
 		back.setIcon(new ImageIcon(Bienvenue.class.getResource("/image/background.jpeg")));
 		back.setBounds(0, 0, 800, 533);
 		this.getLayeredPane().add(back, new Integer(Integer.MIN_VALUE));
 		((JPanel)this.getContentPane()).setOpaque(false);
 		contentPane.add(back);
+		
 		
 		
 	}

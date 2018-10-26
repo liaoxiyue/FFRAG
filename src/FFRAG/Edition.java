@@ -40,6 +40,9 @@ public class Edition {
 	public void organiserPart(Participant part) {
 		listPart.add(part);
 		part.setNoInscription((int) (listPart.size()));
+		for(Etape e : listEtape) {
+			e.organiser(this);
+		}
 	}
 	
 	public ArrayList<Etape> getListEtape() {
@@ -68,7 +71,7 @@ public class Edition {
 			}
 			listTempsGeneral.put(p, temps);
 		}
-		
+		//System.out.println(this.listTempsGeneral.size());
 		//mettre dans l'ordre
 		Set<HashMap.Entry<Participant, Integer>> entryset = listTempsGeneral.entrySet();
 		classementGeneral = new ArrayList<HashMap.Entry<Participant, Integer>>(entryset);
@@ -78,7 +81,20 @@ public class Edition {
 				return c1.getValue().compareTo(c2.getValue());
 			}
 		});
-		
+		if(etape == this.listEtape.size()) {
+			this.setTempFinal();
+		}
+		/*int i =0;
+		for(Participant p: listTempsGeneral.keySet()) {
+			i++;
+			System.out.println(listTempsGeneral.get(p));
+			System.out.println(i);
+		}
+		for(HashMap.Entry<Participant, Integer> classement : classementGeneral) {
+			System.out.println(classement.getValue());
+			System.out.println(classement.getKey().getTempsFinal());
+			System.out.println(classement.getKey().getPosition());
+		}*/
 	}
 	
 	public void setTempFinal() {

@@ -45,9 +45,6 @@ public class Etape {
 		
 	public void calculerClassement() {
 		for(HashMap.Entry<Participant, Integer> entry:tabParticipants.entrySet()) {
-			System.out.print(entry.getKey().getNoInscription()+" "+entry.getValue()+" ");
-		}
-		for(HashMap.Entry<Participant, Integer> entry:tabParticipants.entrySet()) {
 			int temps = entry.getValue();
 			temps = (int) (temps*entry.getKey().getVehicule().getCoef());
 			entry.setValue(temps);
@@ -63,11 +60,7 @@ public class Etape {
 				return c1.getValue().compareTo(c2.getValue());
 			}
 		});
-		
-		for(int i=0;i<classementEtape.size();i++) {
-			System.out.print(classementEtape.get(i).getKey().getNoInscription()+" "+classementEtape.get(i).getValue()+" ");
-		}
-		
+				
 	}
 
 	public void enregistreTemp(Participant part, int hh, int mm, int ss, int ms) {

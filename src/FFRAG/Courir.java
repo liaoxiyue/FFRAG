@@ -13,7 +13,7 @@ public class Courir {
 		int ss = (milleSeconde / 1000) % 60;
 		int mm = milleSeconde / 1000 / 60 % 60;
 		int hh = milleSeconde / 1000 / 60 / 60;
-		temps += hh + ":" + mm + ":" + ss + ":" + mm + ":" + ms;
+		temps += hh + ":" + mm + ":" + ss + ":" + ms;
 		return temps;
 	}
 
