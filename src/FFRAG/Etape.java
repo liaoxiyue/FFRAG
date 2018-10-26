@@ -30,6 +30,10 @@ public class Etape {
 	}
 	
 	
+	public ArrayList<HashMap.Entry<Participant, Integer>> getClassementEtape() {
+		return classementEtape;
+	}
+
 	//affecter les participants ¨¤ l'¨¦pate
 	public void organiser (Edition edition) {
 		for(Participant part : edition.getListPart()) {
@@ -38,9 +42,6 @@ public class Etape {
 	}
 		
 	public void calculerClassement() {
-		for(HashMap.Entry<Participant, Integer> entry:tabParticipants.entrySet()) {
-			System.out.print(entry.getKey().getNoInscription()+" "+entry.getValue()+" ");
-		}
 		for(HashMap.Entry<Participant, Integer> entry:tabParticipants.entrySet()) {
 			int temps = entry.getValue();
 			temps = (int) (temps*entry.getKey().getVehicule().getCoef());

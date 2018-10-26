@@ -117,7 +117,7 @@ public class RunRallye {
 		        	if(j!=0) {
 		        		String[] tabPuiss = line.split(cvsSplitBy);
 				        float pui = Float.parseFloat(tabPuiss[1]); 
-			            ffrag.insertVoiture(tabPuiss[0], pui);
+			            ffrag.insertVoiture(tabPuiss[0], (int)(pui));
 			        }
 		            j++;
 
@@ -234,9 +234,6 @@ public class RunRallye {
 		        					                	int h = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(0,2)); //tableau fixe
 		        					                	int mm = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(3,5));
 		        					                	int sec = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(6,8));
-		        					                	System.out.println(h + " " + mm +" " + sec);
-		        					              
-
 		        					                	et.enregistreTemp(p, h, mm, sec,00);
 		        					                
 
@@ -390,9 +387,6 @@ public class RunRallye {
 		        					                	int h = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(0,2)); //tableau fixe
 		        					                	int mm = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(3,5));
 		        					                	int sec = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(6,8));
-		        					                	System.out.println(h + " " + mm +" " + sec);
-		        					              
-
 		        					                	et.enregistreTemp(p, h, mm, sec,00);
 
 		    			        			      }
@@ -421,7 +415,6 @@ public class RunRallye {
 	        		}
 	        	}
 	        }
-	        System.out.println(ffrag.getListCoureur().get(0).getNomCoureur());
 	        EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
@@ -432,6 +425,7 @@ public class RunRallye {
 					}
 				}
 			});
+	        
     }
 }
 	        				

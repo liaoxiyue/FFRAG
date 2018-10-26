@@ -53,7 +53,7 @@ public class ConsultationInfoRallye extends JFrame {
 	 */
 	public ConsultationInfoRallye(FFRAG ffrag) {
 		this.ffrag = ffrag;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 662, 772);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -160,10 +160,6 @@ public class ConsultationInfoRallye extends JFrame {
 		jeune.setBounds(487, 113, 79, 18);
 		contentPane.add(jeune);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
-		rdbtnNewRadioButton.setBounds(454, 20, 157, 27);
-		contentPane.add(rdbtnNewRadioButton);
-		
 		
 		cBoxRallye.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
@@ -209,7 +205,6 @@ public class ConsultationInfoRallye extends JFrame {
 					jeune.setText(choix.getChampion().getCoureur().getNomCoureur()+" "+choix.getChampion().getCoureur().getPrenomCoureur());
 				}
 				Object[][] etape = new Object[choix.getListEtape().size()+1][2];
-				System.out.println(choix.getListEtape().size());
 				etape[0][0]="Etape"; etape[0][1]="Distance";
 				for(int i=0;i<choix.getListEtape().size();i++) {
 					etape[i+1][0]=choix.getListEtape().get(i).getCodeEtape();

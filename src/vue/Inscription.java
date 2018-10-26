@@ -14,11 +14,13 @@ import FFRAG.FFRAG;
 import FFRAG.Participant;
 import FFRAG.Rallye;
 import FFRAG.Vehicule;
+import FFRAG.Voiture;
 
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Date;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -53,7 +55,7 @@ public class Inscription extends JFrame {
 	public Inscription(FFRAG ffrag, Coureur coureur) {
 		this.ffrag = ffrag;
 		this.coureur = coureur;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -76,6 +78,17 @@ public class Inscription extends JFrame {
 		cBoxRallye.setToolTipText("");
 		contentPane.add(cBoxRallye);
 		
+		JComboBox cBoxVehicule = new JComboBox();
+		cBoxVehicule.setBounds(204, 153, 120, 24);String[] listVoiture = new String[ffrag.getListVoiture().size()+1];
+		listVoiture[0]="---choix du Voiture---";
+		for(int i = 1; i <= ffrag.getListVoiture().size(); i++) {
+			listVoiture[i] = ffrag.getListVoiture().get(i-1).getModele();
+		}
+		cBoxVehicule.setModel(new DefaultComboBoxModel(listVoiture));
+		cBoxVehicule.setEditable(true);
+		cBoxVehicule.setToolTipText("");
+		contentPane.add(cBoxVehicule);
+		
 		JLabel lblRallye = new JLabel("Rallye:");
 		lblRallye.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblRallye.setBounds(92, 69, 72, 18);
@@ -87,6 +100,7 @@ public class Inscription extends JFrame {
 		contentPane.add(lblEdition);
 		
 		JComboBox cBoxEdition = new JComboBox();
+		
 		cBoxEdition.setBounds(204, 96, 120, 24);
 		contentPane.add(cBoxEdition);
 		
@@ -110,18 +124,19 @@ public class Inscription extends JFrame {
 		lblVhicule.setBounds(92, 157, 72, 18);
 		contentPane.add(lblVhicule);
 		
-		JComboBox cBoxVehicule = new JComboBox();
-		cBoxVehicule.setBounds(204, 153, 120, 24);
-		contentPane.add(cBoxVehicule);
 		
+				
+			
 		JButton btnEnregistrer = new JButton("Enregistrer");
 		btnEnregistrer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Rallye rallye = ffrag.getRallye(cBoxRallye.getSelectedItem().toString());
 				Edition edition = rallye.getEdition(Integer.valueOf(cBoxEdition.getSelectedItem().toString()));
-				//Vehicule vehicule = ffrag.getVehicule(cBoxVehicule.getSelectedItem().toString());
-				//Participant part = new Participant(coureur, vehicule);
-				//edition.organiserPart(part);
+				Voiture voiture = ffrag.getVoiture(cBoxVehicule.getSelectedItem().toString());
+				int noIns = edition.getListPart().size()+1;
+				Date nowTime = new Date(System.currentTimeMillis());
+				Participant part = new Participant(noIns, nowTime, coureur, voiture);
+				edition.organiserPart(part);
 			}
 		});
 		btnEnregistrer.setFont(new Font("Calibri", Font.BOLD, 15));

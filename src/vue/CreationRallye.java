@@ -47,7 +47,7 @@ public class CreationRallye extends JFrame {
 	public CreationRallye(FFRAG ffrag) {
 		this.ffrag = ffrag;
 		setFont(new Font("Eras Bold ITC", Font.PLAIN, 16));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 539, 470);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

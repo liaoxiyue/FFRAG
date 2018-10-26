@@ -33,6 +33,9 @@ public class Edition {
 	public void organiserPart(Participant part) {
 		listPart.add(part);
 		part.setNoInscription((int) (listPart.size()));
+		for (Etape e : listEtape) {
+			e.organiser(this);
+		}
 	}
 	
 	public ArrayList<Etape> getListEtape() {
