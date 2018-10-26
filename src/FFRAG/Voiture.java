@@ -14,7 +14,7 @@ public class Voiture extends Vehicule{
 	}
 
 	public float getCoef() {
-		float coefV = 1 + (puissanceV - 20)*this.coefV.getCoefCorrectifV();
+		float coefV = 1 + (puissanceV - 250)/25*this.coefV.getCoefCorrectifV();
 		return coefV;
 	}
 }

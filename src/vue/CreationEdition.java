@@ -361,7 +361,6 @@ public class CreationEdition extends JFrame {
 				try {
 					deb = dateformat.parse(debString);
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} 
 				
@@ -370,7 +369,6 @@ public class CreationEdition extends JFrame {
 				try {
 					fin = dateformat.parse(finString);
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} 
 				
@@ -387,9 +385,6 @@ public class CreationEdition extends JFrame {
 					Etape etape = new Etape(noEtape, distance);
 					edition.getListEtape().add(etape);
 				}
-				System.out.println(rallye.getListeEdition().get(rallye.getListeEdition().size()-1).getNoEdition());
-				System.out.println(rallye.getListeEdition().get(rallye.getListeEdition().size()-1).getDateDebER());
-				System.out.println(rallye.getListeEdition().get(rallye.getListeEdition().size()-1).getDateFinER());
 			}
 		});
 		

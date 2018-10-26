@@ -43,7 +43,7 @@ public class Bienvenue extends JFrame {
 	 */
 	public Bienvenue(FFRAG ffrag) {
 		this.ffrag=ffrag;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 815, 539);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -93,6 +93,7 @@ public class Bienvenue extends JFrame {
 		lblBienvenuPour.setBounds(285, 34, 202, 53);
 		contentPane.add(lblBienvenuPour);
 		
+
 		JLabel back = new JLabel();
 		back.setIcon(new ImageIcon(Bienvenue.class.getResource("/image/background.jpeg")));
 		back.setBounds(0, 0, 800, 533);
@@ -100,8 +101,6 @@ public class Bienvenue extends JFrame {
 		((JPanel)this.getContentPane()).setOpaque(false);
 		contentPane.add(back);
 		
-		
-		
-		
+
 	}
 }

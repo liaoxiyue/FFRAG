@@ -7,6 +7,7 @@ public class FFRAG {
 	private ArrayList<Rallye> listRallye;
 	private ArrayList<Coureur> listCoureur;
 	private ArrayList<Voiture> listVoiture;
+
 	SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public FFRAG() {
@@ -33,6 +34,37 @@ public class FFRAG {
 		Coureur coureur = new Coureur(nom, prenom, dateNe, nationalite, sanguin);
 		this.listCoureur.add(coureur);
 	}
+
+	
+	public ArrayList<Rallye> getListRallye() {
+		return listRallye;
+	}
+
+	public ArrayList<Coureur> getListCoureur() {
+		return listCoureur;
+	}
+	
+	public Rallye getRallye(String nomRallye) {
+		Rallye rallye = null;
+		for(Rallye r : listRallye) {
+			if(r.getNomRallye() == nomRallye) {
+				rallye = r;
+			}
+		}
+		return rallye;
+	}
+
+	public Coureur confirmeCoureur(String nomCoureur, String prenomCoureur) {
+		Coureur coureur = null;
+		for(Coureur c : listCoureur) {
+			if(c.getNomCoureur().equals(nomCoureur) && c.getPrenomCoureur().equals(prenomCoureur)) {
+				coureur = c;
+			}
+		}
+		return coureur;
+	}
+
+	
 	public int getNbPartSaison(Coureur coureur, String saison) {
 		ArrayList<Edition> editionSaison = new ArrayList<Edition>();
 		for(Rallye r : listRallye) {
@@ -62,6 +94,7 @@ public class FFRAG {
 				}
 			}
 		}
+		System.out.println(editionSaison.size());
 		int position=100;
 		for(int i = 0; i < coureur.getListParticipation().size(); i++) {
 			for(Edition e : editionSaison) {
@@ -100,35 +133,6 @@ public class FFRAG {
 		return detailClassement;
 	}
 
-	
-	public ArrayList<Rallye> getListRallye() {
-		return listRallye;
-	}
-
-	public ArrayList<Coureur> getListCoureur() {
-		return listCoureur;
-	}
-	
-	public Rallye getRallye(String nomRallye) {
-		Rallye rallye = null;
-		for(Rallye r : listRallye) {
-			if(r.getNomRallye() == nomRallye) {
-				rallye = r;
-			}
-		}
-		return rallye;
-	}
-	
-	public Coureur confirmeCoureur(String nomCoureur, String prenomCoureur) {
-		Coureur coureur = null;
-		for(Coureur c : listCoureur) {
-			if(c.getNomCoureur().equals(nomCoureur) && c.getPrenomCoureur().equals(prenomCoureur) 
-					 ) {
-				coureur = c;
-			}
-		}
-		return coureur;
-	}
 
 	public void insertVoiture(String string, int pui) {
 		listVoiture.add(new Voiture(string, pui));

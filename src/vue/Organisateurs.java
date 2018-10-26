@@ -76,6 +76,24 @@ public class Organisateurs extends JFrame {
 		lblBienvenuPour.setBounds(285, 34, 202, 53);
 		contentPane.add(lblBienvenuPour);
 		
+		JButton btnConsultationClassementRallye = new JButton("Consultation Classement Rallye");
+		btnConsultationClassementRallye.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							ConsultationClassementR frame = new ConsultationClassementR(ffrag);
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		btnConsultationClassementRallye.setFont(new Font("Calibri", Font.BOLD, 15));
+		btnConsultationClassementRallye.setBounds(56, 188, 395, 27);
+		contentPane.add(btnConsultationClassementRallye);
 
 		JButton btnValitationClassementEtape = new JButton("Valitation Classement Etape");
 		btnValitationClassementEtape.addActionListener(new ActionListener() {
@@ -104,7 +122,7 @@ public class Organisateurs extends JFrame {
 			}
 		});
 		btnCreationRallye.setFont(new Font("Calibri", Font.BOLD, 15));
-		btnCreationRallye.setBounds(295, 138, 156, 27);
+		btnCreationRallye.setBounds(285, 138, 166, 27);
 		contentPane.add(btnCreationRallye);
 		
 		JButton btnConsultationInfosRallye = new JButton("Consultation Infos Rallye");
@@ -128,6 +146,8 @@ public class Organisateurs extends JFrame {
 		this.getLayeredPane().add(back, new Integer(Integer.MIN_VALUE));
 		((JPanel)this.getContentPane()).setOpaque(false);
 		contentPane.add(back);
+		
+		
 		
 		
 		

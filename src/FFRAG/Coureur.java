@@ -18,10 +18,6 @@ public class Coureur {
 		this.listParticipation = new ArrayList<Participant>();
 	}
 	
-	public ArrayList<Participant> getListParticipation() {
-		return listParticipation;
-	}
-
 	public Date getDateNaissanceC() {
 		return dateNaissanceC;
 	}
@@ -44,6 +40,11 @@ public class Coureur {
 	public String getPrenomCoureur() {
 		return prenomCoureur;
 	}
+
+	public ArrayList<Participant> getListParticipation() {
+		return listParticipation;
+	}
+	
 }
 
 

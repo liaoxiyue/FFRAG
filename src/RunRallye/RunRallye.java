@@ -60,7 +60,6 @@ public class RunRallye {
 			          }
 		              Date d = dateformat.parse(tab[1]);
 		              ffrag.insertCoureur(lastName, firstName, d, tab[2], tab[3]);
-
 			      }
 		    	 i++;
 		     }
@@ -116,8 +115,8 @@ public class RunRallye {
 		        while ((line = br.readLine()) != null) {
 		        	if(j!=0) {
 		        		String[] tabPuiss = line.split(cvsSplitBy);
-				        float pui = Float.parseFloat(tabPuiss[1]); 
-			            ffrag.insertVoiture(tabPuiss[0], (int)(pui));
+				        int pui = Integer.parseInt(tabPuiss[1]); 
+			            ffrag.insertVoiture(tabPuiss[0], pui);
 			        }
 		            j++;
 
@@ -175,7 +174,7 @@ public class RunRallye {
 	    			        					        	if(v.getModele().equals(tab[1])) {
 	    			        					        		eV.organiserPart(new Participant(nIns,dateIns,c, v));
 		 	    			        			                numins++;
-
+		 	    			        			                
 	    			        					        	}
 	    			        					        }
 	    			        					    }
@@ -272,7 +271,7 @@ public class RunRallye {
 	        
 	        for(Rallye r: ffrag.getListRallye()) {
 	        	if(r.getNomRallye() == "SuperBesse") {
-	        		r.organiser(ned, datedebV, datefinV, "2018/2019");
+	        		r.organiser(ned, datedebV, datefinV, "2018 / 2019");
 	        		for(Edition eV : r.getListeEdition()) {
 	        			if(eV.getNoEdition()==ned) {
 		        			eV.organiserEtape(1, 360);
@@ -326,7 +325,7 @@ public class RunRallye {
 	        					                	    }
 	        					                for(Coureur c: ffrag.getListCoureur()) {
 
-	    		        			        		if(c.getNomCoureur().equals(lastName) &&c.getPrenomCoureur().equals(firstName)) {
+	    		        			        		if(c.getNomCoureur().equals(lastName) && c.getPrenomCoureur().equals(firstName)) {
 
 	    		        			        			int nIns = Integer.parseInt(tab[2]);
 	    			        					        Date dateIns = dateformat.parse("31/12/2017");
@@ -392,7 +391,7 @@ public class RunRallye {
 		    			        			      }
 		    			        			  }
 		        				               	
-		        				            m++;		                
+		        				            m++;
 		        					                
 		        				       }
 
@@ -415,7 +414,27 @@ public class RunRallye {
 	        		}
 	        	}
 	        }
-	        EventQueue.invokeLater(new Runnable() {
+
+	        int etape = ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().size()-1;
+	        ffrag.getListRallye().get(0).getListeEdition().get(0).calculerClassement(etape);
+	        ffrag.getListRallye().get(0).getListeEdition().get(0).setTempFinal();
+	        
+	        int etape1 = ffrag.getListRallye().get(1).getListeEdition().get(0).getListEtape().size()-1;
+	        ffrag.getListRallye().get(1).getListeEdition().get(0).calculerClassement(etape1);
+	        ffrag.getListRallye().get(1).getListeEdition().get(0).setTempFinal();
+	        /*ffrag.getListRallye().get(0).getListeEdition().get(0).calculerClassement(etape);
+	        System.out.println(ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().get(0).getTabParticipants().size());
+	        int qqqq = 0;
+	        for(Participant p : ffrag.getListRallye().get(0).getListeEdition().get(0).getListPart()) {
+	        	 ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().get(0).validerClassement(p);
+	        	 System.out.println(ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().get(0).getTabParticipants().get(p));
+	        	 System.out.println(ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().get(0).validerClassement(p));
+	        	 qqqq++;
+	        	 System.out.println(qqqq);
+	        }
+	        System.out.println(ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().get(0).getTabParticipants().size());*/
+
+			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
 						Bienvenue frame = new Bienvenue(ffrag);
@@ -424,21 +443,9 @@ public class RunRallye {
 						e.printStackTrace();
 					}
 				}
+
 			});
-	        
+
     }
 }
-	        				
-	        				
-	        		
-	        				
-	        				
-	        				
-	        				
-	        				
-	        				
-	        				
-	        				
-	        			
-	        				        	
 
