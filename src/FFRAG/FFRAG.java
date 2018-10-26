@@ -134,7 +134,24 @@ public class FFRAG {
 	}
 
 
+<<<<<<< HEAD
 	public void insertVoiture(String string, float pui) {
 		this.listVoiture.add(new Voiture(string, pui));
+=======
+	public void insertVoiture(String string, int pui) {
+		listVoiture.add(new Voiture(string, pui));
+	}
+
+
+
+	public Voiture getVoiture(String model) {
+		Voiture voiture = null;
+		for(Voiture v : listVoiture) {
+			if(v.modele == model) {
+				voiture = v;
+			}
+		}
+		return voiture;
+>>>>>>> 94384c946f5d512040722a07b0c71e7e1591aba2
 	}
 }

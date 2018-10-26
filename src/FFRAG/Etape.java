@@ -30,8 +30,6 @@ public class Etape {
 	}
 	
 	
-	
-	
 	public ArrayList<HashMap.Entry<Participant, Integer>> getClassementEtape() {
 		return classementEtape;
 	}

@@ -26,7 +26,7 @@ public class RunRallye {
     	
     	FFRAG ffrag = new FFRAG();
     	
-        String csvPath = "src/data/";
+        String csvPath = "data/";
     	String csv = "Coureurs.csv";
     	String csvVal = "ValThorens.csv";
     	String csvPuiss = "Puissances.csv";
@@ -390,6 +390,30 @@ public class RunRallye {
 
 		        			        	int m=0;//on ne traite pas l'ent¨ºte des tableaux
 		        				        br = new BufferedReader(new FileReader(csvPath+csvSuper));
+<<<<<<< HEAD
+=======
+		        				        while ((line = br.readLine()) != null) {
+
+		        				            	if(m!=0) {
+		        					                String[] tab = line.split(cvsSplitBy);
+    		        			        			int nIns = Integer.parseInt(tab[2]);
+    		        			        			
+    		        			        			
+		        					                if(p.getNoInscription()==nIns){
+		        					                	
+		        					                	
+		        					                	int h = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(0,2)); //tableau fixe
+		        					                	int mm = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(3,5));
+		        					                	int sec = Integer.parseInt(tab[et.getCodeEtape()+ 2].substring(6,8));
+		        					                	et.enregistreTemp(p, h, mm, sec,00);
+
+		    			        			      }
+		    			        			  }
+		        				               	
+		        				            m++;
+		        					                
+		        				       }
+>>>>>>> 94384c946f5d512040722a07b0c71e7e1591aba2
 
 		        				        	  while ((line = br.readLine()) != null) {
 
@@ -443,6 +467,7 @@ public class RunRallye {
 	        		}
 	        	}
 	        }
+<<<<<<< HEAD
 	        }
 	        
 
@@ -474,4 +499,40 @@ public class RunRallye {
 	        				
 	        			
 	        				        		        				        	
+=======
+
+	        int etape = ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().size()-1;
+	        ffrag.getListRallye().get(0).getListeEdition().get(0).calculerClassement(etape);
+	        ffrag.getListRallye().get(0).getListeEdition().get(0).setTempFinal();
+	        
+	        int etape1 = ffrag.getListRallye().get(1).getListeEdition().get(0).getListEtape().size()-1;
+	        ffrag.getListRallye().get(1).getListeEdition().get(0).calculerClassement(etape1);
+	        ffrag.getListRallye().get(1).getListeEdition().get(0).setTempFinal();
+	        /*ffrag.getListRallye().get(0).getListeEdition().get(0).calculerClassement(etape);
+	        System.out.println(ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().get(0).getTabParticipants().size());
+	        int qqqq = 0;
+	        for(Participant p : ffrag.getListRallye().get(0).getListeEdition().get(0).getListPart()) {
+	        	 ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().get(0).validerClassement(p);
+	        	 System.out.println(ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().get(0).getTabParticipants().get(p));
+	        	 System.out.println(ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().get(0).validerClassement(p));
+	        	 qqqq++;
+	        	 System.out.println(qqqq);
+	        }
+	        System.out.println(ffrag.getListRallye().get(0).getListeEdition().get(0).getListEtape().get(0).getTabParticipants().size());*/
+
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						Bienvenue frame = new Bienvenue(ffrag);
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+
+			});
+
+    }
+}
+>>>>>>> 94384c946f5d512040722a07b0c71e7e1591aba2
 
