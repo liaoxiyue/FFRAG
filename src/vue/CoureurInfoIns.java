@@ -62,7 +62,7 @@ public class CoureurInfoIns extends JFrame {
 		
 		JLabel lblNomC = new JLabel(""+coureur.getNomCoureur()+" "+coureur.getPrenomCoureur());
 		lblNomC.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
-		lblNomC.setBounds(163, 40, 91, 30);
+		lblNomC.setBounds(144, 40, 297, 30);
 		contentPane.add(lblNomC);
 		
 		JLabel lblInformationsParticipation = new JLabel("Informations participation:");
@@ -73,6 +73,7 @@ public class CoureurInfoIns extends JFrame {
 		JButton btnNewButton = new JButton("Inscrire un nouveau Rallye");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				dispose();
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {

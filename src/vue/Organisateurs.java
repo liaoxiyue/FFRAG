@@ -68,7 +68,7 @@ public class Organisateurs extends JFrame {
 		});
 		
 		btnCreationEdition.setFont(new Font("Calibri", Font.BOLD, 15));
-		btnCreationEdition.setBounds(56, 138, 156, 27);
+		btnCreationEdition.setBounds(56, 138, 202, 27);
 		contentPane.add(btnCreationEdition);
 		
 		JLabel lblBienvenuPour = new JLabel("Bienvenue ! ");
@@ -92,9 +92,28 @@ public class Organisateurs extends JFrame {
 			}
 		});
 		btnConsultationClassementRallye.setFont(new Font("Calibri", Font.BOLD, 15));
-		btnConsultationClassementRallye.setBounds(56, 188, 395, 27);
+		btnConsultationClassementRallye.setBounds(380, 189, 270, 27);
 		contentPane.add(btnConsultationClassementRallye);
 
+		JButton btnConsultationClassementSaison = new JButton("Consultation Classement Saison");
+		btnConsultationClassementSaison.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							ClassementSaison frame = new ClassementSaison(ffrag);
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		btnConsultationClassementSaison.setFont(new Font("Calibri", Font.BOLD, 15));
+		btnConsultationClassementSaison.setBounds(380, 238, 270, 27);
+		contentPane.add(btnConsultationClassementSaison);
+		
 		JButton btnValitationClassementEtape = new JButton("Valitation Classement Etape");
 		btnValitationClassementEtape.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -107,7 +126,7 @@ public class Organisateurs extends JFrame {
 			}
 		});
 		btnValitationClassementEtape.setFont(new Font("Calibri", Font.BOLD, 15));
-		btnValitationClassementEtape.setBounds(505, 189, 220, 27);
+		btnValitationClassementEtape.setBounds(380, 138, 270, 27);
 		contentPane.add(btnValitationClassementEtape);
 		
 		JButton btnCreationRallye = new JButton("Creation Rallye");
@@ -122,7 +141,7 @@ public class Organisateurs extends JFrame {
 			}
 		});
 		btnCreationRallye.setFont(new Font("Calibri", Font.BOLD, 15));
-		btnCreationRallye.setBounds(285, 138, 166, 27);
+		btnCreationRallye.setBounds(56, 189, 202, 27);
 		contentPane.add(btnCreationRallye);
 		
 		JButton btnConsultationInfosRallye = new JButton("Consultation Infos Rallye");
@@ -137,7 +156,7 @@ public class Organisateurs extends JFrame {
 			}
 		});
 		btnConsultationInfosRallye.setFont(new Font("Calibri", Font.BOLD, 15));
-		btnConsultationInfosRallye.setBounds(505, 138, 220, 27);
+		btnConsultationInfosRallye.setBounds(56, 239, 202, 27);
 		contentPane.add(btnConsultationInfosRallye);
 		
 		JLabel back = new JLabel();
@@ -146,6 +165,8 @@ public class Organisateurs extends JFrame {
 		this.getLayeredPane().add(back, new Integer(Integer.MIN_VALUE));
 		((JPanel)this.getContentPane()).setOpaque(false);
 		contentPane.add(back);
+		
+		
 		
 		
 		

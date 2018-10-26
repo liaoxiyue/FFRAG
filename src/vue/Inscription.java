@@ -137,10 +137,22 @@ public class Inscription extends JFrame {
 				Date nowTime = new Date(System.currentTimeMillis());
 				Participant part = new Participant(noIns, nowTime, coureur, voiture);
 				edition.organiserPart(part);
+				dispose();
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							CoureurInfoIns frame = new CoureurInfoIns(ffrag, coureur);
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
 			}
 		});
 		btnEnregistrer.setFont(new Font("Calibri", Font.BOLD, 15));
 		btnEnregistrer.setBounds(158, 202, 113, 27);
 		contentPane.add(btnEnregistrer);
+		
 	}
 }

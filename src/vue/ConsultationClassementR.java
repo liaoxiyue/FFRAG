@@ -57,7 +57,7 @@ public class ConsultationClassementR extends JFrame {
 	public ConsultationClassementR(FFRAG ffrag) {
 		this.ffrag = ffrag;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 1356, 597);
+		setBounds(100, 100, 1357, 672);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -71,7 +71,7 @@ public class ConsultationClassementR extends JFrame {
 		}
 		comboBoxRallye.setModel(new DefaultComboBoxModel(listRallye));
 		comboBoxRallye.setFont(new Font("Calibri", Font.PLAIN, 15));
-		comboBoxRallye.setBounds(53, 61, 155, 30);
+		comboBoxRallye.setBounds(57, 55, 155, 30);
 		contentPane.add(comboBoxRallye);
 		
 		JLabel lblConsultationClassement = new JLabel("Consultation Classement");
@@ -81,31 +81,31 @@ public class ConsultationClassementR extends JFrame {
 		
 		JLabel lblRallye = new JLabel("Rallye");
 		lblRallye.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblRallye.setBounds(10, 69, 45, 15);
+		lblRallye.setBounds(14, 63, 45, 15);
 		contentPane.add(lblRallye);
 		
 		JComboBox comboBoxEdition = new JComboBox();
 		comboBoxEdition.setFont(new Font("Calibri", Font.PLAIN, 15));
-		comboBoxEdition.setBounds(289, 61, 146, 30);
+		comboBoxEdition.setBounds(293, 55, 146, 30);
 		contentPane.add(comboBoxEdition);
 		
 		JLabel lblEdition = new JLabel("Edition");
 		lblEdition.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblEdition.setBounds(234, 69, 45, 15);
+		lblEdition.setBounds(238, 63, 45, 15);
 		contentPane.add(lblEdition);
 		
 		JLabel lblEtape = new JLabel("Etape");
 		lblEtape.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblEtape.setBounds(778, 70, 45, 15);
+		lblEtape.setBounds(778, 64, 45, 15);
 		contentPane.add(lblEtape);
 		
 		JComboBox comboBoxEtape = new JComboBox();
 		comboBoxEtape.setFont(new Font("Calibri", Font.PLAIN, 15));
-		comboBoxEtape.setBounds(833, 61, 139, 30);
+		comboBoxEtape.setBounds(833, 55, 139, 30);
 		contentPane.add(comboBoxEtape);
 		
 		tableFinal = new JTable();
-		tableFinal.setBounds(67, 116, 334, 420);
+		tableFinal.setBounds(67, 116, 334, 496);
 		contentPane.add(tableFinal);
 		tableFinal.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -117,12 +117,27 @@ public class ConsultationClassementR extends JFrame {
 		));
 		
 		tableEtape = new JTable();
-		tableEtape.setBounds(494, 116, 385, 420);
+		tableEtape.setBounds(494, 116, 385, 496);
 		contentPane.add(tableEtape);
 		
 		tableGeneral = new JTable();
-		tableGeneral.setBounds(898, 116, 385, 420);
+		tableGeneral.setBounds(898, 116, 385, 496);
 		contentPane.add(tableGeneral);
+		
+		JLabel lblClassementDfinitif = new JLabel("Classement D\u00E9finitif");
+		lblClassementDfinitif.setFont(new Font("Calibri", Font.BOLD, 15));
+		lblClassementDfinitif.setBounds(67, 97, 334, 18);
+		contentPane.add(lblClassementDfinitif);
+		
+		JLabel lblClassementPattape = new JLabel("Classement pat \u00E9tape");
+		lblClassementPattape.setFont(new Font("Calibri", Font.BOLD, 15));
+		lblClassementPattape.setBounds(494, 97, 334, 18);
+		contentPane.add(lblClassementPattape);
+		
+		JLabel lblClassementGnral = new JLabel("Classement g\u00E9n\u00E9ral");
+		lblClassementGnral.setFont(new Font("Calibri", Font.BOLD, 15));
+		lblClassementGnral.setBounds(898, 96, 334, 18);
+		contentPane.add(lblClassementGnral);
 		tableFinal.getColumnModel().getColumn(0).setResizable(false);
 		tableFinal.getColumnModel().getColumn(0).setPreferredWidth(75);
 		tableFinal.getColumnModel().getColumn(1).setResizable(false);
@@ -176,6 +191,7 @@ public class ConsultationClassementR extends JFrame {
 					tableFinal.getColumnModel().getColumn(0).setPreferredWidth(75);
 					tableFinal.getColumnModel().getColumn(1).setResizable(false);
 					tableFinal.getColumnModel().getColumn(1).setPreferredWidth(145);
+		
 				}
 			}
 		});
