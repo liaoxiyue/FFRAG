@@ -80,14 +80,6 @@ public class Edition {
 	 */
 	public void organiserPart(Participant part) {
 		listPart.add(part);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-		part.setNoInscription((int) (listPart.size()));
-
->>>>>>> 94384c946f5d512040722a07b0c71e7e1591aba2
-=======
->>>>>>> 44087776bcb026b60dc204940a2e6b86d75fabf0
 		for(Etape e : listEtape) {
 			e.organiser(this);
 		}

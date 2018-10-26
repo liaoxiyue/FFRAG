@@ -207,13 +207,8 @@ public class FFRAG {
 		return detailClassement;
 	}
 
-<<<<<<< HEAD
 
-<<<<<<< HEAD
-	public void insertVoiture(String string, float pui) {
-		this.listVoiture.add(new Voiture(string, pui));
-=======
-=======
+
 	/**
 	 * La methode insertVoiture permet d'enregistrer une nouvelle voiture en
 	 * fonction de
@@ -221,10 +216,11 @@ public class FFRAG {
 	 * @param string : modele de la voiture
 	 * @param pui    : puissance de la voiture
 	 */
->>>>>>> 44087776bcb026b60dc204940a2e6b86d75fabf0
+
 	public void insertVoiture(String string, int pui) {
 		this.listVoiture.add(new Voiture(string, pui));
 	}
+
 	public Voiture getVoiture(String model) {
 		Voiture voiture = null;
 		for(Voiture v : listVoiture) {
@@ -233,7 +229,6 @@ public class FFRAG {
 			}
 		}
 		return voiture;
->>>>>>> 94384c946f5d512040722a07b0c71e7e1591aba2
 	}
 
 }

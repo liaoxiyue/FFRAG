@@ -18,10 +18,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import FFRAG.Coureur;
-<<<<<<< HEAD
-=======
 import FFRAG.Courir;
->>>>>>> 44087776bcb026b60dc204940a2e6b86d75fabf0
 import FFRAG.FFRAG;
 import FFRAG.Participant;
 import FFRAG.Rallye;
@@ -137,11 +134,7 @@ public class ClassementSaison extends JFrame {
 							int nbPart = ffrag.getNbPartSaison(coureur, saison);
 							if(nbPart != 0 ) {
 								index = j + 1;
-<<<<<<< HEAD
-								list[i][0] = coureur.getPrenomCoureur() + coureur.getNomCoureur();
-=======
 								list[i][0] = coureur.getPrenomCoureur() +" "+ coureur.getNomCoureur();
->>>>>>> 44087776bcb026b60dc204940a2e6b86d75fabf0
 								list[i][1] = nbPart;
 								list[i][2] = ffrag.getMeilleurSaison(coureur, saison);
 								break;
@@ -168,19 +161,12 @@ public class ClassementSaison extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				int col = tableSaison.getSelectedColumn();
 				int row = tableSaison.getSelectedRow();
-<<<<<<< HEAD
-				System.out.println("" + row + "" + col);
-=======
->>>>>>> 44087776bcb026b60dc204940a2e6b86d75fabf0
 				if(col == 0 && row != 0) {
 					String nomCoureur = tableSaison.getValueAt(row, col).toString();
 					String nom = "";
 					String prenom = "";
-<<<<<<< HEAD
-=======
 					nom = nomCoureur.substring(nomCoureur.lastIndexOf(" ")+1);
 					prenom = nomCoureur.substring(0, nomCoureur.lastIndexOf(" "));
->>>>>>> 44087776bcb026b60dc204940a2e6b86d75fabf0
 					Coureur coureur = ffrag.confirmeCoureur(nom, prenom);
 					HashMap<Rallye, Participant> detail = ffrag.getDetailSaison(coureur, saison);
 					int ligne = detail.size()+1;
@@ -193,13 +179,9 @@ public class ClassementSaison extends JFrame {
 					for(Rallye r : detail.keySet()) {
 						listDetail[index][0] = r.getNomRallye();
 						listDetail[index][1] = detail.get(r).getPosition();
-<<<<<<< HEAD
-						listDetail[index][2] = detail.get(r).getTempsFinal();
-=======
 						Courir c = new Courir(0,0,0,0);
 						c.setMilleSeconde(detail.get(r).getTempsFinal());
 						listDetail[index][2] = c.getTemps();
->>>>>>> 44087776bcb026b60dc204940a2e6b86d75fabf0
 						index ++;
 												
 					}
