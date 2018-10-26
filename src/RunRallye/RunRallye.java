@@ -100,7 +100,7 @@ public class RunRallye {
 >>>>>>> 44087776bcb026b60dc204940a2e6b86d75fabf0
 	        for(Rallye r: ffrag.getListRallye()) {
 	        	if(r.getNomRallye() == "ValThorens") {
-	        		r.organiser(ned, datedebV, datefinV, "2017/2018");
+	        		r.organiser(ned, datedebV, datefinV, "2017 / 2018");
 	        		for(Edition eV : r.getListeEdition()) {
 	        			if(eV.getNoEdition()==ned) {
 		        			eV.organiserEtape(1, 347);
@@ -342,7 +342,7 @@ public class RunRallye {
 >>>>>>> 44087776bcb026b60dc204940a2e6b86d75fabf0
 	        for(Rallye r: ffrag.getListRallye()) {
 	        	if(r.getNomRallye() == "SuperBesse") {
-	        		r.organiser(ned, datedebV, datefinV, "2018/2019");
+	        		r.organiser(ned, datedebS, datefinS, "2018 / 2019");
 	        		for(Edition eV : r.getListeEdition()) {
 	        			if(eV.getNoEdition()==ned) {
 		        			eV.organiserEtape(1, 360);
