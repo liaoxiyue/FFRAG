@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import FFRAG.Coureur;
+import FFRAG.Courir;
 import FFRAG.Edition;
 import FFRAG.Etape;
 import FFRAG.FFRAG;
@@ -31,7 +32,7 @@ public class RunRallye {
     	
     	
     	//recuperer les donnees des fichiers csv
-        String csvPath = "data/";
+        String csvPath = "src/data/";
     	String csv = "Coureurs.csv";
     	String csvVal = "ValThorens.csv";
     	String csvPuiss = "Puissances.csv";
@@ -348,6 +349,8 @@ public class RunRallye {
 	        }
 	        
 	        
+	        
+	        //tester
 	        for (Rallye r : ffrag.getListRallye()) {
 	        	for (Edition e : r.getListeEdition()) {
 	        		int finalEtape = e.getListEtape().size();
@@ -359,6 +362,7 @@ public class RunRallye {
 	        for (Voiture v : ffrag.getListVoiture()) {
 	        	v.setPoids((int) (1000 + Math.pow(-1, i%2) * i * 10));
 	        	v.setAdherence((int) (7 + Math.pow(-1, i%2) * i * 0.3));
+	        	i++;
 	        }
 	        
 	        Date datedeb = dateformat.parse("12/12/2018");
@@ -371,6 +375,7 @@ public class RunRallye {
 	        i = 0;
 	        for(Etape etape : ed.getListEtape()) {
 	        	etape.setDifficulte((int) (150 + Math.pow(-1, i%2) * i * 10));
+	        	i++;
 	        }
 	        
 	        i = 1;
@@ -378,17 +383,27 @@ public class RunRallye {
 	        for(Coureur c : ffrag.getListCoureur()) {
 		        Participant p = new Participant(i,datedeb,c,ffrag.getListVoiture().get(i%8));
 		        ed.organiserPart(p);
+		        i++;
 	        }
 	        
+	        HashMap<Participant, Integer> tempsPrevuEtape =  ed.tempsPrevuEtape(ed.getListEtape().get(0), 60);
+	        
+	       /* 
 	        for(Etape e : ed.getListEtape()) {
 	        	for (Participant p: ed.getListPart()) {
 	        		System.out.println("Etape "+ e.getCodeEtape() +" le participant "+p.getCoureur().getPrenomCoureur() +" "+p.getCoureur().getNomCoureur() +" le temps prevu est " +ed.getTempsPrevu(p, e).getTemps());
 	        	}
 	        }
 	        
+	        ArrayList<HashMap.Entry<Participant, Integer>> classementProbable= ed.classementProbable(60);
+	        for(int j = 0; j < classementProbable.size(); j++) {
+	        	Courir temps = new Courir(0,0,0,0);
+	        	temps.setMilleSeconde(classementProbable.get(j).getValue());
+	        	System.out.println("Le " + (j+1) + " est " + classementProbable.get(j).getKey().getCoureur().getPrenomCoureur() + " " + classementProbable.get(j).getKey().getCoureur().getNomCoureur() + ". Le temps pr¨¦vu d¨¦finitif est de " + temps.getTemps());
+	        }
+	        */
 	        
-	        
-	      /*
+	      
 	        EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
@@ -400,7 +415,7 @@ public class RunRallye {
 				}
 
 			});
-		*/
+		
     }
 }
 
