@@ -15,6 +15,7 @@ public class Edition {
 	private ArrayList<Participant> listPart;
 	private HashMap<Participant, Integer> listTempsGeneral;
 	private ArrayList<HashMap.Entry<Participant, Integer>> classementGeneral = new ArrayList<HashMap.Entry<Participant, Integer>>();
+	private Rallye rallye;
 	
 	
 	
@@ -63,6 +64,14 @@ public class Edition {
 		return dateFinER;
 	}
 
+	public Rallye getRallye() {
+		return rallye;
+	}
+
+	public void setRallye(Rallye rallye) {
+		this.rallye = rallye;
+	}
+
 	/**
 	 * La methode organiserEtape permet de creer une etape pour l'edition
 	 * @param code : code de l'etape
@@ -83,6 +92,7 @@ public class Edition {
 		for(Etape e : listEtape) {
 			e.organiser(this);
 		}
+		part.setEdition(this);
 	}
 	
 	
@@ -144,8 +154,23 @@ public class Edition {
 			int position = i + 1;
 			classementGeneral.get(i).getKey().setTempsFinal(temps);
 			classementGeneral.get(i).getKey().setPosition(position);
+			int point = 0;
+			switch (i) {
+				case 0 : point = 25;
+				case 1 : point = 18;
+				case 2 : point = 15;
+				case 3 : point = 12;
+				case 4 : point = 10;
+				case 5 : point = 8;
+				case 6 : point = 6;
+				case 7 : point = 4;
+				case 8 : point = 2;
+				case 9 : point = 1;				
+			}
+			classementGeneral.get(i).getKey().setPoint(point);
 		}
 	}
+	
 	
 	
 	/**
@@ -159,6 +184,57 @@ public class Edition {
 		}
 		return champion;
 	}
-
-
+	
+	//Calculer temps pr¨¦vu d'une ¨¦tape donn¨¦e pour tous les participants d'une ¨¦dition
+	public HashMap<Participant, Integer> tempsPrevuEtape(Etape etape){
+		HashMap<Participant, Integer> pointSaison = new HashMap<Participant, Integer>();
+		for(Participant participant : this.listPart) {
+			int point = 0;
+			for(Participant participation : participant.getCoureur().getListParticipation()) {
+				if(participation.getEdition().getSaison() == this.getSaison()) {
+					point += participation.getPoint();
+				}
+			}
+			pointSaison.put(participant, point);
+		}
+		Set<HashMap.Entry<Participant, Integer>> entryset = pointSaison.entrySet();
+		ArrayList<HashMap.Entry<Participant, Integer>> classementSaison = new ArrayList<HashMap.Entry<Participant, Integer>>(entryset);
+		Collections.sort(classementSaison, new Comparator<HashMap.Entry<Participant, Integer>>(){
+			@Override
+			public int compare(HashMap.Entry<Participant, Integer> c1, HashMap.Entry<Participant, Integer> c2) {
+				return c2.getValue().compareTo(c1.getValue());
+			}		
+		});
+		HashMap<Participant, Integer> tempsPrevu = new HashMap<Participant, Integer>();
+		for(int i = 0; i < classementSaison.size(); i++) {
+			int poids = classementSaison.get(i).getKey().getVehicule().getPoids();
+			int adherence = classementSaison.get(i).getKey().getVehicule().getAdherence();
+			int puissance = classementSaison.get(i).getKey().getVehicule().getPuissanceV();
+			float distance = etape.getDistanceEtape();
+			int nbVirage = etape.getDifficulte();
+			float coefNiveauPilot;
+			if(i<10) {
+				coefNiveauPilot = (float) (0.95 + (10 - i) * 0.02);
+			}
+			else {
+				coefNiveauPilot = (float) 0.95;
+			}
+			int temps = (int) (distance / coefNiveauPilot * (1-1/(puissance-200))*(1-poids/10000) * 60 * 60 * 1000 + nbVirage * (1/coefNiveauPilot) * (1 + 1 / adherence) * 5 * 1000);
+			tempsPrevu.put(classementSaison.get(i).getKey(), temps);
+		}
+		return tempsPrevu;
+	}
+	
+	public Courir getTempsPrevu(Participant p, Etape e) {
+		Courir temps = new Courir(0,0,0,0);
+		HashMap<Participant, Integer> tempsPrevu = this.tempsPrevuEtape(e);
+		for(Participant part : tempsPrevu.keySet()) {
+			if(part == p) {
+				temps.setMilleSeconde(tempsPrevu.get(p));
+				break;
+			}
+		}
+		return temps;		
+	}
+	
 }

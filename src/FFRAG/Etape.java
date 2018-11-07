@@ -4,7 +4,8 @@ public class Etape {
 
 	private HashMap<Participant, Integer> tabParticipants;
 	int codeEtape;
-	int distanceEtape;
+	float distanceEtape;
+	int difficulte;
 	ArrayList<HashMap.Entry<Participant, Integer>> classementEtape; //arrayList de hashmap de participants (avec leurs temps)
 	
 	
@@ -24,6 +25,10 @@ public class Etape {
 		return distanceEtape;
 	}
 	
+	public int getDifficulte() {
+		return difficulte;
+	}
+
 	/**
 	 * 
 	 * @return la hashmap des participants
@@ -102,4 +107,5 @@ public class Etape {
 			return true;
 		}
 	}
+	
 }

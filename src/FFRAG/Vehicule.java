@@ -26,5 +26,11 @@ public abstract class Vehicule {
 	 * @return
 	 */
 	public abstract float getCoef();
+	
+	public abstract int getPoids();
+	
+	public abstract int getAdherence();
+	
+	public abstract int getPuissanceV();
 
 }

@@ -7,6 +7,8 @@ package FFRAG;
 public class Voiture extends Vehicule {
 	private int puissanceV;
 	private Parametres coefV = new Parametres();
+	private int poids;
+	private int adherence;
 
 	/**
 	 * 
@@ -18,8 +20,17 @@ public class Voiture extends Vehicule {
 		this.puissanceV = p;
 	}
 
-	public float getPuissanceV() {
+	public int getPuissanceV() {
 		return puissanceV;
+	}
+
+	
+	public int getPoids() {
+		return poids;
+	}
+
+	public int getAdherence() {
+		return adherence;
 	}
 
 	/**

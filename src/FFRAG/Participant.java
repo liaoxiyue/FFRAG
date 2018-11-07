@@ -9,7 +9,9 @@ public class Participant {
     private Coureur coureur;
     private Vehicule vehicule;
     private int position;
-   
+    private int point;
+    private Edition edition;
+    
 	public Participant (int nIns, Date dateIns, Coureur c, Vehicule v) {
 		this.noInscription = nIns;
 		this.dateInscription = dateIns;
@@ -34,7 +36,15 @@ public class Participant {
 		this.position = position;
 	}
 	
-    public Vehicule getVehicule() {
+    public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+
+	public Vehicule getVehicule() {
 		return vehicule;
 	}
     
@@ -58,6 +68,14 @@ public class Participant {
 		this.dateInscription = dateInscription;
 	}
 	
+	public Edition getEdition() {
+		return edition;
+	}
+
+	public void setEdition(Edition edition) {
+		this.edition = edition;
+	}
+
 	/**
 	 * Cette methode permet de v¨¦rifier si le participant a bien pris le d¨¦part ¨¤ une ¨¦tape afin de le disqualifier ensuite dans l'etape
 	 * @param e : objet etape pour lequel on va verifier la participation

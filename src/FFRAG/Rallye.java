@@ -40,6 +40,7 @@ public class Rallye {
 	 */
 	public void organiser(int noE, Date deb, Date fin, String saison) {
 		Edition edition = new Edition(noE, deb, fin, saison);
+		edition.setRallye(this);
 		listeEdition.add(edition);
 	}
 
