@@ -233,21 +233,12 @@ public class CSV {
 		coureur = csv.CSV2Array(path);
 		System.out.println(coureur.size());
 		for(int i = 0; i < coureur.size(); i++) {
-			String name = coureur.get(i).get(0);
-	        String lastName = "";
-	        String firstName= "";
-	        if(name.split(" ").length>1){
-	        	lastName = name.substring(name.lastIndexOf(" ")+1);//dernier caractere avec l'espace
-	            firstName = name.substring(0, name.lastIndexOf(" "));
-	        }
-	        else{
-	        	firstName = name;
-	        }
+	        String prenom = coureur.get(i).get(0);
+	        String nom = coureur.get(i).get(1);
 	        Date dateN = dateformat.parse(coureur.get(i).get(2));
 	        String nationalite = coureur.get(i).get(3);
 	        String sanguin = coureur.get(i).get(4);
-	        System.out.println(lastName+ firstName+dateN+ nationalite+sanguin);
-			ffrag.insertCoureur(lastName, firstName, dateN, nationalite, sanguin);
+			ffrag.insertCoureur(nom, prenom, dateN, nationalite, sanguin);
 		}
 	}
 	
