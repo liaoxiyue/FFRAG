@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import FFRAG.FFRAG;
-import RunRallye.TestCSV;
+import RunRallye.CSV;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -108,7 +108,7 @@ public class CreationRallye extends JFrame {
 						}
 					}
 				});
-				TestCSV.enregistreRallye(ffrag);
+				CSV.enregistreRallye(ffrag);
 			}
 		});
 		btnEnregistrer.setFont(new Font("Calibri", Font.BOLD, 15));

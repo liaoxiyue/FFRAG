@@ -10,7 +10,7 @@ public class FFRAG {
 	private ArrayList<Rallye> listRallye;
 	private ArrayList<Coureur> listCoureur;
 	private ArrayList<Voiture> listVoiture;
-	private ArrayList<Paris> listParis;
+	//private ArrayList<Paris> listParis;
 	
 	SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -22,7 +22,7 @@ public class FFRAG {
 		this.listRallye = new ArrayList<Rallye>();
 		this.listCoureur = new ArrayList<Coureur>();
 		this.listVoiture = new ArrayList<Voiture>();
-		this.listParis = new ArrayList<Paris>();
+		//this.listParis = new ArrayList<Paris>();
 	}
 
 	public ArrayList<Voiture> getListVoiture() {
@@ -35,6 +35,18 @@ public class FFRAG {
 
 	public ArrayList<Coureur> getListCoureur() {
 		return listCoureur;
+	}
+
+	public void setListRallye(ArrayList<Rallye> listRallye) {
+		this.listRallye = listRallye;
+	}
+
+	public void setListCoureur(ArrayList<Coureur> listCoureur) {
+		this.listCoureur = listCoureur;
+	}
+
+	public void setListVoiture(ArrayList<Voiture> listVoiture) {
+		this.listVoiture = listVoiture;
 	}
 
 	/**

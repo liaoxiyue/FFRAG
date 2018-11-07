@@ -50,6 +50,14 @@ public class Coureur {
 		return prenomCoureur;
 	}
 
+	public String getSanguin() {
+		return sanguin;
+	}
+
+	public String getNationalite() {
+		return nationalite;
+	}
+
 	public ArrayList<Participant> getListParticipation() {
 		return listParticipation;
 	}
