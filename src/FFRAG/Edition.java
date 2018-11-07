@@ -197,7 +197,7 @@ public class Edition {
 	}
 	
 	//Calculer temps pr¨¦vu d'une ¨¦tape donn¨¦e pour tous les participants d'une ¨¦dition
-	public HashMap<Participant, Integer> tempsPrevuEtape(Etape etape){
+	public HashMap<Participant, Integer> tempsPrevuEtape(Etape etape, Integer vitesse){
 		HashMap<Participant, Integer> pointSaison = new HashMap<Participant, Integer>();
 		int saison = Integer.parseInt(this.getSaison().substring(this.getSaison().lastIndexOf(" ")+1))-1;
 		String saisonAvant = (saison-1)+" / " + saison;
@@ -235,7 +235,7 @@ public class Edition {
 				coefNiveauPilot = (float) 0.95;
 			}
 			
-			int temps = (int) (distance / (60 * coefNiveauPilot * (1-1/(puissance-200))*(1-poids/10000)) * 60 * 60 * 1000 + nbVirage * (1/coefNiveauPilot) * (1 + 1 / adherence) * 5 * 1000);
+			int temps = (int) (distance / (vitesse * coefNiveauPilot * (1-1/(puissance-200))*(1-poids/10000)) * 60 * 60 * 1000 + nbVirage * (1/coefNiveauPilot) * (1 + 1 / adherence) * 5 * 1000);
 			tempsPrevu.put(classementSaison.get(i).getKey(), temps);
 		}
 		return tempsPrevu;
@@ -243,7 +243,7 @@ public class Edition {
 	
 	public Courir getTempsPrevu(Participant p, Etape e) {
 		Courir temps = new Courir(0,0,0,0);
-		HashMap<Participant, Integer> tempsPrevu = this.tempsPrevuEtape(e);
+		HashMap<Participant, Integer> tempsPrevu = this.tempsPrevuEtape(e, 60);
 		for(Participant part : tempsPrevu.keySet()) {
 			if(part == p) {
 				temps.setMilleSeconde(tempsPrevu.get(p));
@@ -251,6 +251,30 @@ public class Edition {
 			}
 		}
 		return temps;		
+	}
+	
+	public ArrayList<HashMap.Entry<Participant, Integer>> classementProbable(Integer vitesse){
+		HashMap<Participant, Integer> tempsPrevuDefinitif = new HashMap<Participant, Integer>();
+		for(Participant participant : this.listPart) {
+			tempsPrevuDefinitif.put(participant, 0);
+		}
+		for(Etape etape : this.listEtape) {
+			HashMap<Participant, Integer> tempsPrevuEtape = this.tempsPrevuEtape(etape, vitesse);
+			for(Participant participant : tempsPrevuDefinitif.keySet()) {
+				int temps = tempsPrevuDefinitif.get(participant) + tempsPrevuEtape.get(participant);
+				tempsPrevuDefinitif.put(participant, temps);
+			}
+		}
+		
+		Set<HashMap.Entry<Participant, Integer>> entryset = tempsPrevuDefinitif.entrySet();
+		ArrayList<HashMap.Entry<Participant, Integer>> classementProbable = new ArrayList<HashMap.Entry<Participant, Integer>>(entryset);
+		Collections.sort(classementProbable, new Comparator<HashMap.Entry<Participant, Integer>>(){
+			@Override
+			public int compare(HashMap.Entry<Participant, Integer> c1, HashMap.Entry<Participant, Integer> c2) {
+				return c1.getValue().compareTo(c2.getValue());
+			}		
+		});
+		return classementProbable;
 	}
 	
 }
