@@ -13,7 +13,6 @@ import FFRAG.Edition;
 import FFRAG.FFRAG;
 import FFRAG.Participant;
 import FFRAG.Rallye;
-import FFRAG.Vehicule;
 import FFRAG.Voiture;
 
 import javax.swing.JLabel;

@@ -224,7 +224,7 @@ public class FFRAG {
 	public Voiture getVoiture(String model) {
 		Voiture voiture = null;
 		for(Voiture v : listVoiture) {
-			if(v.modele == model) {
+			if(v.getModele() == model) {
 				voiture = v;
 			}
 		}

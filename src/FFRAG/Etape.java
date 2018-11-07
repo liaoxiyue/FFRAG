@@ -62,7 +62,7 @@ public class Etape {
 	public void calculerClassement() {
 		for(HashMap.Entry<Participant, Integer> entry:tabParticipants.entrySet()) { //chaque case d'une hashmap est compos¨¦e d'un temps et d'un participant
 			int temps = entry.getValue(); //entry = cle participant
-			temps = (int) (temps*entry.getKey().getVehicule().getCoef()); //correction du temps en fonction du coeff du vehicule
+			temps = (int) (temps*entry.getKey().getVoiture().getCoef()); //correction du temps en fonction du coeff du vehicule
 			entry.setValue(temps); //affecter le temps corrige a la hashmap
 		}
 		

@@ -207,9 +207,9 @@ public class Edition {
 		});
 		HashMap<Participant, Integer> tempsPrevu = new HashMap<Participant, Integer>();
 		for(int i = 0; i < classementSaison.size(); i++) {
-			int poids = classementSaison.get(i).getKey().getVehicule().getPoids();
-			int adherence = classementSaison.get(i).getKey().getVehicule().getAdherence();
-			int puissance = classementSaison.get(i).getKey().getVehicule().getPuissanceV();
+			int poids = classementSaison.get(i).getKey().getVoiture().getPoids();
+			int adherence = classementSaison.get(i).getKey().getVoiture().getAdherence();
+			int puissance = classementSaison.get(i).getKey().getVoiture().getPuissanceV();
 			float distance = etape.getDistanceEtape();
 			int nbVirage = etape.getDifficulte();
 			float coefNiveauPilot;

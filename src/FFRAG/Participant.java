@@ -7,16 +7,16 @@ public class Participant {
 	private Date dateInscription;
     private int tempsFinal;
     private Coureur coureur;
-    private Vehicule vehicule;
+    private Voiture voiture;
     private int position;
     private int point;
     private Edition edition;
     
-	public Participant (int nIns, Date dateIns, Coureur c, Vehicule v) {
+	public Participant (int nIns, Date dateIns, Coureur c, Voiture v) {
 		this.noInscription = nIns;
 		this.dateInscription = dateIns;
         this.coureur = c;
-        this.vehicule = v;
+        this.voiture = v;
         this.coureur.affecterParticipation(this);
     }
 	
@@ -44,8 +44,8 @@ public class Participant {
 		this.point = point;
 	}
 
-	public Vehicule getVehicule() {
-		return vehicule;
+	public Voiture getVoiture() {
+		return voiture;
 	}
     
     public int getNoInscription() {

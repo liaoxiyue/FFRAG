@@ -4,7 +4,8 @@ package FFRAG;
 /**
  * Classe Voiture qui herite de la classe Vehicule
  */
-public class Voiture extends Vehicule {
+public class Voiture {
+	private String modele;
 	private int puissanceV;
 	private Parametres coefV = new Parametres();
 	private int poids;
@@ -16,8 +17,20 @@ public class Voiture extends Vehicule {
 	 * @param p : puissance d'une voiture mesuree en puissance de chevaux
 	 */
 	public Voiture(String m, int p) {
-		super(m);
+		this.modele = m;
 		this.puissanceV = p;
+	}
+
+	public String getModele() {
+		return modele;
+	}
+
+	public void setPoids(int poids) {
+		this.poids = poids;
+	}
+
+	public void setAdherence(int adherence) {
+		this.adherence = adherence;
 	}
 
 	public int getPuissanceV() {

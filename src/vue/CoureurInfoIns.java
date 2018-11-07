@@ -103,7 +103,7 @@ public class CoureurInfoIns extends JFrame {
 				}
 			}
 			infoPart[i+1][2]=coureur.getListParticipation().get(i).getNoInscription();
-			infoPart[i+1][3]=coureur.getListParticipation().get(i).getVehicule().getModele();
+			infoPart[i+1][3]=coureur.getListParticipation().get(i).getVoiture().getModele();
 		}
 		table.setModel(new DefaultTableModel(
 			infoPart,
