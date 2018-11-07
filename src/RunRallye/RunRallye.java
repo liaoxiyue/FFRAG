@@ -5,10 +5,13 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import FFRAG.Coureur;
 import FFRAG.Edition;
+import FFRAG.Etape;
 import FFRAG.FFRAG;
 import FFRAG.Participant;
 import FFRAG.Rallye;
@@ -28,7 +31,7 @@ public class RunRallye {
     	
     	
     	//recuperer les donnees des fichiers csv
-        String csvPath = "src/data/";
+        String csvPath = "data/";
     	String csv = "Coureurs.csv";
     	String csvVal = "ValThorens.csv";
     	String csvPuiss = "Puissances.csv";
@@ -91,7 +94,7 @@ public class RunRallye {
 	        //Creation de l'edition de Val Thorens et de ses etapes
 	        for(Rallye r: ffrag.getListRallye()) {
 	        	if(r.getNomRallye() == "ValThorens") {
-	        		r.organiser(ned, datedebV, datefinV, "2017 / 2018");
+	        		r.organiser(ned, datedebV, datefinV, "2018 / 2019");
 	        		for(Edition eV : r.getListeEdition()) {
 	        			if(eV.getNoEdition()==ned) {
 		        			eV.organiserEtape(1, 347);
@@ -343,7 +346,49 @@ public class RunRallye {
 	        	}
 	        }
 	        }
-	      
+	        
+	        
+	        for (Rallye r : ffrag.getListRallye()) {
+	        	for (Edition e : r.getListeEdition()) {
+	        		int finalEtape = e.getListEtape().size();
+	        		e.calculerClassement(finalEtape);
+	        	}
+	        }
+	        
+	        int i = 0;
+	        for (Voiture v : ffrag.getListVoiture()) {
+	        	v.setPoids((int) (1000 + Math.pow(-1, i%2) * i * 10));
+	        	v.setAdherence((int) (7 + Math.pow(-1, i%2) * i * 0.3));
+	        }
+	        
+	        Date datedeb = dateformat.parse("12/12/2018");
+	        ffrag.getRallye("ValThorens").organiser(2,datedeb,datedeb,"2019 / 2020");
+	        Edition ed = ffrag.getRallye("ValThorens").getListeEdition().get(1);
+	        ed.organiserEtape(1,100);
+	        ed.organiserEtape(2,150);
+	        ed.organiserEtape(3,120);
+	        
+	        i = 0;
+	        for(Etape etape : ed.getListEtape()) {
+	        	etape.setDifficulte((int) (150 + Math.pow(-1, i%2) * i * 10));
+	        }
+	        
+	        i = 1;
+	        
+	        for(Coureur c : ffrag.getListCoureur()) {
+		        Participant p = new Participant(i,datedeb,c,ffrag.getListVoiture().get(i%8));
+		        ed.organiserPart(p);
+	        }
+	        
+	        for(Etape e : ed.getListEtape()) {
+	        	for (Participant p: ed.getListPart()) {
+	        		System.out.println("Etape "+ e.getCodeEtape() +" le participant "+p.getCoureur().getPrenomCoureur() +" "+p.getCoureur().getNomCoureur() +" le temps prevu est " +ed.getTempsPrevu(p, e).getTemps());
+	        	}
+	        }
+	        
+	        
+	        
+	      /*
 	        EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
@@ -355,6 +400,7 @@ public class RunRallye {
 				}
 
 			});
+		*/
     }
 }
 

@@ -25,6 +25,10 @@ public class Etape {
 		return distanceEtape;
 	}
 	
+	public void setDifficulte(int difficulte) {
+		this.difficulte = difficulte;
+	}
+
 	public int getDifficulte() {
 		return difficulte;
 	}
