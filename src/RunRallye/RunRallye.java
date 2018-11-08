@@ -26,11 +26,11 @@ public class RunRallye {
 	
     public static void main(String[] args) throws IOException,FileNotFoundException, ParseException {
 
-    	FFRAG ffrag = new FFRAG("src/data/");
+    	FFRAG ffrag = new FFRAG("data/");
 
     	SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
     	
-    	String path = "src/data/";
+    	String path = "data/";
 	      //CSV.readToutsClassements(ffrag);
 
     	CSV.readRallye(path, "Rallye.csv", ffrag);
@@ -43,54 +43,7 @@ public class RunRallye {
     	CSV.readEtapeTemps(path, "ValThorens_1_TempsEtape.csv", ffrag);
 
     	CSV.readEtapeTemps(path, "SuperBesse_1_TempsEtape.csv", ffrag);
-    	  
-	        
-	        /*
-	        //tester
-	        for (Rallye r : ffrag.getListRallye()) {
-	        	for (Edition e : r.getListeEdition()) {
-	        		int finalEtape = e.getListEtape().size();
-	        		e.calculerClassement(finalEtape);
-	        	}
-	        }
-	        
-	        int i = 0;
-	        for (Voiture v : ffrag.getListVoiture()) {
-	        	v.setPoids((int) (1000 + Math.pow(-1, i%2) * i * 10));
-	        	v.setAdherence((int) (7 + Math.pow(-1, i%2) * i * 0.3));
-	        	i++;
-	        }
-	        
-	        Date datedeb = dateformat.parse("12/12/2018");
-	        ffrag.getRallye("ValThorens").organiser(2,datedeb,datedeb,"2019 / 2020");
-	        Edition ed = ffrag.getRallye("ValThorens").getListeEdition().get(1);
-	        ed.organiserEtape(1,100, 0);
-	        ed.organiserEtape(2,1500, 0);
-	        ed.organiserEtape(3,120, 0);
-	        
-	        i = 0;
-	        for(Etape etape : ed.getListEtape()) {
-	        	etape.setDifficulte((int) (150 + Math.pow(-1, i%2) * i * 10));
-	        	i++;
-	        }
-	        
-	        
-	        i = 1;
-	        for(Coureur c : ffrag.getListCoureur()) {
-		        Participant p = new Participant(i,c,ffrag.getListVoiture().get(i%8));
-		        ed.organiserPart(p);
-		        i++;
-	        }
-
-	        
-	        HashMap<Participant, Integer> tempsPrevuEtape =  ed.tempsPrevuEtape(ed.getListEtape().get(0), 60);
-	        
-	        for(Etape e : ed.getListEtape()) {
-	        	for (Participant p: ed.getListPart()) {
-	        		System.out.println("Etape "+ e.getCodeEtape() +" le participant "+p.getCoureur().getPrenomCoureur() +" "+p.getCoureur().getNomCoureur() +" le temps prevu est " +ed.getTempsPrevu(p, e).getTemps());
-	        	}
-	        }
-
+    	/*
 	        EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
@@ -100,7 +53,8 @@ public class RunRallye {
 						e.printStackTrace();
 					}
 				}
-			});*/
+			});
+		*/
     	
 	        CSV.enregistreFFRAG(ffrag,ffrag.getCsvPath());
 	        
@@ -124,10 +78,7 @@ public class RunRallye {
 	        System.out.println(ffrag.getListRallye().get(1).getListeEdition().size());
 	        
 	        //tester readTemps
-	        System.out.println(ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(0).getTabParticipants().size());
-	        for(Participant p : ffrag.getListRallye().get(0).getEdition(1).getListPart()) {
-	        	System.out.println(ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(0).getTabParticipants().get(p));
-	        }
+	        
     }
 }
 

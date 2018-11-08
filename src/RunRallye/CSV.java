@@ -366,7 +366,6 @@ public class CSV {
 			for(int j = 0; j < ffrag.getListCoureur().size(); j++) {
 				if (ffrag.getListCoureur().get(j).getPrenomCoureur().equals(String.valueOf(prenom)) && ffrag.getListCoureur().get(j).getNomCoureur().equals(String.valueOf(nom))) {
 					coureur = ffrag.getListCoureur().get(j);
-					break;
 				}
 			}
 			
@@ -384,7 +383,8 @@ public class CSV {
 			int noInscription = Integer.parseInt(pilot.get(i).get(3));
 			Participant part = new Participant(noInscription, coureur, voiture);
 			edition.organiserPart(part);
-			
+			System.out.println(edition.getListEtape().get(0).getTabParticipants().get(ffrag.getListRallye().get(0).getEdition(1).getListPart().get(0)));
+			System.out.println(edition.getListPart().size());
 			
 			//Enregistrer temps des coureurs
 			for(int j = 0; j < edition.getListEtape().size(); j++) {
@@ -406,12 +406,22 @@ public class CSV {
 					min = 0;
 					seconde = 0;
 				}
-				System.out.println(""+heur+" "+min+" "+seconde + " " + milleseconde);
+				System.out.println(part.getCoureur().getNomCoureur()+""+heur+" "+min+" "+seconde + " " + milleseconde);
 				Courir courir = new Courir(heur, min, seconde, milleseconde);
 				System.out.println(courir.getMilleSeconde());
-				edition.getListEtape().get(j).getTabParticipants().put(part, courir.getMilleSeconde());
+				edition.getListEtape().get(j).enregistreTemp(part, heur, min, seconde, milleseconde);
+				edition.getListEtape().get(j).getTabParticipants().get(part).valueOf(courir.getMilleSeconde());
 				System.out.println(edition.getListEtape().get(j).getTabParticipants().get(part));
+				System.out.println(edition.getListEtape().get(0).getTabParticipants().get(part));
+				System.out.println(edition.getListEtape().get(0).getTabParticipants().get(ffrag.getListRallye().get(0).getEdition(1).getListPart().get(0)));
+				/*System.out.println(ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(0).getTabParticipants().size());
+		        for(Participant p : ffrag.getListRallye().get(0).getEdition(1).getListPart()) {
+		        	System.out.println(p.getCoureur().getNomCoureur());
+		        	System.out.println(ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(0).getTabParticipants().get(p));
+		        }*/
 			}
+			
 		}
+		
 	}
 }
