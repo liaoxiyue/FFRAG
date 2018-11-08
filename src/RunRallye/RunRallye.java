@@ -135,8 +135,8 @@ public class RunRallye {
 	        
 	        //tester readTemps
 	        System.out.println(ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(0).getTabParticipants().size());
-	        for(Participant p : ffrag.getListRallye().get(0).getEdition(1).getListPart()) {
-	        	System.out.println(ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(0).getTabParticipants().get(p));
+	        for(Participant p : ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(0).getTabParticipants().keySet()) {
+	        	System.out.println(p.getCoureur().getNomCoureur() + ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(0).getTabParticipants().get(p));
 	        }
     }
 }
