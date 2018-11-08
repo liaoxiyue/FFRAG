@@ -154,6 +154,7 @@ public class ConsultationClassementR extends JFrame {
 				comboBoxEdition.setModel(new DefaultComboBoxModel(listEdition));				
 			}
 		});
+		
 		comboBoxEdition.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if(ItemEvent.SELECTED == e.getStateChange()) {

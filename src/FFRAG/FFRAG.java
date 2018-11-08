@@ -37,6 +37,18 @@ public class FFRAG {
 		return listCoureur;
 	}
 
+	public void setListRallye(ArrayList<Rallye> listRallye) {
+		this.listRallye = listRallye;
+	}
+
+	public void setListCoureur(ArrayList<Coureur> listCoureur) {
+		this.listCoureur = listCoureur;
+	}
+
+	public void setListVoiture(ArrayList<Voiture> listVoiture) {
+		this.listVoiture = listVoiture;
+	}
+
 	/**
 	 * Cette methode permet de cr¨¦er un rallye avec 3 parametres obligatoires
 	 * 

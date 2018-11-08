@@ -27,11 +27,12 @@ public class RunRallye {
 	
 
     public static void main(String[] args) throws IOException,FileNotFoundException, ParseException {
-    	
+    	String path = "src/data/";
     	FFRAG ffrag = new FFRAG();
-    	
+    	CSV.readCoureur(path,"Coureurs.csv", ffrag);
     	
     	//recuperer les donnees des fichiers csv
+
         String csvPath = "src/data/";
     	String csv = "Coureurs.csv";
     	String csvVal = "ValThorens.csv";
@@ -46,42 +47,7 @@ public class RunRallye {
     	
         
 
-        //recuperer les donnees du fichier Coureur.csv et instancier les objets Coureur. 
-	     try {
-	    	 int i=0;//on ne traite pas l'entete des tableaux
-
-		     br = new BufferedReader(new FileReader(csvPath+csv));
-		     while ((line = br.readLine()) != null) {
-		    	 if(i!=0) {
-		    		 String[] tab = line.split(cvsSplitBy);
-			         String name = tab[0];
-			         String lastName = "";
-			         String firstName= "";
-			         if(name.split(" ").length>1){
-
-			        	 lastName = name.substring(name.lastIndexOf(" ")+1);//dernier caractere avec l'espace
-			              firstName = name.substring(0, name.lastIndexOf(" "));
-			          }else{
-			               firstName = name;
-			          }
-		              Date d = dateformat.parse(tab[1]);
-		              ffrag.insertCoureur(lastName, firstName, d, tab[2], tab[3]);
-
-			      }
-		    	 i++;
-		     }
-		     
-	     } finally {
-				if (br != null) {
-					try {
-						br.close();
-						} catch (IOException e) {
-							e.printStackTrace();
-					    }
-				}
-			}
-				
-	    
+        
 	        //Creation des rallyes ValThorens et SuperBesse
 	     	ffrag.creationRallye("ValThorens", "ValThorens", "France");
 	        ffrag.creationRallye("SuperBesse", "Besse", "France");
@@ -378,32 +344,30 @@ public class RunRallye {
 	        	i++;
 	        }
 	        
-	        i = 1;
 	        
+	        i = 1;
 	        for(Coureur c : ffrag.getListCoureur()) {
 		        Participant p = new Participant(i,datedeb,c,ffrag.getListVoiture().get(i%8));
 		        ed.organiserPart(p);
 		        i++;
 	        }
+
 	        
 	        HashMap<Participant, Integer> tempsPrevuEtape =  ed.tempsPrevuEtape(ed.getListEtape().get(0), 60);
 	        
-	       /* 
 	        for(Etape e : ed.getListEtape()) {
 	        	for (Participant p: ed.getListPart()) {
 	        		System.out.println("Etape "+ e.getCodeEtape() +" le participant "+p.getCoureur().getPrenomCoureur() +" "+p.getCoureur().getNomCoureur() +" le temps prevu est " +ed.getTempsPrevu(p, e).getTemps());
 	        	}
 	        }
-	        
+
 	        ArrayList<HashMap.Entry<Participant, Integer>> classementProbable= ed.classementProbable(60);
 	        for(int j = 0; j < classementProbable.size(); j++) {
 	        	Courir temps = new Courir(0,0,0,0);
 	        	temps.setMilleSeconde(classementProbable.get(j).getValue());
 	        	System.out.println("Le " + (j+1) + " est " + classementProbable.get(j).getKey().getCoureur().getPrenomCoureur() + " " + classementProbable.get(j).getKey().getCoureur().getNomCoureur() + ". Le temps pr¨¦vu d¨¦finitif est de " + temps.getTemps());
 	        }
-	        */
-	        
-	      
+			/*
 	        EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
@@ -415,7 +379,15 @@ public class RunRallye {
 				}
 
 			});
-		
+	        */
+	        CSV.enregistreFFRAG(ffrag);
+	        System.out.println(ffrag.getListCoureur().size());
+	        System.out.println(ffrag.getListCoureur().get(ffrag.getListCoureur().size()-1).getNomCoureur());
+	        System.out.println(ffrag.getListCoureur().get(ffrag.getListCoureur().size()-1).getPrenomCoureur());
+	        System.out.println(ffrag.getListCoureur().get(ffrag.getListCoureur().size()-1).getDateNaissanceC());
+	        System.out.println(ffrag.getListCoureur().get(ffrag.getListCoureur().size()-1).getNationalite());
+	        System.out.println(ffrag.getListCoureur().get(ffrag.getListCoureur().size()-1).getSanguin());
+
     }
 }
 
