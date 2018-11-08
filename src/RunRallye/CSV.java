@@ -227,7 +227,7 @@ public class CSV {
         enregistreClassementDefinitif(ffrag,path);
         enregistreInfoEtape(ffrag,path);
 	}
-<<<<<<< HEAD
+
 	public static void enregistreNouveauRallye(FFRAG ffrag, String path, Rallye r) throws FileNotFoundException {
 		PrintWriter pw;
 		pw = new PrintWriter(new FileOutputStream(path+"Rallye.csv",true));
@@ -259,14 +259,6 @@ public class CSV {
 		csv.Array2CSV(infoE, path+r.getNomRallye()+"_"+e.getNoEdition()+"_Etape.csv");
 	}
 	
-	public static void readCoureur(FFRAG ffrag) throws ParseException {
-		ffrag.setListCoureur(new ArrayList<Coureur>());
-		SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
-		CSV csv = new CSV();
-		ArrayList<ArrayList<String>> coureur = new ArrayList<ArrayList<String>>();
-		coureur = csv.CSV2Array(ffrag.getCsvPath()+"Coureurs.csv");
-		System.out.println(coureur.size());
-=======
 
 	public static void readCoureur(String path, String fichier, FFRAG ffrag) throws ParseException {
 		String pathCSV = path + fichier;
@@ -274,7 +266,6 @@ public class CSV {
 		CSV csv = new CSV();
 		ArrayList<ArrayList<String>> coureur = new ArrayList<ArrayList<String>>();
 		coureur = csv.CSV2Array(pathCSV);
->>>>>>> d9fdf00a94f7dd707d99e832bf5cfdd5f692f13c
 		for(int i = 0; i < coureur.size(); i++) {
 	        String prenom = coureur.get(i).get(0);
 	        String nom = coureur.get(i).get(1);
@@ -285,7 +276,7 @@ public class CSV {
 		}
 	}
 	
-<<<<<<< HEAD
+
 	public static void readToutsClassements(FFRAG ffrag) {
 		  File file=new File(ffrag.getCsvPath()+"/classement");
 		  File[] tempList = file.listFiles();
@@ -298,7 +289,6 @@ public class CSV {
 		  }
 	}
 	
-=======
 	public static void readEdition(String path, String fichier, FFRAG ffrag) throws ParseException {
 		String pathCSV = path + fichier;
 		SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
@@ -347,7 +337,7 @@ public class CSV {
 		}
 	}
 	
-public static void readRallye(String path, String fichier, FFRAG ffrag){
+	public static void readRallye(String path, String fichier, FFRAG ffrag){
 		String pathCSV = path + fichier;
 		CSV csv = new CSV();
 		ArrayList<ArrayList<String>> rallye = new ArrayList<ArrayList<String>>();
@@ -406,6 +396,7 @@ public static void readRallye(String path, String fichier, FFRAG ffrag){
 				int seconde = 0;
 				int milleseconde = 0;
 				String tempsString = pilot.get(i).get(j+4);
+				System.out.println(tempsString);
 				if (tempsString != null) {
 					String[] tempsSplit = tempsString.split(":");
 					heur = Integer.parseInt(tempsSplit[0]);
@@ -417,10 +408,12 @@ public static void readRallye(String path, String fichier, FFRAG ffrag){
 					min = 0;
 					seconde = 0;
 				}
+				System.out.println(""+heur+" "+min+" "+seconde + " " + milleseconde);
 				Courir courir = new Courir(heur, min, seconde, milleseconde);
+				System.out.println(courir.getMilleSeconde());
 				edition.getListEtape().get(j).getTabParticipants().put(part, courir.getMilleSeconde());
+				System.out.println(edition.getListEtape().get(j).getTabParticipants().get(part));
 			}
 		}
 	}
->>>>>>> d9fdf00a94f7dd707d99e832bf5cfdd5f692f13c
 }
