@@ -87,8 +87,8 @@ public class Edition {
 	 * @param code : code de l'etape
 	 * @param distance : distance en km de l'etape
 	 */
-	public void organiserEtape(int code, int distance) {
-		Etape etape = new Etape(code, distance);
+	public void organiserEtape(int code, int distance, int difficulte) {
+		Etape etape = new Etape(code, distance, difficulte);
 		listEtape.add(etape);
 	}
 	
@@ -222,11 +222,11 @@ public class Edition {
 		
 		HashMap<Participant, Integer> tempsPrevu = new HashMap<Participant, Integer>();
 		for(int i = 0; i < classementSaison.size(); i++) {
-			int poids = classementSaison.get(i).getKey().getVoiture().getPoids();
-			int adherence = classementSaison.get(i).getKey().getVoiture().getAdherence();
-			int puissance = classementSaison.get(i).getKey().getVoiture().getPuissanceV();
-			float distance = etape.getDistanceEtape();
-			int nbVirage = etape.getDifficulte();
+			float poids = (float)classementSaison.get(i).getKey().getVoiture().getPoids();
+			float adherence = (float) classementSaison.get(i).getKey().getVoiture().getAdherence();
+			float puissance = (float) classementSaison.get(i).getKey().getVoiture().getPuissanceV();
+			float distance = (float) etape.getDistanceEtape();
+			float nbVirage = (float) etape.getDifficulte();
 			float coefNiveauPilot;
 			if(i<10) {
 				coefNiveauPilot = (float) (0.95 + (10 - i) * 0.02);
@@ -235,7 +235,7 @@ public class Edition {
 				coefNiveauPilot = (float) 0.95;
 			}
 			
-			int temps = (int) (distance / (vitesse * coefNiveauPilot * (1-1/(puissance-200))*(1-poids/10000)) * 60 * 60 * 1000 + nbVirage * (1/coefNiveauPilot) * (1 + 1 / adherence) * 5 * 1000);
+			int temps = (int) (distance / (vitesse * coefNiveauPilot * (1-1/(puissance-200))*(poids/1000)) * 60 * 60 * 1000 + nbVirage * (1/coefNiveauPilot) * (1 + 1 / adherence)  * 1000);
 			tempsPrevu.put(classementSaison.get(i).getKey(), temps);
 		}
 		return tempsPrevu;

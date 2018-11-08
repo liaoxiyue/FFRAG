@@ -92,7 +92,7 @@ public class FFRAG {
 	public Rallye getRallye(String nomRallye) {
 		Rallye rallye = null;
 		for (Rallye r : listRallye) {
-			if (r.getNomRallye() == nomRallye) {
+			if (r.getNomRallye().equals(nomRallye)) {
 				rallye = r;
 			}
 		}
@@ -236,14 +236,14 @@ public class FFRAG {
 	 * @param pui    : puissance de la voiture
 	 */
 
-	public void insertVoiture(String string, int pui) {
-		this.listVoiture.add(new Voiture(string, pui));
+	public void insertVoiture(String string, int pui, int poids, int ad) {
+		this.listVoiture.add(new Voiture(string, pui, poids, ad));
 	}
 
 	public Voiture getVoiture(String model) {
 		Voiture voiture = null;
 		for(Voiture v : listVoiture) {
-			if(v.getModele() == model) {
+			if(v.getModele().equals(model)) {
 				voiture = v;
 			}
 		}

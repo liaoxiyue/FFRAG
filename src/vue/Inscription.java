@@ -133,8 +133,7 @@ public class Inscription extends JFrame {
 				Edition edition = rallye.getEdition(Integer.valueOf(cBoxEdition.getSelectedItem().toString()));
 				Voiture voiture = ffrag.getVoiture(cBoxVehicule.getSelectedItem().toString());
 				int noIns = edition.getListPart().size()+1;
-				Date nowTime = new Date(System.currentTimeMillis());
-				Participant part = new Participant(noIns, nowTime, coureur, voiture);
+				Participant part = new Participant(noIns, coureur, voiture);
 				edition.organiserPart(part);
 				dispose();
 				EventQueue.invokeLater(new Runnable() {

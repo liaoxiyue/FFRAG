@@ -4,7 +4,6 @@ import java.util.*;
 public class Participant {
 
     private int noInscription;
-	private Date dateInscription;
     private int tempsFinal;
     private Coureur coureur;
     private Voiture voiture;
@@ -12,9 +11,8 @@ public class Participant {
     private int point;
     private Edition edition;
     
-	public Participant (int nIns, Date dateIns, Coureur c, Voiture v) {
+	public Participant (int nIns, Coureur c, Voiture v) {
 		this.noInscription = nIns;
-		this.dateInscription = dateIns;
         this.coureur = c;
         this.voiture = v;
         this.coureur.affecterParticipation(this);
@@ -60,14 +58,6 @@ public class Participant {
 		return coureur;
 	}
 
-	public Date getDateInscription() {
-		return dateInscription;
-	}
-
-	public void setDateInscription(Date dateInscription) {
-		this.dateInscription = dateInscription;
-	}
-	
 	public Edition getEdition() {
 		return edition;
 	}
