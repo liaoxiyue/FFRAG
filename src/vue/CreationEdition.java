@@ -12,6 +12,7 @@ import FFRAG.Edition;
 import FFRAG.Etape;
 import FFRAG.FFRAG;
 import FFRAG.Rallye;
+import RunRallye.CSV;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -20,6 +21,7 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileNotFoundException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -382,6 +384,12 @@ public class CreationEdition extends JFrame {
 					int distance = Integer.valueOf(table.getValueAt(i, 1).toString());
 					Etape etape = new Etape(noEtape, distance);
 					edition.getListEtape().add(etape);
+				}
+				try {
+					CSV.enregistreNouveauEdition(ffrag,ffrag.getCsvPath(),rallye,edition);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});

@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 
 public class CreationRallye extends JFrame {
@@ -108,7 +109,12 @@ public class CreationRallye extends JFrame {
 						}
 					}
 				});
-				CSV.enregistreRallye(ffrag);
+				try {
+					CSV.enregistreNouveauRallye(ffrag,ffrag.getCsvPath(), ffrag.getListRallye().get(ffrag.getListRallye().size()-1));
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		btnEnregistrer.setFont(new Font("Calibri", Font.BOLD, 15));

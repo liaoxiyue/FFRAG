@@ -11,18 +11,19 @@ public class FFRAG {
 	private ArrayList<Coureur> listCoureur;
 	private ArrayList<Voiture> listVoiture;
 	//private ArrayList<Paris> listParis;
-	
+	private String csvPath;
 	SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 
 	/**
 	 * Nous considerons que la classe FFRAG se compose de rallyes, coureurs et
 	 * voitures
 	 */
-	public FFRAG() {
+	public FFRAG(String path) {
 		this.listRallye = new ArrayList<Rallye>();
 		this.listCoureur = new ArrayList<Coureur>();
 		this.listVoiture = new ArrayList<Voiture>();
 		//this.listParis = new ArrayList<Paris>();
+		this.csvPath = path;
 	}
 
 	public ArrayList<Voiture> getListVoiture() {
@@ -31,6 +32,10 @@ public class FFRAG {
 
 	public ArrayList<Rallye> getListRallye() {
 		return listRallye;
+	}
+
+	public String getCsvPath() {
+		return csvPath;
 	}
 
 	public ArrayList<Coureur> getListCoureur() {

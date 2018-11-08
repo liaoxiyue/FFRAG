@@ -1,7 +1,6 @@
 package RunRallye;
 
 import java.io.*;
-import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -78,7 +77,7 @@ public class CSV {
     }
 
 	
-	public static void enregistreRallye(FFRAG ffrag) {
+	public static void enregistreRallye(FFRAG ffrag, String path) {
 		ArrayList<ArrayList<String>> ra = new ArrayList<ArrayList<String>>();
 		ArrayList<String> ligneTitre = new ArrayList<String>();
 		ligneTitre.add("NomRallye");
@@ -93,10 +92,10 @@ public class CSV {
 			ra.add(ligneRallye);
 		}
 		CSV rallye = new CSV();
-		rallye.Array2CSV(ra, "data/Rallye.csv");
+		rallye.Array2CSV(ra, path+"Rallye.csv");
 	}
 	
-	public static void enregistreEdition(FFRAG ffrag) {
+	public static void enregistreEdition(FFRAG ffrag, String path) {
 		SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
 		ArrayList<ArrayList<String>> ed = new ArrayList<ArrayList<String>>();
 		ArrayList<String> ligneTitre = new ArrayList<String>();
@@ -104,6 +103,7 @@ public class CSV {
 		ligneTitre.add("NoEdition");
 		ligneTitre.add("Saison");
 		ligneTitre.add("DateDebut");
+		ligneTitre.add("DateFin");
 		ed.add(ligneTitre);
 		for (Rallye r:ffrag.getListRallye()) {
 			for(Edition e: r.getListeEdition()) {
@@ -112,14 +112,15 @@ public class CSV {
 				ligneEdition.add(String.valueOf(e.getNoEdition()));
 				ligneEdition.add(String.valueOf(e.getSaison()));
 				ligneEdition.add(String.valueOf(dateformat.format(e.getDateDebER())));
+				ligneEdition.add(String.valueOf(dateformat.format(e.getDateFinER())));
 				ed.add(ligneEdition);
 			}
 		}
 		CSV edition = new CSV();
-		edition.Array2CSV(ed, "data/Edition.csv");
+		edition.Array2CSV(ed, path+"Edition.csv");
 	}
 	
-	public static void enregistreCoureur(FFRAG ffrag) {
+	public static void enregistreCoureur(FFRAG ffrag, String path) {
 		SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
 		ArrayList<ArrayList<String>> cr = new ArrayList<ArrayList<String>>();
 		ArrayList<String> ligneTitre = new ArrayList<String>();
@@ -139,10 +140,10 @@ public class CSV {
 			cr.add(ligneCoureur);
 		}
 		CSV coureur = new CSV();
-		coureur.Array2CSV(cr, "data/Coureur.csv");
+		coureur.Array2CSV(cr, path+"Coureur.csv");
 	}
 	
-	public static void enregistreVoiture(FFRAG ffrag) {
+	public static void enregistreVoiture(FFRAG ffrag, String path) {
 		ArrayList<ArrayList<String>> vi = new ArrayList<ArrayList<String>>();
 		ArrayList<String> ligneTitre = new ArrayList<String>();
 		ligneTitre.add("Model");
@@ -159,10 +160,10 @@ public class CSV {
 			vi.add(ligneVoiture);
 		}
 		CSV voiture = new CSV();
-		voiture.Array2CSV(vi, "data/Voiture.csv");
+		voiture.Array2CSV(vi, path+"Voiture.csv");
 	}
 	
-	public static void enregistreClassementDefinitif(FFRAG ffrag) {
+	public static void enregistreClassementDefinitif(FFRAG ffrag, String path) {
 		for (Rallye r: ffrag.getListRallye()) {
 			for(Edition e: r.getListeEdition()) {
 				ArrayList<ArrayList<String>> cld = new ArrayList<ArrayList<String>>();
@@ -170,6 +171,7 @@ public class CSV {
 				ligneTitre.add("Position");
 				ligneTitre.add("Prenom");
 				ligneTitre.add("Nom");
+				ligneTitre.add("Voiture");
 				ligneTitre.add("TempFinal");
 				for(Etape et : e.getListEtape()) {
 					ligneTitre.add("Etape "+String.valueOf(e.getListEtape().indexOf(et)+1));
@@ -180,6 +182,7 @@ public class CSV {
 					ligneCld.add(String.valueOf(e.getClassementDefinitif().indexOf(cd)+1));
 					ligneCld.add(cd.getKey().getCoureur().getPrenomCoureur());
 					ligneCld.add(cd.getKey().getCoureur().getNomCoureur());
+					ligneCld.add(cd.getKey().getVoiture().getModele());
 					Courir temps = new Courir(0,0,0,0);
 					temps.setMilleSeconde(cd.getValue());
 					ligneCld.add(temps.getTemps());
@@ -190,12 +193,12 @@ public class CSV {
 					cld.add(ligneCld);
 				}
 				CSV classementD = new CSV();
-				classementD.Array2CSV(cld, "data/ClassementDefinitif"+r.getNomRallye()+e.getNoEdition()+".csv");
+				classementD.Array2CSV(cld, path+"classement/ClassementDefinitif"+r.getNomRallye()+e.getNoEdition()+".csv");
 			}
 		}
 	}
 		
-	public static void enregistreInfoEtape(FFRAG ffrag) {
+	public static void enregistreInfoEtape(FFRAG ffrag, String path) {
 		for (Rallye r: ffrag.getListRallye()) {
 			for(Edition e: r.getListeEdition()) {
 				ArrayList<ArrayList<String>> infoE = new ArrayList<ArrayList<String>>();
@@ -211,26 +214,56 @@ public class CSV {
 					ligneEtape.add(String.valueOf(et.getDifficulte()));
 					infoE.add(ligneEtape);					}
 					CSV infoEtape = new CSV();
-					infoEtape.Array2CSV(infoE, "data/"+r.getNomRallye()+e.getNoEdition()+"_Etape.csv");
+					infoEtape.Array2CSV(infoE, path+r.getNomRallye()+"_"+e.getNoEdition()+"_Etape.csv");
 				}
 			}
 		}
 	
-	public static void enregistreFFRAG(FFRAG ffrag) {
-		enregistreRallye(ffrag);
-		enregistreEdition(ffrag);
-		enregistreCoureur(ffrag);
-        enregistreVoiture(ffrag);
-        enregistreClassementDefinitif(ffrag);
-        enregistreInfoEtape(ffrag);
+	public static void enregistreFFRAG(FFRAG ffrag, String path) {
+		enregistreRallye(ffrag,path);
+		enregistreEdition(ffrag,path);
+		enregistreCoureur(ffrag,path);
+        enregistreVoiture(ffrag,path);
+        enregistreClassementDefinitif(ffrag,path);
+        enregistreInfoEtape(ffrag,path);
 	}
-
-	public static void readCoureur(String path, FFRAG ffrag) throws ParseException {
+	public static void enregistreNouveauRallye(FFRAG ffrag, String path, Rallye r) throws FileNotFoundException {
+		PrintWriter pw;
+		pw = new PrintWriter(new FileOutputStream(path+"Rallye.csv",true));
+		pw.println(r.getNomRallye()+","+r.getVille()+","+r.getPays());
+		pw.flush();
+		pw.close();
+	}
+	public static void enregistreNouveauEdition(FFRAG ffrag, String path, Rallye r, Edition e) throws FileNotFoundException {
+		SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+		PrintWriter pw;
+		pw = new PrintWriter(new FileOutputStream(path+"Edition.csv",true));
+		pw.println(r.getNomRallye()+","+e.getNoEdition()+","+e.getSaison()+","+dateformat.format(e.getDateDebER())+","+dateformat.format(e.getDateFinER()));
+		pw.flush();
+		pw.close();
+		
+		ArrayList<ArrayList<String>> infoE = new ArrayList<ArrayList<String>>();
+		ArrayList<String> ligneTitre = new ArrayList<String>();
+		ligneTitre.add("Etape");
+		ligneTitre.add("Distance");
+		ligneTitre.add("Difficulite");
+		infoE.add(ligneTitre);
+		for (Etape et: e.getListEtape()) {
+			ArrayList<String> ligneEtape = new ArrayList<String>();
+			ligneEtape.add(String.valueOf(e.getListEtape().indexOf(et)+1));
+			ligneEtape.add(String.valueOf(et.getDistanceEtape()));
+			ligneEtape.add(String.valueOf(et.getDifficulte()));
+			infoE.add(ligneEtape);	}			
+		CSV csv = new CSV();
+		csv.Array2CSV(infoE, path+r.getNomRallye()+"_"+e.getNoEdition()+"_Etape.csv");
+	}
+	
+	public static void readCoureur(FFRAG ffrag) throws ParseException {
 		ffrag.setListCoureur(new ArrayList<Coureur>());
 		SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
 		CSV csv = new CSV();
 		ArrayList<ArrayList<String>> coureur = new ArrayList<ArrayList<String>>();
-		coureur = csv.CSV2Array(path);
+		coureur = csv.CSV2Array(ffrag.getCsvPath()+"Coureurs.csv");
 		System.out.println(coureur.size());
 		for(int i = 0; i < coureur.size(); i++) {
 	        String prenom = coureur.get(i).get(0);
@@ -240,6 +273,18 @@ public class CSV {
 	        String sanguin = coureur.get(i).get(4);
 			ffrag.insertCoureur(nom, prenom, dateN, nationalite, sanguin);
 		}
+	}
+	
+	public static void readToutsClassements(FFRAG ffrag) {
+		  File file=new File(ffrag.getCsvPath()+"/classement");
+		  File[] tempList = file.listFiles();
+		  //System.out.println("nbFiche£º"+tempList.length);
+		  for (int i = 0; i < tempList.length; i++) {
+		   if (tempList[i].isFile()) {
+		    
+			   System.out.println("Fiche£º"+tempList[i]);
+		   }
+		  }
 	}
 	
 }

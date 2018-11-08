@@ -27,11 +27,12 @@ public class RunRallye {
 
     public static void main(String[] args) throws IOException,FileNotFoundException, ParseException {
     	
-    	FFRAG ffrag = new FFRAG();
-    	CSV.readCoureur("data/Coureurs.csv", ffrag);
+    	FFRAG ffrag = new FFRAG("data/");
+    	
+    	CSV.readCoureur(ffrag);
     	
     	//recuperer les donnees des fichiers csv
-        String csvPath = "data/";
+        
     	String csvVal = "ValThorens.csv";
     	String csvPuiss = "Puissances.csv";
     	String csvSuper = "SuperBesse.csv";
@@ -80,7 +81,7 @@ public class RunRallye {
 	        //recuperer les donnees du fichier Puissances.csv et instancier les objets Vehicule 
 	        try {
 	        	int j=0;//on ne traite pas l'entete des tableaux
-		        br = new BufferedReader(new FileReader(csvPath+csvPuiss));
+		        br = new BufferedReader(new FileReader(ffrag.getCsvPath()+csvPuiss));
 		        while ((line = br.readLine()) != null) {
 		        	if(j!=0) {
 		        		String[] tabPuiss = line.split(cvsSplitBy);
@@ -109,7 +110,7 @@ public class RunRallye {
 	        			if(eV.getNoEdition()==ned) {
 	        				 try {
 	        			        	int k=0;//on ne traite pas l'entete des tableaux
-	        				        br = new BufferedReader(new FileReader(csvPath+csvVal));
+	        				        br = new BufferedReader(new FileReader(ffrag.getCsvPath()+csvVal));
 	        				        while ((line = br.readLine()) != null) {
 	        				            	if(k!=0) {
 	        					                String[] tab = line.split(cvsSplitBy);
@@ -163,7 +164,7 @@ public class RunRallye {
 	        				        for (int j=3; j<13; j++) {
 	        						try {
 		        			        	int m=0;
-		        				        br = new BufferedReader(new FileReader(csvPath+csvVal));
+		        				        br = new BufferedReader(new FileReader(ffrag.getCsvPath()+csvVal));
 		        				        	  while ((line = br.readLine()) != null) {
 			        				            	if(m!=0) {
 			        					                String[] tab = line.split(cvsSplitBy);
@@ -225,7 +226,7 @@ public class RunRallye {
 	        			if(eV.getNoEdition()==ned) {
 	        				 try {
 	        			        	int l=0;
-	        				        br = new BufferedReader(new FileReader(csvPath+csvSuper));
+	        				        br = new BufferedReader(new FileReader(ffrag.getCsvPath()+csvSuper));
 	        				        while ((line = br.readLine()) != null) {
 	        				            	if(l!=0) {
 	        					                String[] tab = line.split(cvsSplitBy);
@@ -277,7 +278,7 @@ public class RunRallye {
 	        				        for (int j=3; j<15; j++) {
 	        				        	try {
 			        			        	int m=0;//on ne traite pas l'entete des tableaux
-			        				        br = new BufferedReader(new FileReader(csvPath+csvSuper));
+			        				        br = new BufferedReader(new FileReader(ffrag.getCsvPath()+csvSuper));
 			        				        	  while ((line = br.readLine()) != null) {
 				        				            	if(m!=0) {
 				        					                String[] tab = line.split(cvsSplitBy);
@@ -355,7 +356,7 @@ public class RunRallye {
 	        */
 	        
 	        
-	      /*
+	     
 	        EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
@@ -367,15 +368,16 @@ public class RunRallye {
 				}
 
 			});
-		*/
-	        CSV.enregistreFFRAG(ffrag);
-	        CSV.readCoureur("data/Coureur.csv", ffrag);
+		
+	        CSV.enregistreFFRAG(ffrag,ffrag.getCsvPath());
+	        /*CSV.readCoureur("data/Coureur.csv", ffrag);
 	        System.out.println(ffrag.getListCoureur().size());
 	        System.out.println(ffrag.getListCoureur().get(ffrag.getListCoureur().size()-1).getNomCoureur());
 	        System.out.println(ffrag.getListCoureur().get(ffrag.getListCoureur().size()-1).getPrenomCoureur());
 	        System.out.println(ffrag.getListCoureur().get(ffrag.getListCoureur().size()-1).getDateNaissanceC());
 	        System.out.println(ffrag.getListCoureur().get(ffrag.getListCoureur().size()-1).getNationalite());
-	        System.out.println(ffrag.getListCoureur().get(ffrag.getListCoureur().size()-1).getSanguin());
+	        System.out.println(ffrag.getListCoureur().get(ffrag.getListCoureur().size()-1).getSanguin());*/
+	        CSV.readToutsClassements(ffrag);
     }
 }
 
