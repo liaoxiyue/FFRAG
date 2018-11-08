@@ -7,17 +7,19 @@ public class Participant {
 	private Date dateInscription;
     private int tempsFinal;
     private Coureur coureur;
-    private Vehicule vehicule;
+    private Voiture voiture;
     private int position;
-   
-	public Participant(int numInscr, Date dateEnreg, Coureur c, Vehicule v) {
-        this.noInscription = numInscr;
-        this.dateInscription = dateEnreg;
+    private int point;
+    private Edition edition;
+    
+	public Participant (int nIns, Date dateIns, Coureur c, Voiture v) {
+		this.noInscription = nIns;
+		this.dateInscription = dateIns;
         this.coureur = c;
-        this.vehicule = v;
+        this.voiture = v;
         this.coureur.affecterParticipation(this);
     }
-    
+	
 	public int getTempsFinal() {
 		return this.tempsFinal;
 	}
@@ -26,7 +28,6 @@ public class Participant {
     	this.tempsFinal = temps;
     }
     
-    
     public int getPosition() {
 		return position;
 	}
@@ -34,7 +35,52 @@ public class Participant {
 	public void setPosition(int position) {
 		this.position = position;
 	}
+	
+    public int getPoint() {
+		return point;
+	}
 
+	public void setPoint(int point) {
+		this.point = point;
+	}
+
+	public Voiture getVoiture() {
+		return voiture;
+	}
+    
+    public int getNoInscription() {
+		return noInscription;
+	}
+    
+    public void setNoInscription(int noInscription) {
+		this.noInscription = noInscription;
+	}
+
+    public Coureur getCoureur() {
+		return coureur;
+	}
+
+	public Date getDateInscription() {
+		return dateInscription;
+	}
+
+	public void setDateInscription(Date dateInscription) {
+		this.dateInscription = dateInscription;
+	}
+	
+	public Edition getEdition() {
+		return edition;
+	}
+
+	public void setEdition(Edition edition) {
+		this.edition = edition;
+	}
+
+	/**
+	 * Cette methode permet de v¨¦rifier si le participant a bien pris le d¨¦part ¨¤ une ¨¦tape afin de le disqualifier ensuite dans l'etape
+	 * @param e : objet etape pour lequel on va verifier la participation
+	 * @return
+	 */
 	public boolean prendreDepart(Etape e) {
     	boolean prendreDepart = true;
    		if(e.getTabParticipants().get(this)==null) {
@@ -43,15 +89,5 @@ public class Participant {
     	return prendreDepart;
     } 
     
-    public Vehicule getVehicule() {
-		return vehicule;
-	}
-    
-    public int getNoInscription() {
-		return noInscription;
-	}
-    
-    public Coureur getCoureur() {
-		return coureur;
-	}
+
 }
