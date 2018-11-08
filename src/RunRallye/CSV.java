@@ -383,7 +383,6 @@ public class CSV {
 			int noInscription = Integer.parseInt(pilot.get(i).get(3));
 			Participant part = new Participant(noInscription, coureur, voiture);
 			edition.organiserPart(part);
-			System.out.println(edition.getListEtape().get(0).getTabParticipants().get(ffrag.getListRallye().get(0).getEdition(1).getListPart().get(0)));
 			System.out.println(edition.getListPart().size());
 			
 			//Enregistrer temps des coureurs
