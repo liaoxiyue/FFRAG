@@ -360,7 +360,6 @@ public class CSV {
 		CSV csv = new CSV();
 		ArrayList<ArrayList<String>> pilot = new ArrayList<ArrayList<String>>();
 		pilot = csv.CSV2Array(pathCSV);
-		System.out.println(nomRallye + noEdition);
 		for(int i = 0; i < pilot.size(); i++) {
 			//saisir coureur
 			String prenom = pilot.get(i).get(0);
@@ -372,7 +371,6 @@ public class CSV {
 					break;
 				}
 			}
-			System.out.println(coureur.getNomCoureur() + coureur.getPrenomCoureur());
 			
 			//saisir voiture
 			String modele = pilot.get(i).get(2);
@@ -383,7 +381,6 @@ public class CSV {
 					break;
 				}
 			}
-			System.out.println(voiture.getModele());
 			
 			//saisir noIscription
 			int noInscription = Integer.parseInt(pilot.get(i).get(3));
