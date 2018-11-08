@@ -390,32 +390,27 @@ public class CSV {
 		}
 			
 			
-			//Enregistrer temps des coureurs
-			for(int j = 0; j < edition.getListEtape().size(); j++) {
-				for(int i = 0; i < pilot.size(); i++) {
-					//recuperer le temps
-					int heur = 0;
-					int min = 0;
-					int seconde = 0;
-					int milleseconde = 0;
-					String tempsString = pilot.get(i).get(j+4);
-					if (tempsString != null) {
-						String[] tempsSplit = tempsString.split(":");
-						heur = Integer.parseInt(tempsSplit[0]);
-						min = Integer.parseInt(tempsSplit[1]);
-						seconde = Integer.parseInt(tempsSplit[2]);
-					}
-					else {
-						heur = 0;
-						min = 0;
-						seconde = 0;
-					}
-					edition.getListEtape().get(j).enregistreTemp(edition.getListPart().get(i), heur, min, seconde, milleseconde);;
+		//Enregistrer temps des coureurs
+		for(int j = 0; j < edition.getListEtape().size(); j++) {
+			for(int i = 0; i < pilot.size(); i++) {
+				//recuperer le temps
+				int heur = 0;
+				int min = 0;
+				int seconde = 0;
+				int milleseconde = 0;
+				String tempsString = pilot.get(i).get(j+4);
+				if (tempsString != null) {
+					String[] tempsSplit = tempsString.split(":");
+					heur = Integer.parseInt(tempsSplit[0]);
+					min = Integer.parseInt(tempsSplit[1]);
+					seconde = Integer.parseInt(tempsSplit[2]);
 				}
-			}
-			for(int k = 0; k < ffrag.getListRallye().get(0).getEdition(1).getListEtape().size(); k++) {
-				for(int j = 0; j < ffrag.getListRallye().get(0).getEdition(1).getListPart().size(); j++) {
-				System.out.println(ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(k).getTabParticipants().get(ffrag.getListRallye().get(0).getEdition(1).getListPart().get(j)));
+				else {
+					heur = 0;
+					min = 0;
+					seconde = 0;
+				}
+				edition.getListEtape().get(j).enregistreTemp(edition.getListPart().get(i), heur, min, seconde, milleseconde);;
 			}
 		}
 	}
