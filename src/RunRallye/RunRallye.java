@@ -55,7 +55,18 @@ public class RunRallye {
 				}
 			});
 		*/
-    	
+    	for(Participant p : ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(0).getTabParticipants().keySet()) {
+        	System.out.println(p.getVoiture().getModele());
+        }
+    	/*
+    	for(Rallye r: ffrag.getListRallye()) {
+    		for(Edition e: r.getListeEdition()) {
+    			for(Etape et: e.getListEtape()) {
+    				e.calculerClassement(et.getCodeEtape());
+    			}
+    		}
+    	}
+    	*/
 	        CSV.enregistreFFRAG(ffrag,ffrag.getCsvPath());
 	        
 	        //tester readCoureur
@@ -80,8 +91,9 @@ public class RunRallye {
 	        //tester readTemps
 	        System.out.println(ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(0).getTabParticipants().size());
 	        for(Participant p : ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(0).getTabParticipants().keySet()) {
-	        	System.out.println(p.getCoureur().getNomCoureur() + ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(0).getTabParticipants().get(p));
+	        	System.out.println(p.getVoiture().getModele());
 	        }
+	        
     }
 }
 

@@ -182,6 +182,7 @@ public class CSV {
 					ligneCld.add(String.valueOf(e.getClassementDefinitif().indexOf(cd)+1));
 					ligneCld.add(cd.getKey().getCoureur().getPrenomCoureur());
 					ligneCld.add(cd.getKey().getCoureur().getNomCoureur());
+					System.out.println("---111--");
 					ligneCld.add(cd.getKey().getVoiture().getModele());
 					Courir temps = new Courir(0,0,0,0);
 					temps.setMilleSeconde(cd.getValue());
@@ -366,6 +367,7 @@ public class CSV {
 			for(int j = 0; j < ffrag.getListCoureur().size(); j++) {
 				if (ffrag.getListCoureur().get(j).getPrenomCoureur().equals(String.valueOf(prenom)) && ffrag.getListCoureur().get(j).getNomCoureur().equals(String.valueOf(nom))) {
 					coureur = ffrag.getListCoureur().get(j);
+					break;
 				}
 			}
 			
@@ -381,46 +383,41 @@ public class CSV {
 			
 			//saisir noIscription
 			int noInscription = Integer.parseInt(pilot.get(i).get(3));
+			
 			Participant part = new Participant(noInscription, coureur, voiture);
 			edition.organiserPart(part);
-			System.out.println(edition.getListPart().size());
+		}
+			
 			
 			//Enregistrer temps des coureurs
 			for(int j = 0; j < edition.getListEtape().size(); j++) {
-				//recuperer le temps
-				int heur = 0;
-				int min = 0;
-				int seconde = 0;
-				int milleseconde = 0;
-				String tempsString = pilot.get(i).get(j+4);
-				System.out.println(tempsString);
-				if (tempsString != null) {
-					String[] tempsSplit = tempsString.split(":");
-					heur = Integer.parseInt(tempsSplit[0]);
-					min = Integer.parseInt(tempsSplit[1]);
-					seconde = Integer.parseInt(tempsSplit[2]);
+				for(int i = 0; i < pilot.size(); i++) {
+					//recuperer le temps
+					int heur = 0;
+					int min = 0;
+					int seconde = 0;
+					int milleseconde = 0;
+					String tempsString = pilot.get(i).get(j+4);
+					if (tempsString != null) {
+						String[] tempsSplit = tempsString.split(":");
+						heur = Integer.parseInt(tempsSplit[0]);
+						min = Integer.parseInt(tempsSplit[1]);
+						seconde = Integer.parseInt(tempsSplit[2]);
+					}
+					else {
+						heur = 0;
+						min = 0;
+						seconde = 0;
+					}
+					edition.getListEtape().get(j).enregistreTemp(edition.getListPart().get(i), heur, min, seconde, milleseconde);;
 				}
-				else {
-					heur = 0;
-					min = 0;
-					seconde = 0;
-				}
-				System.out.println(part.getCoureur().getNomCoureur()+""+heur+" "+min+" "+seconde + " " + milleseconde);
-				Courir courir = new Courir(heur, min, seconde, milleseconde);
-				System.out.println(courir.getMilleSeconde());
-				edition.getListEtape().get(j).enregistreTemp(part, heur, min, seconde, milleseconde);
-				edition.getListEtape().get(j).getTabParticipants().get(part).valueOf(courir.getMilleSeconde());
-				System.out.println(edition.getListEtape().get(j).getTabParticipants().get(part));
-				System.out.println(edition.getListEtape().get(0).getTabParticipants().get(part));
-				System.out.println(edition.getListEtape().get(0).getTabParticipants().get(ffrag.getListRallye().get(0).getEdition(1).getListPart().get(0)));
-				/*System.out.println(ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(0).getTabParticipants().size());
-		        for(Participant p : ffrag.getListRallye().get(0).getEdition(1).getListPart()) {
-		        	System.out.println(p.getCoureur().getNomCoureur());
-		        	System.out.println(ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(0).getTabParticipants().get(p));
-		        }*/
 			}
-			
+			for(int k = 0; k < ffrag.getListRallye().get(0).getEdition(1).getListEtape().size(); k++) {
+				for(int j = 0; j < ffrag.getListRallye().get(0).getEdition(1).getListPart().size(); j++) {
+				System.out.println(ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(k).getTabParticipants().get(ffrag.getListRallye().get(0).getEdition(1).getListPart().get(j)));
+			}
 		}
-		
 	}
 }
+
+
