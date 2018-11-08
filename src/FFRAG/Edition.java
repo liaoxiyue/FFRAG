@@ -87,8 +87,8 @@ public class Edition {
 	 * @param code : code de l'etape
 	 * @param distance : distance en km de l'etape
 	 */
-	public void organiserEtape(int code, int distance) {
-		Etape etape = new Etape(code, distance);
+	public void organiserEtape(int code, int distance, int difficulte) {
+		Etape etape = new Etape(code, distance, difficulte);
 		listEtape.add(etape);
 	}
 	
@@ -236,9 +236,6 @@ public class Edition {
 			}
 			
 			int temps = (int) (distance / (vitesse * coefNiveauPilot * (1-1/(puissance-200))*(poids/1000)) * 60 * 60 * 1000 + nbVirage * (1/coefNiveauPilot) * (1 + 1 / adherence)  * 1000);
-			System.out.println(temps);
-			System.out.println(vitesse * coefNiveauPilot * (1-1/(puissance-200))*(poids/1000));
-			System.out.println(distance / ((float)temps/1000/60/60));
 			tempsPrevu.put(classementSaison.get(i).getKey(), temps);
 		}
 		return tempsPrevu;

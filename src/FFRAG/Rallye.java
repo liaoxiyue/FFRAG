@@ -69,7 +69,7 @@ public class Rallye {
 	public Edition getEdition(int noEdition) {
 		Edition edition = null;
 		for(Edition e : listeEdition) {
-			if(e.getNoEdition() == noEdition) {
+			if(e.getNoEdition() == (noEdition)) {
 				edition = e;
 			}
 		}

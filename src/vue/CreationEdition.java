@@ -175,11 +175,11 @@ public class CreationEdition extends JFrame {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"Etape", "Distance"},
-				{1, null},
+				{"Etape", "Distance", "Difficult¨¦"},
+				{new Integer(1), null, null},
 			},
 			new String[] {
-				"Etape", "Distance"
+				"Etape", "Distance", "Difficult\u00E9"
 			}
 		));
 		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{comboBoxRallye, lblCrerUnNouveau, textFieldSaison, comboBoxDebAnnee, comboBoxDebMois, comboBoxDebJour, comboBoxFinAnnee, comboBoxFinMois, comboBoxFinJour, lblRallye, lblSaison, lblCrationEdition, lblDateDeFin, lblDateDeDbut}));
@@ -380,8 +380,8 @@ public class CreationEdition extends JFrame {
 				for(int i = 1; i < table.getRowCount(); i++) {
 					int noEtape = Integer.valueOf(table.getValueAt(i, 0).toString());
 					int distance = Integer.valueOf(table.getValueAt(i, 1).toString());
-					Etape etape = new Etape(noEtape, distance);
-					edition.getListEtape().add(etape);
+					int difficulte = Integer.valueOf(table.getValueAt(i, 2).toString());
+					edition.organiserEtape(noEtape, distance, difficulte);
 				}
 			}
 		});

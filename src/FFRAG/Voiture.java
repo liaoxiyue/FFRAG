@@ -16,9 +16,11 @@ public class Voiture {
 	 * @param m : nom du mod¨¨le de la voiture
 	 * @param p : puissance d'une voiture mesuree en puissance de chevaux
 	 */
-	public Voiture(String m, int p) {
+	public Voiture(String m, int pui, int poids, int ad) {
 		this.modele = m;
-		this.puissanceV = p;
+		this.puissanceV = pui;
+		this.poids = poids;
+		this.adherence = ad;
 	}
 
 	public String getModele() {
