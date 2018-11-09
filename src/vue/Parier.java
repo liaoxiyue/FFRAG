@@ -24,8 +24,10 @@ import FFRAG.Coureur;
 import FFRAG.Courir;
 import FFRAG.Edition;
 import FFRAG.FFRAG;
+import FFRAG.Parieur;
 import FFRAG.Participant;
 import FFRAG.Rallye;
+import RunRallye.CSV;
 
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -45,38 +47,24 @@ public class Parier extends JFrame {
 	private JTable tableParticipants;
 	private JTable tableCoureur;
 	private FFRAG ffrag;
-	
+	private Parieur parieur;
 	SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
 	private JTextField textField;
+	private Coureur coureur;
+	private Edition edition;
 
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
-=======
-	public static void main(String[] args) {
->>>>>>> b742ef2b4250920bcd46755ec841d4cbf0643d16
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Parier frame = new Parier();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-<<<<<<< HEAD
-	*/
 
 	/**
 	 * Create the frame.
 	 * @throws ParseException 
 	 */
-	public Parier(FFRAG ffrag) throws ParseException {
+	public Parier(FFRAG ffrag, Parieur parieur) throws ParseException {
+		this.parieur = parieur;
 		this.ffrag = ffrag;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1229, 560);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -122,17 +110,6 @@ public class Parier extends JFrame {
 		tableParticipants.getColumnModel().getColumn(1).setPreferredWidth(146);
 		scrollPane_Coureur.setViewportView(tableParticipants);
 		
-		tableProfil = new JTable();
-		tableProfil.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Nom", "Pr\u00E9nom", "Date de naissance", "Titres remport\u00E9s"
-			}
-		));
-		tableProfil.setBounds(462, 94, 357, 69);
-		contentPane.add(tableProfil);
-		
 		JScrollPane scrollPane_Detail = new JScrollPane();
 		scrollPane_Detail.setBounds(462, 180, 720, 250);
 		contentPane.add(scrollPane_Detail);
@@ -169,15 +146,30 @@ public class Parier extends JFrame {
 		btnPlacezUnPari.setBounds(268, 452, 160, 23);
 		contentPane.add(btnPlacezUnPari);
 		
+		JScrollPane scrollPane_Profil = new JScrollPane();
+		scrollPane_Profil.setBounds(463, 93, 356, 70);
+		contentPane.add(scrollPane_Profil);
+		
+		tableProfil = new JTable();
+		tableProfil.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Nom", "Pr\u00E9nom", "Date de naissance", "Titres remport\u00E9s"
+			}
+		));
+		scrollPane_Profil.setViewportView(tableProfil);
+		
 		comboBoxRallye.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if(ItemEvent.SELECTED == e.getStateChange()) {
+					coureur = null;
 					String choix = comboBoxRallye.getSelectedItem().toString();
 					String[] split = choix.split("-");
 					String nomRallye = split[0];
 					String saison = split[1];
 					Rallye rallye = ffrag.getRallye(nomRallye);
-					Edition edition = null;
+					edition = null;
 					for(int i = 0; i < rallye.getListeEdition().size(); i++) {
 						if (rallye.getListeEdition().get(i).getSaison().equals(saison)) {
 							edition = rallye.getListeEdition().get(i);
@@ -217,7 +209,7 @@ public class Parier extends JFrame {
 				String prenom = "";
 				nom = nomCoureur.substring(nomCoureur.lastIndexOf(" ")+1);
 				prenom = nomCoureur.substring(0, nomCoureur.lastIndexOf(" "));
-				Coureur coureur = ffrag.confirmeCoureur(nom, prenom);
+				coureur = ffrag.confirmeCoureur(nom, prenom);
 				
 				Object[][] profil = new Object[1][4];
 				profil[0][0] = coureur.getNomCoureur();
@@ -230,7 +222,7 @@ public class Parier extends JFrame {
 							"Nom", "Pr\u00E9nom", "Date de naissance", "Titres remport\u00E9s"
 						}
 					));
-				
+				scrollPane_Profil.setViewportView(tableProfil);
 
 				Object[][] listDetail = new Object[coureur.getListParticipation().size()][6]; 
 				
@@ -252,7 +244,7 @@ public class Parier extends JFrame {
 							"Rallye", "Edition", "Saison", "V\u00E9hicule", "Position", "Temps"
 						}
 					));
-					scrollPane_Detail.setColumnHeaderView(tableCoureur);
+					scrollPane_Detail.setViewportView(tableCoureur);
 			}
 		}));
 		
@@ -261,9 +253,22 @@ public class Parier extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if(textField.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "Veuillez entrer le montant", "Erreur", JOptionPane.ERROR_MESSAGE);
+				}else if(coureur==null){
+					JOptionPane.showMessageDialog(null, "Veuillez choisir le coureur", "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
 				else {
-					
+					Participant part = null;
+					for (Participant p: coureur.getListParticipation()) {
+						if(p.getEdition().equals(edition)) {
+							part = p;break;
+						}
+					}
+					parieur.parier(Integer.valueOf(textField.getText()), part, edition);
+					CSV.enregistreParis(ffrag, ffrag.getCsvPath());
+					JOptionPane.showMessageDialog(null, "Vous avez bien plac¨¦ un pari de "
+					+ textField.getText() +" Euro sur " 
+							+coureur.getPrenomCoureur() +" "+coureur.getNomCoureur()
+							+" pour " +edition.getRallye().getNomRallye(), "Bien pari", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});

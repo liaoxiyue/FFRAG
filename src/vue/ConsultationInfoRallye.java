@@ -67,7 +67,7 @@ public class ConsultationInfoRallye extends JFrame {
 		contentPane.add(lblConsultationInformationsRallye);
 		
 		JLabel lblVille = new JLabel("Ville :");
-		lblVille.setBounds(27, 114, 79, 18);
+		lblVille.setBounds(27, 113, 79, 18);
 		lblVille.setFont(new Font("Calibri", Font.BOLD, 15));
 		contentPane.add(lblVille);
 		
@@ -153,20 +153,20 @@ public class ConsultationInfoRallye extends JFrame {
 		
 		JLabel lblChampionPlusJeune = new JLabel("Champion Plus Jeune :");
 		lblChampionPlusJeune.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblChampionPlusJeune.setBounds(333, 114, 160, 18);
+		lblChampionPlusJeune.setBounds(333, 113, 160, 18);
 		contentPane.add(lblChampionPlusJeune);
 		
 		JLabel jeune = new JLabel("");
 		jeune.setFont(new Font("Calibri", Font.BOLD, 15));
-		jeune.setBounds(487, 113, 79, 18);
+		jeune.setBounds(487, 113, 129, 18);
 		contentPane.add(jeune);
-		
-		
+					
 		cBoxRallye.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				Rallye choix = ffrag.getRallye(cBoxRallye.getSelectedItem().toString());
 				ville.setText(choix.getVille());
 				pays.setText(choix.getPays());
+				jeune.setText(choix.getChampionPlusJeune().getPrenomCoureur()+" "+choix.getChampionPlusJeune().getNomCoureur());
 				if(!(choix.getChampionPlusJeune()==null)) {
 					jeune.setText(choix.getChampionPlusJeune().getNomCoureur()+" "+choix.getChampionPlusJeune().getPrenomCoureur());
 				}

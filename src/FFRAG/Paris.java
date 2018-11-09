@@ -77,6 +77,7 @@ public class Paris {
         		gain = String.valueOf(gainsEd);
                 //ici sera la c魌e plus tard quand calcul閑 (en fonction du classement, et pond閞閑 par temps approximatif)
         		beneficeffrag = this.mise * cotation * 0.15;
+
             }
         	else {
         		gain = String.valueOf(0);
@@ -85,4 +86,5 @@ public class Paris {
         return gain;
     }
 }
+
 

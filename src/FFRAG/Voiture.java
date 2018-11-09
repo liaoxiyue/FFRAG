@@ -54,7 +54,7 @@ public class Voiture {
 	 * qui est determine dans la classe Parametres
 	 */
 	public float getCoef() {
-		float coefV = (float) (1 + (puissanceV - 250) / (25 * 0.05));
+		float coefV = (float) (1 + (puissanceV - 250) / 250);
 		return coefV;
 	}
 
