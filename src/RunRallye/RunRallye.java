@@ -70,7 +70,7 @@ public class RunRallye {
 	        
 
 
-    	FFRAG ffrag = new FFRAG("src/data/");
+    	FFRAG ffrag = new FFRAG("data/");
     	CSV.readFFRAG(ffrag,ffrag.getCsvPath());
         EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -100,6 +100,13 @@ public class RunRallye {
     	}
 
         CSV.enregistreFFRAG(ffrag,ffrag.getCsvPath());
+        for(Coureur c: ffrag.getListCoureur()) {
+        	int point = 0;
+        	for(Participant p: c.getListParticipation()) {
+        		point += p.getPoint();
+        	}
+        	System.out.println(c.getNomCoureur() + point);
+        }
     }
 }
 

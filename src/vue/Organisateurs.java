@@ -92,7 +92,7 @@ public class Organisateurs extends JFrame {
 			}
 		});
 		btnConsultationClassementRallye.setFont(new Font("Calibri", Font.BOLD, 15));
-		btnConsultationClassementRallye.setBounds(380, 189, 270, 27);
+		btnConsultationClassementRallye.setBounds(380, 168, 270, 27);
 		contentPane.add(btnConsultationClassementRallye);
 
 		JButton btnConsultationClassementSaison = new JButton("Consultation Classement Saison");
@@ -111,7 +111,7 @@ public class Organisateurs extends JFrame {
 			}
 		});
 		btnConsultationClassementSaison.setFont(new Font("Calibri", Font.BOLD, 15));
-		btnConsultationClassementSaison.setBounds(380, 238, 270, 27);
+		btnConsultationClassementSaison.setBounds(380, 215, 270, 27);
 		contentPane.add(btnConsultationClassementSaison);
 		
 		JButton btnValitationClassementEtape = new JButton("Valitation Classement Etape");
@@ -126,7 +126,7 @@ public class Organisateurs extends JFrame {
 			}
 		});
 		btnValitationClassementEtape.setFont(new Font("Calibri", Font.BOLD, 15));
-		btnValitationClassementEtape.setBounds(380, 138, 270, 27);
+		btnValitationClassementEtape.setBounds(380, 128, 270, 27);
 		contentPane.add(btnValitationClassementEtape);
 		
 		JButton btnCreationRallye = new JButton("Creation Rallye");
@@ -159,18 +159,30 @@ public class Organisateurs extends JFrame {
 		btnConsultationInfosRallye.setBounds(56, 239, 202, 27);
 		contentPane.add(btnConsultationInfosRallye);
 		
+		JButton btnConsultationClassementProbable = new JButton("Consultation Classement Probable");
+		btnConsultationClassementProbable.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							ClassementProbable frame = new ClassementProbable(ffrag);
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		btnConsultationClassementProbable.setFont(new Font("Calibri", Font.BOLD, 15));
+		btnConsultationClassementProbable.setBounds(380, 255, 270, 27);
+		contentPane.add(btnConsultationClassementProbable);
+		
 		JLabel back = new JLabel();
 		back.setIcon(new ImageIcon(Bienvenue.class.getResource("/image/background.jpeg")));
 		back.setBounds(0, 0, 800, 533);
 		this.getLayeredPane().add(back, new Integer(Integer.MIN_VALUE));
 		((JPanel)this.getContentPane()).setOpaque(false);
 		contentPane.add(back);
-		
-		
-		
-		
-		
-		
-		
 	}
 }

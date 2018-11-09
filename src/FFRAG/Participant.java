@@ -78,6 +78,54 @@ public class Participant {
     		};
     	return prendreDepart;
     } 
+	
+	public int definirNumPart() {
+		int indexPart = 0;
+		ArrayList<HashMap.Entry<Participant, Integer>> classementProbable = this.edition.classementProbable(60);
+		for(int i = 0; i < classementProbable.size(); i++) {
+			if (this.equals(classementProbable.get(i).getKey())) {
+				indexPart = i;
+			}
+		}
+		return indexPart;
+	}
+	
+	//m¨¦thode d¨¦finition de cotation
+		public double definirCotation() {
+			ArrayList<HashMap.Entry<Participant, Integer>> classementProbable = this.edition.classementProbable(60);
+			double minTempsMaxCoureur, tempsMinCoureur, sommeInt, sommeT,probabilite,cotation;
+			sommeT=0;
+			sommeInt=0;
+			probabilite=0;
+			cotation=0;
+			minTempsMaxCoureur=this.edition.classementProbable(55).get(0).getValue();
+			int nbBoucle = 0;
+			for(int i = 0; i<classementProbable.size(); i++) {
+				if(minTempsMaxCoureur > this.edition.classementProbable(65).get(i).getValue()) {
+					nbBoucle++;
+				}
+				else {
+					break;
+				}
+			}
+			for(int i=0; i<nbBoucle;i++) {
+				tempsMinCoureur=this.edition.classementProbable(65).get(i).getValue();
+				sommeInt=minTempsMaxCoureur-tempsMinCoureur;
+				sommeT=sommeT+sommeInt;
+			}
+			sommeInt=minTempsMaxCoureur-(this.edition.classementProbable(65).get(this.definirNumPart()).getValue());
+			System.out.println(minTempsMaxCoureur);
+			System.out.println(sommeInt);
+			probabilite=sommeInt/sommeT;
+			if(probabilite > 0.01) {
+				cotation=1/probabilite/3;
+			}
+			else {
+				cotation = 45;
+			}
+			cotation = (double) Math.round(cotation *100) /100;
+			return cotation;
+		}
     
 
 }

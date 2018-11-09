@@ -180,7 +180,7 @@ public class Parier extends JFrame {
 					for(int i=0;i<edition.getListPart().size();i++) {
 						participants[i][0] = edition.getListPart().get(i).getCoureur().getPrenomCoureur() + " " + edition.getListPart().get(i).getCoureur().getNomCoureur();
 						participants[i][1] = edition.getListPart().get(i).getVoiture().getModele();
-						participants[i][2] = 1; // il faut une methode pour calculer la cote d'un participant dans classe Participant
+						participants[i][2] = edition.getListPart().get(i).definirCotation(); // il faut une methode pour calculer la cote d'un participant dans classe Participant
 					}
 					tableParticipants.setModel(new DefaultTableModel(
 							participants,
