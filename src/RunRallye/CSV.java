@@ -262,7 +262,7 @@ public class CSV {
 
 	public static void readCoureur(String path, String fichier, FFRAG ffrag) throws ParseException {
 		String pathCSV = path + fichier;
-		SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yy");
 		CSV csv = new CSV();
 		ArrayList<ArrayList<String>> coureur = new ArrayList<ArrayList<String>>();
 		coureur = csv.CSV2Array(pathCSV);
@@ -280,11 +280,8 @@ public class CSV {
 	public static void readToutsClassements(FFRAG ffrag) {
 		  File file=new File(ffrag.getCsvPath()+"/classement");
 		  File[] tempList = file.listFiles();
-		  //System.out.println("nbFiche£º"+tempList.length);
 		  for (int i = 0; i < tempList.length; i++) {
 		   if (tempList[i].isFile()) {
-		    
-			   System.out.println("Fiche£º"+tempList[i]);
 		   }
 		  }
 	}
@@ -394,23 +391,14 @@ public class CSV {
 		for(int j = 0; j < edition.getListEtape().size(); j++) {
 			for(int i = 0; i < pilot.size(); i++) {
 				//recuperer le temps
-				int heur = 0;
-				int min = 0;
-				int seconde = 0;
-				int milleseconde = 0;
-				String tempsString = pilot.get(i).get(j+4);
-				if (tempsString != null) {
+				if(pilot.get(i).size() > j + 4) {
+					String tempsString = pilot.get(i).get(j+4);
 					String[] tempsSplit = tempsString.split(":");
-					heur = Integer.parseInt(tempsSplit[0]);
-					min = Integer.parseInt(tempsSplit[1]);
-					seconde = Integer.parseInt(tempsSplit[2]);
+					int heur = Integer.parseInt(tempsSplit[0]);
+					int min = Integer.parseInt(tempsSplit[1]);
+					int seconde = Integer.parseInt(tempsSplit[2]);
+					edition.getListEtape().get(j).enregistreTemp(edition.getListPart().get(i), heur, min, seconde, 0);
 				}
-				else {
-					heur = 0;
-					min = 0;
-					seconde = 0;
-				}
-				edition.getListEtape().get(j).enregistreTemp(edition.getListPart().get(i), heur, min, seconde, milleseconde);;
 			}
 		}
 	}

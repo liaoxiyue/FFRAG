@@ -19,6 +19,7 @@ import FFRAG.Rallye;
 import FFRAG.Voiture;
 import vue.Bienvenue;
 import vue.ClassementSaison;
+import vue.Parier;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,8 +41,10 @@ public class RunRallye {
     	CSV.readEtape(path, "ValThorens_1_Etape.csv", ffrag);
     	CSV.readEtape(path, "ValThorens_2_Etape.csv", ffrag);
     	CSV.readEtape(path, "SuperBesse_1_Etape.csv", ffrag);
+    	CSV.readEtape(path, "Bonascre_1_Etape.csv", ffrag);
     	CSV.readEtapeTemps(path, "ValThorens_1_TempsEtape.csv", ffrag);
     	CSV.readEtapeTemps(path, "SuperBesse_1_TempsEtape.csv", ffrag);
+    	CSV.readEtapeTemps(path, "Bonascre_1_TempsEtape.csv", ffrag);
     	  
 	        
 	        /*
@@ -98,7 +101,7 @@ public class RunRallye {
 	        }
 	        */
 	        
-/*
+
 	        EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
@@ -110,42 +113,54 @@ public class RunRallye {
 				}
 
 			});
-*/
+
 	    	for(Rallye r: ffrag.getListRallye()) {
 	    		for(Edition e: r.getListeEdition()) {
 	    			for(Etape et: e.getListEtape()) {
+	    				int nbPart = e.getListPart().size();
+	    				for(int i = 0; i < nbPart; i++) {
+	    					if (!et.validerClassement(e.getListPart().get(i))){
+	    						i--;
+	    						nbPart--;
+	    					}
+	    				}
+	    				et.calculerClassement();
 	    				e.calculerClassement(et.getCodeEtape());
 	    			}
 	    		}
 	    	}
 	        CSV.enregistreFFRAG(ffrag,ffrag.getCsvPath());
+	        	        
+	        Date sysdate = new Date();
+	        System.out.println(sysdate);
 	        
-	        //tester readCoureur
-	        System.out.println(ffrag.getListCoureur().size());
-	        System.out.println(ffrag.getListCoureur().get(ffrag.getListCoureur().size()-1).getNomCoureur());
-	        System.out.println(ffrag.getListCoureur().get(ffrag.getListCoureur().size()-1).getPrenomCoureur());
-	        System.out.println(ffrag.getListCoureur().get(ffrag.getListCoureur().size()-1).getDateNaissanceC());
-	        System.out.println(ffrag.getListCoureur().get(ffrag.getListCoureur().size()-1).getNationalite());
-	        System.out.println(ffrag.getListCoureur().get(ffrag.getListCoureur().size()-1).getSanguin());
-	        System.out.println(ffrag.getListCoureur().get(ffrag.getListCoureur().size()-1).getSanguin());
+	        Date datePari = dateformat.parse("07/11/2018");
 	        
-	        //tester readRallye
-	        System.out.println(ffrag.getListRallye().size());
-	        System.out.println(ffrag.getListRallye().get(ffrag.getListRallye().size()-1).getNomRallye());
-	        System.out.println(ffrag.getListRallye().get(ffrag.getListRallye().size()-1).getPays());
-	        System.out.println(ffrag.getListRallye().get(ffrag.getListRallye().size()-1).getVille());
-	        
-	        //tester readEdition
-	        System.out.println(ffrag.getListRallye().get(0).getListeEdition().size());
-	        System.out.println(ffrag.getListRallye().get(1).getListeEdition().size());
-	        
-	        //tester readTemps
-	        System.out.println(ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(0).getTabParticipants().size());
-	        for(Participant p : ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(0).getTabParticipants().keySet()) {
-	        	System.out.println(p.getCoureur().getNomCoureur() + ffrag.getListRallye().get(0).getEdition(1).getListEtape().get(0).getTabParticipants().get(p));
-	        	System.out.println(p.getVoiture().getModele());
+	        if(datePari.before(sysdate)) {
+	        	System.out.println("OK");
+	        }
+	        else {
+	        	System.out.println("Non");
+	        }
+    
+	        ArrayList<Edition> editionAPari = ffrag.editionAPari();
+	        System.out.println(editionAPari.size());
+	        for(int i = 0; i < editionAPari.size(); i++) {
+	        	System.out.println(editionAPari.get(i).getRallye().getNomRallye());
 	        }
 	        
+	        
+    		EventQueue.invokeLater(new Runnable() {
+    			public void run() {
+    				try {
+    					Parier frame = new Parier(ffrag);
+    					frame.setVisible(true);
+    				} catch (Exception e) {
+    					e.printStackTrace();
+    				}
+    			}
+    		});
+
     }
 }
 

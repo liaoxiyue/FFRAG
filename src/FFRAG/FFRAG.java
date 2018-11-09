@@ -1,5 +1,6 @@
 package FFRAG;
 
+import java.text.ParseException;
 /**
  * Classe FFRAG
  */
@@ -13,6 +14,7 @@ public class FFRAG {
 	//private ArrayList<Paris> listParis;
 	private String csvPath;
 	SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat dateformat2 = new SimpleDateFormat("dd/MM/yyyy");
 
 	/**
 	 * Nous considerons que la classe FFRAG se compose de rallyes, coureurs et
@@ -138,7 +140,7 @@ public class FFRAG {
 																	// saisons pour un rallye
 		for (Rallye r : listRallye) {// Pour chaque rallye existant dans listRallye
 			for (Edition e : r.getListeEdition()) {// et pour chaque edition de ces rallyes
-				if (e.getSaison() == saison) {// Si la saison existe alors
+				if (e.getSaison().equals(saison)) {// Si la saison existe alors
 					editionSaison.add(e);// nous la rajoutons dans la liste editionSaison
 				}
 			}
@@ -168,7 +170,7 @@ public class FFRAG {
 		ArrayList<Edition> editionSaison = new ArrayList<Edition>();
 		for (Rallye r : listRallye) {
 			for (Edition e : r.getListeEdition()) {
-				if (e.getSaison() == saison) {
+				if (e.getSaison().equals(saison)) {
 					editionSaison.add(e);
 				}
 			}
@@ -203,7 +205,7 @@ public class FFRAG {
 		ArrayList<Edition> editionSaison = new ArrayList<Edition>();// et une nouvelle liste d'edition
 		for (Rallye r : listRallye) {// Pour chaque rallye
 			for (Edition e : r.getListeEdition()) {// et pour chaque edition
-				if (e.getSaison() == saison) {// si l'edition existe
+				if (e.getSaison().equals(saison)) {// si l'edition existe
 					editionSaison.add(e);// nous la rajoutons dans la liste editionSaison
 				}
 			}
@@ -225,8 +227,7 @@ public class FFRAG {
 		}
 		return detailClassement;
 	}
-
-
+	
 
 	/**
 	 * La methode insertVoiture permet d'enregistrer une nouvelle voiture en
@@ -249,5 +250,26 @@ public class FFRAG {
 		}
 		return voiture;
 	}
-
+	
+	
+	public ArrayList<Edition> editionAPari() throws ParseException{
+		ArrayList<Edition> editionAPari = new ArrayList<Edition>();
+		Date datedeb = dateformat2.parse("01/10/2017"); //la date qu'on a ¨¦crit manuellement est juste pour qu'on peut tester en donn¨¦es actuelles
+		Calendar dt = Calendar.getInstance();
+		dt.setTime(datedeb);
+		dt.add(Calendar.MONTH, 3);
+		Date datefin = dt.getTime();
+		
+		
+		for(int i = 0; i < this.getListRallye().size(); i++) {
+			for(int j = 0; j < this.getListRallye().get(i).getListeEdition().size(); j++) {
+				Edition edition = this.getListRallye().get(i).getListeEdition().get(j);
+				if(edition.getDateDebER().before(datefin) && datedeb.before(edition.getDateDebER())) {
+					editionAPari.add(edition);
+				}
+			}
+		}
+		return editionAPari;
+	}
+	
 }

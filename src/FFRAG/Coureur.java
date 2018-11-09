@@ -87,7 +87,15 @@ public class Coureur {
 		return titreReporte;
 	}
 	
-	
+	public int titreRemporte() {
+		int titreRemporte = 0;
+		for(int i = 0; i < listParticipation.size(); i++) {
+			if(listParticipation.get(i).getPosition() == 1) {
+				titreRemporte++;
+			}
+		}
+		return titreRemporte;
+	}
 }
 
 

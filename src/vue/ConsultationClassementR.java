@@ -57,7 +57,7 @@ public class ConsultationClassementR extends JFrame {
 	public ConsultationClassementR(FFRAG ffrag) {
 		this.ffrag = ffrag;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 1357, 672);
+		setBounds(100, 100, 1357, 552);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -104,26 +104,6 @@ public class ConsultationClassementR extends JFrame {
 		comboBoxEtape.setBounds(833, 55, 139, 30);
 		contentPane.add(comboBoxEtape);
 		
-		tableFinal = new JTable();
-		tableFinal.setBounds(67, 116, 334, 496);
-		contentPane.add(tableFinal);
-		tableFinal.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Position", "Coureur", "Temps"},
-			},
-			new String[] {
-				"Position", "Coureur", "Temps"
-			}
-		));
-		
-		tableEtape = new JTable();
-		tableEtape.setBounds(494, 116, 385, 496);
-		contentPane.add(tableEtape);
-		
-		tableGeneral = new JTable();
-		tableGeneral.setBounds(898, 116, 385, 496);
-		contentPane.add(tableGeneral);
-		
 		JLabel lblClassementDfinitif = new JLabel("Classement D\u00E9finitif");
 		lblClassementDfinitif.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblClassementDfinitif.setBounds(67, 97, 334, 18);
@@ -138,10 +118,37 @@ public class ConsultationClassementR extends JFrame {
 		lblClassementGnral.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblClassementGnral.setBounds(898, 96, 334, 18);
 		contentPane.add(lblClassementGnral);
+		
+		JScrollPane scrollPane_Definitif = new JScrollPane();
+		scrollPane_Definitif.setBounds(57, 116, 351, 364);
+		contentPane.add(scrollPane_Definitif);
+		
+		tableFinal = new JTable();
+		tableFinal.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Position", "Coureur", "Temps"
+			}
+		));
 		tableFinal.getColumnModel().getColumn(0).setResizable(false);
-		tableFinal.getColumnModel().getColumn(0).setPreferredWidth(75);
 		tableFinal.getColumnModel().getColumn(1).setResizable(false);
 		tableFinal.getColumnModel().getColumn(1).setPreferredWidth(145);
+		scrollPane_Definitif.setViewportView(tableFinal);
+		
+		JScrollPane scrollPane_Etape = new JScrollPane();
+		scrollPane_Etape.setBounds(482, 113, 397, 367);
+		contentPane.add(scrollPane_Etape);
+		
+		tableEtape = new JTable();
+		scrollPane_Etape.setViewportView(tableEtape);
+		
+		JScrollPane scrollPane_General = new JScrollPane();
+		scrollPane_General.setBounds(898, 116, 385, 364);
+		contentPane.add(scrollPane_General);
+		
+		tableGeneral = new JTable();
+		scrollPane_General.setViewportView(tableGeneral);
 		
 		comboBoxRallye.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
@@ -151,7 +158,7 @@ public class ConsultationClassementR extends JFrame {
 				for(int i = 1; i <= choix.getListeEdition().size(); i++) {
 					listEdition[i] = ""+choix.getListeEdition().get(i-1).getNoEdition();
 				}
-				comboBoxEdition.setModel(new DefaultComboBoxModel(listEdition));				
+				comboBoxEdition.setModel(new DefaultComboBoxModel(listEdition));
 			}
 		});
 		
@@ -169,17 +176,14 @@ public class ConsultationClassementR extends JFrame {
 					choix.calculerClassement(finalEtape);
 					ArrayList<HashMap.Entry<Participant, Integer>> classementDefinitif = choix.getClassementGeneral();
 					
-					Object[][] classement = new Object[choix.getClassementGeneral().size()+1][3];
-					classement[0][0] = "Position";
-					classement[0][1] = "Coureur";
-					classement[0][2] = "Temps";
+					Object[][] classement = new Object[choix.getClassementGeneral().size()][3];
 					
 					for(int i=0;i<choix.getClassementGeneral().size();i++) {
-						classement[i+1][0] = classementDefinitif.get(i).getKey().getPosition();					
-						classement[i+1][1] = "" + classementDefinitif.get(i).getKey().getCoureur().getPrenomCoureur() + " " + classementDefinitif.get(i).getKey().getCoureur().getNomCoureur();
+						classement[i][0] = classementDefinitif.get(i).getKey().getPosition();					
+						classement[i][1] = "" + classementDefinitif.get(i).getKey().getCoureur().getPrenomCoureur() + " " + classementDefinitif.get(i).getKey().getCoureur().getNomCoureur();
 						Courir t = new Courir(0,0,0,0);
 						t.setMilleSeconde(classementDefinitif.get(i).getKey().getTempsFinal());
-						classement[i+1][2] = t.getTemps();
+						classement[i][2] = t.getTemps();
 					}
 					tableFinal.setModel(new DefaultTableModel(
 							classement,
@@ -192,6 +196,7 @@ public class ConsultationClassementR extends JFrame {
 					tableFinal.getColumnModel().getColumn(0).setPreferredWidth(75);
 					tableFinal.getColumnModel().getColumn(1).setResizable(false);
 					tableFinal.getColumnModel().getColumn(1).setPreferredWidth(145);
+					scrollPane_Definitif.setViewportView(tableFinal);
 		
 				}
 			}
@@ -210,17 +215,14 @@ public class ConsultationClassementR extends JFrame {
 					
 					ArrayList<HashMap.Entry<Participant, Integer>> classementEtape = etape.getClassementEtape();
 					
-					Object[][] classement = new Object[etape.getClassementEtape().size()+1][3];
-					classement[0][0] = "Position";
-					classement[0][1] = "Coureur";
-					classement[0][2] = "Temps";
+					Object[][] classement = new Object[etape.getClassementEtape().size()][3];
 					
 					for(int i=0;i<classementEtape.size();i++) {
-						classement[i+1][0] = i+1;					
-						classement[i+1][1] = "" + classementEtape.get(i).getKey().getCoureur().getPrenomCoureur() + " " + classementEtape.get(i).getKey().getCoureur().getNomCoureur();
+						classement[i][0] = i+1;					
+						classement[i][1] = "" + classementEtape.get(i).getKey().getCoureur().getPrenomCoureur() + " " + classementEtape.get(i).getKey().getCoureur().getNomCoureur();
 						Courir t = new Courir(0,0,0,0);
 						t.setMilleSeconde(classementEtape.get(i).getValue());
-						classement[i+1][2] = t.getTemps();
+						classement[i][2] = t.getTemps();
 					}
 					tableEtape.setModel(new DefaultTableModel(
 							classement,
@@ -238,17 +240,14 @@ public class ConsultationClassementR extends JFrame {
 					edition.calculerClassement(etape.getCodeEtape());
 					ArrayList<HashMap.Entry<Participant, Integer>> classementGeneral = edition.getClassementGeneral();
 					
-					Object[][] classementG = new Object[edition.getClassementGeneral().size()+1][3];
-					classementG[0][0] = "Position";
-					classementG[0][1] = "Coureur";
-					classementG[0][2] = "Temps";
+					Object[][] classementG = new Object[edition.getClassementGeneral().size()][3];
 					
 					for(int i = 0; i < edition.getClassementGeneral().size();i++) {
-						classementG[i+1][0] = i+1;					
-						classementG[i+1][1] = "" + classementGeneral.get(i).getKey().getCoureur().getPrenomCoureur() + " " + classementGeneral.get(i).getKey().getCoureur().getNomCoureur();
+						classementG[i][0] = i+1;					
+						classementG[i][1] = "" + classementGeneral.get(i).getKey().getCoureur().getPrenomCoureur() + " " + classementGeneral.get(i).getKey().getCoureur().getNomCoureur();
 						Courir t = new Courir(0,0,0,0);
 						t.setMilleSeconde(classementGeneral.get(i).getValue());
-						classementG[i+1][2] = t.getTemps();
+						classementG[i][2] = t.getTemps();
 					}
 					tableGeneral.setModel(new DefaultTableModel(
 							classementG,
@@ -261,6 +260,8 @@ public class ConsultationClassementR extends JFrame {
 					tableGeneral.getColumnModel().getColumn(0).setPreferredWidth(75);
 					tableGeneral.getColumnModel().getColumn(1).setResizable(false);
 					tableGeneral.getColumnModel().getColumn(1).setPreferredWidth(145);
+					scrollPane_General.setViewportView(tableGeneral);
+					scrollPane_Etape.setViewportView(tableEtape);
 					
 				}
 			}

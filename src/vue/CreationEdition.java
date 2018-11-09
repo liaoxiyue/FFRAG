@@ -58,7 +58,7 @@ public class CreationEdition extends JFrame {
 	public CreationEdition(FFRAG ffrag) {
 		this.ffrag = ffrag;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 478, 751);
+		setBounds(100, 100, 478, 579);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -160,12 +160,12 @@ public class CreationEdition extends JFrame {
 		
 		JButton btnEnregistrer = new JButton("Enregistrer");
 		btnEnregistrer.setFont(new Font("Calibri", Font.BOLD, 15));
-		btnEnregistrer.setBounds(20, 663, 115, 30);
+		btnEnregistrer.setBounds(20, 494, 115, 30);
 		contentPane.add(btnEnregistrer);
 		
 		JButton btnAnnuler = new JButton("Annuler");
 		btnAnnuler.setFont(new Font("Calibri", Font.BOLD, 15));
-		btnAnnuler.setBounds(182, 663, 115, 30);
+		btnAnnuler.setBounds(182, 494, 115, 30);
 		contentPane.add(btnAnnuler);
 		
 		JButton btnAjouterEtape = new JButton("Ajouter Etape");
@@ -177,8 +177,7 @@ public class CreationEdition extends JFrame {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"Etape", "Distance", "Difficult¨¦"},
-				{new Integer(1), null, null},
+				{"1", "", ""},
 			},
 			new String[] {
 				"Etape", "Distance", "Difficult\u00E9"
@@ -187,9 +186,9 @@ public class CreationEdition extends JFrame {
 		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{comboBoxRallye, lblCrerUnNouveau, textFieldSaison, comboBoxDebAnnee, comboBoxDebMois, comboBoxDebJour, comboBoxFinAnnee, comboBoxFinMois, comboBoxFinJour, lblRallye, lblSaison, lblCrationEdition, lblDateDeFin, lblDateDeDbut}));
 	
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(23, 233, 257, 420);
+		scrollPane.setBounds(23, 233, 257, 253);
 		contentPane.add(scrollPane);
-		scrollPane.setColumnHeaderView(table);
+		scrollPane.setViewportView(table);
 		
 		JButton btnSupprimerEtape = new JButton("Supprimer Etape");
 		btnSupprimerEtape.setFont(new Font("Calibri", Font.PLAIN, 10));
@@ -379,7 +378,7 @@ public class CreationEdition extends JFrame {
 				Rallye rallye = ffrag.getRallye(comboBoxRallye.getSelectedItem().toString());
 				rallye.organiser(rallye.getListeEdition().size()+1, deb, fin, saison);
 				Edition edition = rallye.getListeEdition().get(rallye.getListeEdition().size()-1);
-				for(int i = 1; i < table.getRowCount(); i++) {
+				for(int i = 0; i < table.getRowCount(); i++) {
 					int noEtape = Integer.valueOf(table.getValueAt(i, 0).toString());
 					int distance = Integer.valueOf(table.getValueAt(i, 1).toString());
 					int difficulte = Integer.valueOf(table.getValueAt(i, 2).toString());
@@ -405,9 +404,10 @@ public class CreationEdition extends JFrame {
 				Vector<String[]> dataVector=new Vector<String[]>();
 				((DefaultTableModel) table.getModel()).addRow(dataVector);
 				int count=table.getRowCount();
-				table.getModel().setValueAt(count-1, count-1, 0);
+				table.getModel().setValueAt(count, count-1, 0);
 				table.requestFocus();
 				table.setRowSelectionInterval(count-1, count-1);
+				scrollPane.setViewportView(table);
 			}
 		});
 		
@@ -417,6 +417,7 @@ public class CreationEdition extends JFrame {
 				if (count != 1){
 					((DefaultTableModel) table.getModel()).removeRow(count-1);
 				}
+				scrollPane.setViewportView(table);
 			}
 		});
 	}

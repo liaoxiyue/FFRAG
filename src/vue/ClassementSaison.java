@@ -28,6 +28,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.awt.event.ItemEvent;
+import javax.swing.JScrollPane;
 
 public class ClassementSaison extends JFrame {
 
@@ -59,7 +60,7 @@ public class ClassementSaison extends JFrame {
 	public ClassementSaison(FFRAG ffrag) {
 		this.ffrag = ffrag;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 933, 901);
+		setBounds(100, 100, 933, 580);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -80,11 +81,13 @@ public class ClassementSaison extends JFrame {
 		cBoxSaison.setBounds(147, 72, 103, 24);
 		contentPane.add(cBoxSaison);
 		
+		JScrollPane scrollPane_Saison = new JScrollPane();
+		scrollPane_Saison.setBounds(28, 103, 408, 402);
+		contentPane.add(scrollPane_Saison);
+		
 		tableSaison = new JTable();
 		tableSaison.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"Coureur", "Nombre de participation", "Meilleur position"},
-				{null, null, null},
 			},
 			new String[] {
 				"Coureur", "NbPart", "MeilleurP"
@@ -94,41 +97,81 @@ public class ClassementSaison extends JFrame {
 		tableSaison.getColumnModel().getColumn(1).setResizable(false);
 		tableSaison.getColumnModel().getColumn(1).setPreferredWidth(147);
 		tableSaison.getColumnModel().getColumn(2).setPreferredWidth(114);
-		tableSaison.setBounds(44, 103, 393, 729);
-		contentPane.add(tableSaison);
+		scrollPane_Saison.setViewportView(tableSaison);
+		
+		JScrollPane scrollPane_Detail = new JScrollPane();
+		scrollPane_Detail.setBounds(484, 103, 399, 402);
+		contentPane.add(scrollPane_Detail);
 		
 		tableDetail = new JTable();
+		
 		tableDetail.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
 			},
 			new String[] {
 				"Rallye", "Position", "Temps"
 			}
 		));
 		tableDetail.getColumnModel().getColumn(0).setResizable(false);
-		tableDetail.getColumnModel().getColumn(0).setPreferredWidth(164);
+		tableDetail.getColumnModel().getColumn(0).setPreferredWidth(140);
 		tableDetail.getColumnModel().getColumn(2).setResizable(false);
-		tableDetail.setBounds(490, 103, 376, 729);
-		contentPane.add(tableDetail);
+		scrollPane_Detail.setViewportView(tableDetail);
+		
+		tableSaison.addMouseListener((new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int col = tableSaison.getSelectedColumn();
+				int row = tableSaison.getSelectedRow();
+				String nomCoureur = tableSaison.getValueAt(row, col).toString();
+				String nom = "";
+				String prenom = "";
+				nom = nomCoureur.substring(nomCoureur.lastIndexOf(" ")+1);
+				prenom = nomCoureur.substring(0, nomCoureur.lastIndexOf(" "));
+				Coureur coureur = ffrag.confirmeCoureur(nom, prenom);
+				HashMap<Rallye, Participant> detail = ffrag.getDetailSaison(coureur, saison);
+				int ligne = detail.size();
+				Object[][] listDetail = new Object[ligne][3]; 
+				
+				int index = 0;
+				for(Rallye r : detail.keySet()) {
+					listDetail[index][0] = r.getNomRallye();
+					listDetail[index][1] = detail.get(r).getPosition();
+					Courir c = new Courir(0,0,0,0);
+					c.setMilleSeconde(detail.get(r).getTempsFinal());
+					listDetail[index][2] = c.getTemps();
+					index ++;
+											
+				}
+				
+				tableDetail.setModel(new DefaultTableModel(
+						listDetail,
+						new String[] {
+								"Rallye", "Position", "Temps"
+						}
+						));
+				tableDetail.getColumnModel().getColumn(0).setResizable(false);
+				tableDetail.getColumnModel().getColumn(0).setPreferredWidth(140);
+				tableDetail.getColumnModel().getColumn(2).setResizable(false);
+				contentPane.add(tableDetail);
+				scrollPane_Detail.setViewportView(tableDetail);
+
+			}
+		}));
 		
 		cBoxSaison.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if(ItemEvent.SELECTED == e.getStateChange()) {
 					saison = cBoxSaison.getSelectedItem().toString();
-					int nbLigne = 1;
+					int nbLigne = 0;
 					for(Coureur coureur : ffrag.getListCoureur()) {
 						if(ffrag.getNbPartSaison(coureur, saison) != 0) {
 							nbLigne ++;
 						}
 					}
-					
 					Object[][] list = new Object[nbLigne][3];
-					list[0][0] = "Coureur";
-					list[0][1] = "Nombre de participation";
-					list[0][2] = "Meilleur position";
+
 					int index = 0;
-					for(int i = 1; i < nbLigne; i++) {
+					for(int i = 0; i < nbLigne; i++) {
 						for(int j = index; j < ffrag.getListCoureur().size(); j++) {
 							Coureur coureur = ffrag.getListCoureur().get(j);
 							int nbPart = ffrag.getNbPartSaison(coureur, saison);
@@ -152,53 +195,10 @@ public class ClassementSaison extends JFrame {
 					tableSaison.getColumnModel().getColumn(1).setPreferredWidth(147);
 					tableSaison.getColumnModel().getColumn(2).setPreferredWidth(114);
 					contentPane.add(tableSaison);
+					scrollPane_Saison.setViewportView(tableSaison);
 				}
 			}
 		});
-		
-		tableSaison.addMouseListener((new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int col = tableSaison.getSelectedColumn();
-				int row = tableSaison.getSelectedRow();
-				if(col == 0 && row != 0) {
-					String nomCoureur = tableSaison.getValueAt(row, col).toString();
-					String nom = "";
-					String prenom = "";
-					nom = nomCoureur.substring(nomCoureur.lastIndexOf(" ")+1);
-					prenom = nomCoureur.substring(0, nomCoureur.lastIndexOf(" "));
-					Coureur coureur = ffrag.confirmeCoureur(nom, prenom);
-					HashMap<Rallye, Participant> detail = ffrag.getDetailSaison(coureur, saison);
-					int ligne = detail.size()+1;
-					Object[][] listDetail = new Object[ligne][3]; 
-					listDetail[0][0] = "Rallye";
-					listDetail[0][1] = "Position";
-					listDetail[0][2] = "Temps";
-					
-					int index = 1;
-					for(Rallye r : detail.keySet()) {
-						listDetail[index][0] = r.getNomRallye();
-						listDetail[index][1] = detail.get(r).getPosition();
-						Courir c = new Courir(0,0,0,0);
-						c.setMilleSeconde(detail.get(r).getTempsFinal());
-						listDetail[index][2] = c.getTemps();
-						index ++;
-												
-					}
-					
-					tableDetail.setModel(new DefaultTableModel(
-							listDetail,
-							new String[] {
-									"Coureur", "Nombre de participation", "Meilleur position"
-							}
-							));
-					tableDetail.getColumnModel().getColumn(0).setResizable(false);
-					tableDetail.getColumnModel().getColumn(0).setPreferredWidth(164);
-					tableDetail.getColumnModel().getColumn(2).setResizable(false);
-					contentPane.add(tableDetail);
-				}
-			}
-		}));
 	}
 }
 
