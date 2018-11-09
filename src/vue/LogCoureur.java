@@ -101,13 +101,21 @@ public class LogCoureur extends JFrame {
 					
 				}
 				else {
-					System.out.println("Pas de info dans BD, contactez les organisateurs ou les agences.");
+					dispose();
+					EventQueue.invokeLater(new Runnable() {
+						public void run() {
+							try {
+								CoureurIns frame = new CoureurIns(ffrag);
+								frame.setVisible(true);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					});
 				}
 			}
 		});
 		btnNewButton.setBounds(151, 162, 113, 27);
 		contentPane.add(btnNewButton);
-		
-		
 	}
 }

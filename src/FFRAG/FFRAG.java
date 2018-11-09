@@ -10,7 +10,7 @@ public class FFRAG {
 	private ArrayList<Rallye> listRallye;
 	private ArrayList<Coureur> listCoureur;
 	private ArrayList<Voiture> listVoiture;
-	//private ArrayList<Paris> listParis;
+	private ArrayList<Parieur> listParieur;
 	private String csvPath;
 	SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -22,7 +22,7 @@ public class FFRAG {
 		this.listRallye = new ArrayList<Rallye>();
 		this.listCoureur = new ArrayList<Coureur>();
 		this.listVoiture = new ArrayList<Voiture>();
-		//this.listParis = new ArrayList<Paris>();
+		this.listParieur = new ArrayList<Parieur>();
 		this.csvPath = path;
 	}
 
@@ -36,6 +36,10 @@ public class FFRAG {
 
 	public String getCsvPath() {
 		return csvPath;
+	}
+	
+	public ArrayList<Parieur> getListParieur() {
+		return listParieur;
 	}
 
 	public ArrayList<Coureur> getListCoureur() {
@@ -98,7 +102,7 @@ public class FFRAG {
 		}
 		return rallye;
 	}
-
+	
 	/**
 	 * La methode confirmeCoureur permet de savoir si un coureur existe dans les
 	 * registres de la FFRAG Si le courreur existe la methode retourne son nom et

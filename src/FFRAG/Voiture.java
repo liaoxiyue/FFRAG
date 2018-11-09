@@ -7,7 +7,6 @@ package FFRAG;
 public class Voiture {
 	private String modele;
 	private int puissanceV;
-	private Parametres coefV = new Parametres();
 	private int poids;
 	private int adherence;
 
@@ -55,7 +54,7 @@ public class Voiture {
 	 * qui est determine dans la classe Parametres
 	 */
 	public float getCoef() {
-		float coefV = 1 + (puissanceV - 250) / 25 * this.coefV.getCoefCorrectifV();
+		float coefV = (float) (1 + (puissanceV - 250) / (25 * 0.05));
 		return coefV;
 	}
 

@@ -118,6 +118,8 @@ public class Edition {
 		for(Participant p : listPart) {
 			if (listEtape.get(etape-1).validerClassement(p)) {
 				listTempsGeneral.put(p, null);
+			}else {
+				listTempsGeneral.remove(p);
 			}
 		}
 		
@@ -148,8 +150,8 @@ public class Edition {
 			}
 		});
 		if(etape == this.listEtape.size()) {
-			this.setTempFinal();
 			this.setClassementDefinitif(classementGeneral);
+			this.setTempFinal();
 		}
 	}
 	
@@ -159,11 +161,11 @@ public class Edition {
 	 * La methode setTempFinal permet d'elaborer le classement definitif (quand la derni¨¨re etape de l'edition est terminee).
 	 */
 	public void setTempFinal() {
-		for(int i = 0; i < classementGeneral.size(); i++) {
-			int temps = classementGeneral.get(i).getValue();
+		for(int i = 0; i < classementDefinitif.size(); i++) {
+			int temps = classementDefinitif.get(i).getValue();
 			int position = i + 1;
-			classementGeneral.get(i).getKey().setTempsFinal(temps);
-			classementGeneral.get(i).getKey().setPosition(position);
+			classementDefinitif.get(i).getKey().setTempsFinal(temps);
+			classementDefinitif.get(i).getKey().setPosition(position);
 			int point = 0;
 			switch (position) {
 				case 1 : point = 25; break;
@@ -178,7 +180,7 @@ public class Edition {
 				case 10 : point = 1; break;
 				default : point = 0; break;
 			}
-			classementGeneral.get(i).getKey().setPoint(point);
+			classementDefinitif.get(i).getKey().setPoint(point);
 		}
 	}
 	
@@ -190,8 +192,8 @@ public class Edition {
 	 */
 	public Participant getChampion() {
 		Participant champion = null;
-		if (classementGeneral.size()>0){
-			champion = classementGeneral.get(0).getKey();
+		if (classementDefinitif.size()>0){
+			champion = classementDefinitif.get(0).getKey();
 		}
 		return champion;
 	}

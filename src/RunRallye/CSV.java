@@ -1,19 +1,10 @@
 package RunRallye;
 
 import java.io.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.text.*;
 import java.util.*;
 
-import FFRAG.Coureur;
-import FFRAG.Courir;
-import FFRAG.Edition;
-import FFRAG.Etape;
-import FFRAG.FFRAG;
-import FFRAG.Participant;
-import FFRAG.Rallye;
-import FFRAG.Voiture;
-import javafx.scene.input.DataFormat;
+import FFRAG.*;
 
 public class CSV {
 	
@@ -182,7 +173,6 @@ public class CSV {
 					ligneCld.add(String.valueOf(e.getClassementDefinitif().indexOf(cd)+1));
 					ligneCld.add(cd.getKey().getCoureur().getPrenomCoureur());
 					ligneCld.add(cd.getKey().getCoureur().getNomCoureur());
-					System.out.println("---111--");
 					ligneCld.add(cd.getKey().getVoiture().getModele());
 					Courir temps = new Courir(0,0,0,0);
 					temps.setMilleSeconde(cd.getValue());
@@ -213,13 +203,58 @@ public class CSV {
 					ligneEtape.add(String.valueOf(e.getListEtape().indexOf(et)+1));
 					ligneEtape.add(String.valueOf(et.getDistanceEtape()));
 					ligneEtape.add(String.valueOf(et.getDifficulte()));
-					infoE.add(ligneEtape);					}
-					CSV infoEtape = new CSV();
-					infoEtape.Array2CSV(infoE, path+r.getNomRallye()+"_"+e.getNoEdition()+"_Etape.csv");
+					infoE.add(ligneEtape);					
+					}
+				CSV infoEtape = new CSV();
+				infoEtape.Array2CSV(infoE, path+r.getNomRallye()+"_"+e.getNoEdition()+"_Etape.csv");
 				}
 			}
 		}
+	public static void enregistreParieur(FFRAG ffrag, String path) {
+		ArrayList<ArrayList<String>> infoP = new ArrayList<ArrayList<String>>();
+		ArrayList<String> ligneTitre = new ArrayList<String>();
+		ligneTitre.add("Nom");
+		ligneTitre.add("Prenom");
+		ligneTitre.add("Tel");
+		ligneTitre.add("Ville");
+		ligneTitre.add("Pays");
+		ligneTitre.add("Email");
+		ligneTitre.add("Mdp");
+		infoP.add(ligneTitre);
+		for(Parieur p:ffrag.getListParieur()) {
+			ArrayList<String> ligneParieur = new ArrayList<String>();
+			ligneParieur.add(p.getNom());
+			ligneParieur.add(p.getPrenom());
+			ligneParieur.add(p.getTel());
+			ligneParieur.add(p.getVille());
+			ligneParieur.add(p.getPays());
+			ligneParieur.add(p.getMail());
+			ligneParieur.add(p.getMdp());
+			infoP.add(ligneParieur);	
+		}
+		CSV csv = new CSV();
+		csv.Array2CSV(infoP, path+"Parieur.csv");
+	}
 	
+	public static void enregistreParis(FFRAG ffrag, String path) {
+		for (Parieur p: ffrag.getListParieur()) {
+			ArrayList<ArrayList<String>> infoP = new ArrayList<ArrayList<String>>();
+			ArrayList<String> ligneTitre = new ArrayList<String>();
+			ligneTitre.add("Edition");
+			ligneTitre.add("Coureur");
+			ligneTitre.add("Mise");
+			infoP.add(ligneTitre);
+			for (Paris ps: p.getListParis()) {
+				ArrayList<String> ligneP = new ArrayList<String>();
+				ligneP.add(ps.getParticipant().getCoureur().getNomCoureur()+" "+ps.getParticipant().getCoureur().getPrenomCoureur());
+				ligneP.add(ps.getEditionConcerne().getRallye().getNomRallye()+"_"+ps.getEditionConcerne().getNoEdition());
+				ligneP.add(String.valueOf(ps.getMise()));
+				infoP.add(ligneP);					
+				}
+			CSV csv = new CSV();
+			csv.Array2CSV(infoP, path+"paris/"+p.getNom()+"_"+p.getPrenom()+"_"+"_Paris.csv");
+			}
+	}
 	public static void enregistreFFRAG(FFRAG ffrag, String path) {
 		enregistreRallye(ffrag,path);
 		enregistreEdition(ffrag,path);
@@ -227,6 +262,8 @@ public class CSV {
         enregistreVoiture(ffrag,path);
         enregistreClassementDefinitif(ffrag,path);
         enregistreInfoEtape(ffrag,path);
+        enregistreParieur(ffrag,path);
+        enregistreParis(ffrag,path);
 	}
 
 	public static void enregistreNouveauRallye(FFRAG ffrag, String path, Rallye r) throws FileNotFoundException {
@@ -260,8 +297,8 @@ public class CSV {
 		csv.Array2CSV(infoE, path+r.getNomRallye()+"_"+e.getNoEdition()+"_Etape.csv");
 	}
 
-	public static void readCoureur(String path, String fichier, FFRAG ffrag) throws ParseException {
-		String pathCSV = path + fichier;
+	public static void readCoureur(FFRAG ffrag) throws ParseException {
+		String pathCSV = ffrag.getCsvPath()+"Coureurs.csv";
 		SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
 		CSV csv = new CSV();
 		ArrayList<ArrayList<String>> coureur = new ArrayList<ArrayList<String>>();
@@ -276,20 +313,28 @@ public class CSV {
 		}
 	}
 	
-	public static void readToutsClassements(FFRAG ffrag) {
-		  File file=new File(ffrag.getCsvPath()+"/classement");
-		  File[] tempList = file.listFiles();
-		  //System.out.println("nbFiche£º"+tempList.length);
-		  for (int i = 0; i < tempList.length; i++) {
-		   if (tempList[i].isFile()) {
-
-			   System.out.println("Fiche£º"+tempList[i]);
+	public static void readToutsEtape(FFRAG ffrag) throws ParseException {
+		  File file=new File(ffrag.getCsvPath()+"etape/");
+		  File[] etapeList = file.listFiles();
+		  for (int i = 0; i < etapeList.length; i++) {
+		   if (etapeList[i].isFile()) {
+			   readEtape(ffrag.getCsvPath()+"etape/",etapeList[i].getName(),ffrag);
+		   }
+		  }
+	}
+	
+	public static void readToutsTempsEtape(FFRAG ffrag) throws ParseException {
+		  File file=new File(ffrag.getCsvPath()+"tempsEtape/");
+		  File[] tempsEtapeList = file.listFiles();
+		  for (int i = 0; i < tempsEtapeList.length; i++) {
+		   if (tempsEtapeList[i].isFile()) {
+			   readEtapeTemps(ffrag.getCsvPath()+"tempsEtape/",tempsEtapeList[i].getName(),ffrag);
 		   }
 		  }
 	}
 
-	public static void readEdition(String path, String fichier, FFRAG ffrag) throws ParseException {
-		String pathCSV = path + fichier;
+	public static void readEdition( FFRAG ffrag) throws ParseException {
+		String pathCSV = ffrag.getCsvPath()+"Edition.csv";
 		SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
 		CSV csv = new CSV();
 		ArrayList<ArrayList<String>> edition = new ArrayList<ArrayList<String>>();
@@ -322,8 +367,8 @@ public class CSV {
 		}
 	}
 	
-	public static void readVoiture(String path, String fichier, FFRAG ffrag){
-		String pathCSV = path + fichier;
+	public static void readVoiture(FFRAG ffrag){
+		String pathCSV = ffrag.getCsvPath()+"Voiture.csv";
 		CSV csv = new CSV();
 		ArrayList<ArrayList<String>> voiture = new ArrayList<ArrayList<String>>();
 		voiture = csv.CSV2Array(pathCSV);
@@ -336,8 +381,8 @@ public class CSV {
 		}
 	}
 	
-	public static void readRallye(String path, String fichier, FFRAG ffrag){
-		String pathCSV = path + fichier;
+	public static void readRallye(FFRAG ffrag){
+		String pathCSV = ffrag.getCsvPath()+"Rallye.csv";
 		CSV csv = new CSV();
 		ArrayList<ArrayList<String>> rallye = new ArrayList<ArrayList<String>>();
 		rallye = csv.CSV2Array(pathCSV);
@@ -346,6 +391,23 @@ public class CSV {
 			String pays = rallye.get(i).get(2);
 			String ville = rallye.get(i).get(1);
 			ffrag.creationRallye(nomRallye, ville, pays);
+		}
+	}
+	
+	public static void readParieur(FFRAG ffrag){
+		String pathCSV = ffrag.getCsvPath()+"Parieur.csv";
+		CSV csv = new CSV();
+		ArrayList<ArrayList<String>> parieur = new ArrayList<ArrayList<String>>();
+		parieur = csv.CSV2Array(pathCSV);
+		for(int i = 0; i < parieur.size(); i++){
+			String nom = parieur.get(i).get(0);
+			String prenom = parieur.get(i).get(1);
+			String tel = parieur.get(i).get(2);
+			String ville = parieur.get(i).get(3);
+			String pays = parieur.get(i).get(4);
+			String mail = parieur.get(i).get(5);
+			String mdp = parieur.get(i).get(6);
+			ffrag.getListParieur().add(new Parieur(nom, prenom,tel, ville, pays, mail, mdp));
 		}
 	}
 	
@@ -388,30 +450,30 @@ public class CSV {
 			edition.organiserPart(part);
 		}
 			
-			
 		//Enregistrer temps des coureurs
 		for(int j = 0; j < edition.getListEtape().size(); j++) {
 			for(int i = 0; i < pilot.size(); i++) {
 				//recuperer le temps
-				int heur = 0;
-				int min = 0;
-				int seconde = 0;
-				int milleseconde = 0;
-				String tempsString = pilot.get(i).get(j+4);
-				if (tempsString != null) {
+				if(pilot.get(i).size() > j + 4) {
+					String tempsString = pilot.get(i).get(j+4);
 					String[] tempsSplit = tempsString.split(":");
-					heur = Integer.parseInt(tempsSplit[0]);
-					min = Integer.parseInt(tempsSplit[1]);
-					seconde = Integer.parseInt(tempsSplit[2]);
+					int heur = Integer.parseInt(tempsSplit[0]);
+					int min = Integer.parseInt(tempsSplit[1]);
+					int seconde = Integer.parseInt(tempsSplit[2]);
+					edition.getListEtape().get(j).enregistreTemp(edition.getListPart().get(i), heur, min, seconde, 0);
 				}
-				else {
-					heur = 0;
-					min = 0;
-					seconde = 0;
-				}
-				edition.getListEtape().get(j).enregistreTemp(edition.getListPart().get(i), heur, min, seconde, milleseconde);;
 			}
 		}
+	}
+	
+	public static void readFFRAG(FFRAG ffrag, String path) throws ParseException {
+		readCoureur(ffrag);
+		readVoiture(ffrag);
+		readRallye(ffrag);
+		readEdition(ffrag);
+		readToutsEtape(ffrag);
+		readToutsTempsEtape(ffrag);
+		readParieur(ffrag);
 	}
 }
 
