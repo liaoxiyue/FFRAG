@@ -10,7 +10,6 @@ import FFRAG.Edition;
 import FFRAG.Etape;
 
 public class Paris {
-	
 		private Participant participant;
 	    private int mise;
 	    private Edition editionConcerne;
@@ -24,13 +23,11 @@ public class Paris {
 	     * @param coureurmise
 	     * @param editionc
 	     */
-	    
 	    public Paris(int montantmise, Participant participantmise, Edition editionc){
 	            this.participant = participantmise;
 	            this.editionConcerne = editionc;
 	            this.mise = montantmise;
 	    }
-
 		public Participant getParticipant() {
 			return participant;
 		}
@@ -46,6 +43,7 @@ public class Paris {
 		public static double getBeneficeffrag() {
 			return beneficeffrag;
 		}
+
 
 	    /**
 	     * Cette fonction bingo permet de voir si la personne sur qui nous avons
@@ -83,16 +81,5 @@ public class Paris {
 	        return gainsEd * 0.85;
 
 	    }
-
-
 }
-
-
-
-
-
-
-
-
-
 

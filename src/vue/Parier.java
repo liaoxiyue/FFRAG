@@ -37,6 +37,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
 public class Parier extends JFrame {
 
 	private JPanel contentPane;
@@ -52,6 +53,9 @@ public class Parier extends JFrame {
 	 * Launch the application.
 	 */
 	/*public static void main(String[] args) {
+=======
+	public static void main(String[] args) {
+>>>>>>> b742ef2b4250920bcd46755ec841d4cbf0643d16
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -63,6 +67,7 @@ public class Parier extends JFrame {
 			}
 		});
 	}
+<<<<<<< HEAD
 	*/
 
 	/**

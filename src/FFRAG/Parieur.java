@@ -9,14 +9,20 @@ import java.util.ArrayList;
 public class Parieur {
 	private String nom;
 	private String prenom;
+	private String tel;
 	private String mail;
 	private String mdp;
+	private String ville;
+	private String pays;
 	private ArrayList<Paris> listParis;
 
-	public Parieur(String nom, String prenom, String tel, String mail, String mdp) {
+	public Parieur(String nom, String prenom, String tel, String ville, String pays, String mail, String mdp) {
 		this.nom = nom;
 		this.prenom = prenom;
+		this.tel = tel;
 		this.mail=mail;
+		this.ville = ville;
+		this.pays = pays;
 		this.mdp=mdp;
 		this.listParis = new ArrayList<Paris>();
 	}
@@ -28,9 +34,20 @@ public class Parieur {
 	public String getPrenom() {
 		return prenom;
 	}
-		
+	
+	public String getTel() {
+		return tel;
+	}
 	public String getMail() {
 		return mail;
+	}
+
+	public String getVille() {
+		return ville;
+	}
+
+	public String getPays() {
+		return pays;
 	}
 
 	public String getMdp() {
@@ -41,7 +58,8 @@ public class Parieur {
 		return listParis;
 	}
 	
-	public void parier(Paris paris){ //affecter un pari � ce parieur
+	public void parier(int montantmise, Participant participantmise, Edition editionc){ //affecter un pari � ce parieur
+		Paris paris = new Paris(montantmise, participantmise, editionc);
 		listParis.add(paris);
 	}
 	

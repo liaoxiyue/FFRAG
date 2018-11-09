@@ -73,7 +73,6 @@ public class Etape {
 		
 		Set<HashMap.Entry<Participant, Integer>> entrySet = tabParticipants.entrySet(); 
 		classementEtape = new ArrayList<HashMap.Entry<Participant, Integer>>(entrySet);	
-		//System.out.println(ligneClassement.size());
 		Collections.sort(classementEtape, new Comparator<HashMap.Entry<Participant, Integer>>() { //classer par ordre les participants
 			@Override
 			public int compare(HashMap.Entry<Participant, Integer> c1,

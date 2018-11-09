@@ -75,7 +75,7 @@ public class Bienvenue extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							Organisateurs frame = new Organisateurs(ffrag);
+							LogOrganisateur frame = new LogOrganisateur(ffrag);
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -87,6 +87,25 @@ public class Bienvenue extends JFrame {
 		btnOrganisateur.setFont(new Font("Calibri", Font.BOLD, 15));
 		btnOrganisateur.setBounds(157, 137, 156, 27);
 		contentPane.add(btnOrganisateur);
+		
+		JButton btnParieur = new JButton("Parieur");
+		btnParieur.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							ConnexionParieur frame = new ConnexionParieur(ffrag);
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		btnParieur.setFont(new Font("Calibri", Font.BOLD, 15));
+		btnParieur.setBounds(490, 201, 156, 27);
+		contentPane.add(btnParieur);
 		
 		JLabel lblBienvenuPour = new JLabel("Bienvenue ! ");
 		lblBienvenuPour.setFont(new Font("Eras Bold ITC", Font.PLAIN, 27));
@@ -100,6 +119,8 @@ public class Bienvenue extends JFrame {
 		this.getLayeredPane().add(back, new Integer(Integer.MIN_VALUE));
 		((JPanel)this.getContentPane()).setOpaque(false);
 		contentPane.add(back);
+		
+		
 		
 
 	}
