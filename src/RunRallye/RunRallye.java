@@ -100,17 +100,6 @@ public class RunRallye {
     	}
 
         CSV.enregistreFFRAG(ffrag,ffrag.getCsvPath());
-	     
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Parier frame = new Parier(ffrag);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
     }
 }
 

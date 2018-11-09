@@ -77,16 +77,18 @@ public class ParierFrame extends JFrame {
         Object[][] infoParis = new Object[length][5];
         for(int i = 0; i< length; i++) {
         	Paris p = parieur.getListParis().get(i);
-        	infoParis[i][0]=p.getParticipant().getCoureur();
-        	infoParis[i][1]=p.getEditionConcerne();
+        	infoParis[i][0]=p.getEditionConcerne().getRallye().getNomRallye() + "-" + p.getParticipant().getEdition().getSaison();
+        	infoParis[i][1]=p.getParticipant().getCoureur().getPrenomCoureur() + " " + p.getParticipant().getCoureur().getNomCoureur();
         	infoParis[i][2]=p.getMise();
         	infoParis[i][3]=1;
-        	infoParis[i][4]=p.getGainClassEtape();
+        	String gain = p.getGain();
+        	if(gain == null) {
+        		gain = "en cours";
+        	}
+        	infoParis[i][4]=gain;
         }
         table.setModel(new DefaultTableModel(
-        	new Object[][] {
-        		{null, null, null, null, null},
-        	},
+        		infoParis,
         	new String[] {
         		"Edition", "Pilot", "Mise", "Cotation", "Gain"
         	}

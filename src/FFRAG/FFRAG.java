@@ -269,7 +269,7 @@ public class FFRAG {
 			for(int j = 0; j < this.getListRallye().get(i).getListeEdition().size(); j++) {
 				Edition edition = this.getListRallye().get(i).getListeEdition().get(j);
 				if(edition.getDateDebER().before(datefin) && datedeb.before(edition.getDateDebER())) {
-					editionAPari.add(edition);
+  					editionAPari.add(edition);
 				}
 			}
 		}
