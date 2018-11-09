@@ -24,7 +24,21 @@ public class Rallye {
 		return this.nomRallye;
 	}
 
-	public Coureur getChampionPlusJeune() {	
+	public Coureur getChampionPlusJeune() {
+		Coureur plusJeune = listeEdition.get(0).getChampion().getCoureur();
+		Date nePlusJeune = listeEdition.get(0).getChampion().getCoureur().getDateNaissanceC();
+		for(int i=0; i<listeEdition.size();i++) {
+			if(listeEdition.get(i).getChampion()==null) {
+				
+			}else{
+				Date ne=listeEdition.get(i).getChampion().getCoureur().getDateNaissanceC();
+				if(ne.getTime() > nePlusJeune.getTime()) { 									//on compare en boucle les dates de naissances 
+					nePlusJeune = ne;
+					plusJeune = listeEdition.get(i).getChampion().getCoureur();
+				}
+			}
+		}
+		this.championPlusJeune = plusJeune;
 		return this.championPlusJeune;
 	}
 	public ArrayList<Edition> getListeEdition() {
@@ -48,18 +62,6 @@ public class Rallye {
 	 * Cette m¨¦thode permet de r¨¦cup¨¦rer le champion le plus jeune parmis toutes les ¨¦ditions du rallye
 	 * 
 	 */
-	public void setChampionPlusJeune() {
-		Coureur plusJeune = listeEdition.get(0).getChampion().getCoureur();
-		Date nePlusJeune = listeEdition.get(0).getChampion().getCoureur().getDateNaissanceC();
-		for(int i=0; i<listeEdition.size();i++) {
-			Date ne=listeEdition.get(i).getChampion().getCoureur().getDateNaissanceC();
-			if(ne.getTime() > nePlusJeune.getTime()) { 									//on compare en boucle les dates de naissances 
-				nePlusJeune = ne;
-				plusJeune = listeEdition.get(i).getChampion().getCoureur();
-			}
-		}
-		this.championPlusJeune = plusJeune;
-	}
 
 	/**
 	 * Cette m¨¦thode permet de v¨¦rifier si l'¨¦dition en question existe dans ce rallye

@@ -70,7 +70,7 @@ public class RunRallye {
 	        
 
 
-    	FFRAG ffrag = new FFRAG("src/data/");
+    	FFRAG ffrag = new FFRAG("data/");
     	CSV.readFFRAG(ffrag,ffrag.getCsvPath());
         EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -101,16 +101,6 @@ public class RunRallye {
 
         CSV.enregistreFFRAG(ffrag,ffrag.getCsvPath());
 	     
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Parier frame = new Parier(ffrag);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
     }
 }
 

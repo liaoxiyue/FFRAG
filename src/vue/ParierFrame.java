@@ -50,7 +50,7 @@ public class ParierFrame extends JFrame {
 		this.ffrag=ffrag;
 		this.parieur = parieur;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 538, 368);
+		setBounds(100, 100, 714, 396);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -62,10 +62,20 @@ public class ParierFrame extends JFrame {
 		contentPane.add(lblVosParis);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(31, 79, 436, 187);
+		scrollPane.setBounds(31, 79, 627, 187);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {},
+			new String[] {
+				"Edition", "Pilot", "Mise", "Cotation", "Gain"
+			}
+		));
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(168);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(1).setPreferredWidth(158);
         table.setColumnSelectionAllowed(true);
         table.setGridColor(new java.awt.Color(100, 189, 189));
         table.setCellSelectionEnabled(true);
@@ -77,24 +87,28 @@ public class ParierFrame extends JFrame {
         Object[][] infoParis = new Object[length][5];
         for(int i = 0; i< length; i++) {
         	Paris p = parieur.getListParis().get(i);
-        	infoParis[i][0]=p.getParticipant().getCoureur();
-        	infoParis[i][1]=p.getEditionConcerne();
+        	infoParis[i][0]=p.getEditionConcerne().getRallye().getNomRallye() + "-" + p.getParticipant().getEdition().getSaison();
+        	infoParis[i][1]=p.getParticipant().getCoureur().getPrenomCoureur() + " " + p.getParticipant().getCoureur().getNomCoureur();
         	infoParis[i][2]=p.getMise();
         	infoParis[i][3]=1;
-        	infoParis[i][4]=p.getGainClassEtape();
+        	String gain = p.getGain();
+        	if(gain == null) {
+        		gain = "en cours";
+        	}
+        	infoParis[i][4]=gain;
         }
         table.setModel(new DefaultTableModel(
-        	new Object[][] {
-        		{null, null, null, null, null},
-        	},
+        		infoParis,
         	new String[] {
         		"Edition", "Pilot", "Mise", "Cotation", "Gain"
         	}
         ));
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(168);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(1).setPreferredWidth(158);
         scrollPane.setViewportView(table);
         
-        table = new JTable();
-        scrollPane.setColumnHeaderView(table);
 		
 		JButton btnFaireUnPari = new JButton("faire un pari");
 		btnFaireUnPari.addActionListener(new ActionListener() {
@@ -102,7 +116,7 @@ public class ParierFrame extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							Parier frame = new Parier(ffrag);
+							Parier frame = new Parier(ffrag,parieur);
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -112,7 +126,51 @@ public class ParierFrame extends JFrame {
 			}
 		});
 		btnFaireUnPari.setFont(new Font("Calibri", Font.PLAIN, 15));
-		btnFaireUnPari.setBounds(306, 38, 161, 27);
+		btnFaireUnPari.setBounds(469, 38, 161, 27);
 		contentPane.add(btnFaireUnPari);
+		
+		JButton btnRafraichir = new JButton("rafraichir");
+		btnRafraichir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				table = new JTable();
+		        table.setColumnSelectionAllowed(true);
+		        table.setGridColor(new java.awt.Color(100, 189, 189));
+		        table.setCellSelectionEnabled(true);
+		        table.setFont(new Font("Cambria", Font.PLAIN, 13));
+		        table.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+		        table.setRowHeight(20);
+		        table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		        int length = parieur.getListParis().size();
+		        Object[][] infoParis = new Object[length][5];
+		        for(int i = 0; i< length; i++) {
+		        	Paris p = parieur.getListParis().get(i);
+		        	infoParis[i][0]=p.getEditionConcerne().getRallye().getNomRallye() + "-" + p.getParticipant().getEdition().getSaison();
+		        	infoParis[i][1]=p.getParticipant().getCoureur().getPrenomCoureur() + " " + p.getParticipant().getCoureur().getNomCoureur();
+		        	infoParis[i][2]=p.getMise();
+		        	infoParis[i][3]=1;
+		        	String gain = p.getGain();
+		        	if(gain == null) {
+		        		gain = "en cours";
+		        	}
+		        	infoParis[i][4]=gain;
+		        }
+		        table.setModel(new DefaultTableModel(
+		        		infoParis,
+		        	new String[] {
+		        		"Edition", "Pilot", "Mise", "Cotation", "Gain"
+		        	}
+		        ));
+				table.getColumnModel().getColumn(0).setResizable(false);
+				table.getColumnModel().getColumn(0).setPreferredWidth(168);
+				table.getColumnModel().getColumn(1).setResizable(false);
+				table.getColumnModel().getColumn(1).setPreferredWidth(158);
+		        scrollPane.setViewportView(table);
+			}
+		});
+		btnRafraichir.setFont(new Font("Calibri", Font.PLAIN, 15));
+		btnRafraichir.setBounds(302, 38, 113, 27);
+		contentPane.add(btnRafraichir);
 	}
 }
+
+
