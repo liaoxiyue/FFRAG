@@ -23,7 +23,12 @@ public class Rallye {
 	public String getNomRallye() {
 		return this.nomRallye;
 	}
-
+	
+	
+	/**
+	 * Cette m¨¦thode permet d'obtenir le champion le plus jeune d'un rallye
+	 * @return championPlusJeune : objet Coureur le champion le plus jeune 
+	 */
 	public Coureur getChampionPlusJeune() {
 		Coureur plusJeune = listeEdition.get(0).getChampion().getCoureur();
 		Date nePlusJeune = listeEdition.get(0).getChampion().getCoureur().getDateNaissanceC();
@@ -41,6 +46,7 @@ public class Rallye {
 		this.championPlusJeune = plusJeune;
 		return this.championPlusJeune;
 	}
+	
 	public ArrayList<Edition> getListeEdition() {
 		return listeEdition;
 	}
@@ -57,11 +63,6 @@ public class Rallye {
 		edition.setRallye(this);
 		listeEdition.add(edition);
 	}
-
-	/**
-	 * Cette m¨¦thode permet de r¨¦cup¨¦rer le champion le plus jeune parmis toutes les ¨¦ditions du rallye
-	 * 
-	 */
 
 	/**
 	 * Cette m¨¦thode permet de v¨¦rifier si l'¨¦dition en question existe dans ce rallye

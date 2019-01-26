@@ -74,7 +74,7 @@ public class ConsultationClassementR extends JFrame {
 		comboBoxRallye.setBounds(57, 55, 155, 30);
 		contentPane.add(comboBoxRallye);
 		
-		JLabel lblConsultationClassement = new JLabel("Consultation Classement");
+		JLabel lblConsultationClassement = new JLabel("Consultation classement");
 		lblConsultationClassement.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
 		lblConsultationClassement.setBounds(559, 20, 225, 30);
 		contentPane.add(lblConsultationClassement);
@@ -104,12 +104,12 @@ public class ConsultationClassementR extends JFrame {
 		comboBoxEtape.setBounds(833, 55, 139, 30);
 		contentPane.add(comboBoxEtape);
 		
-		JLabel lblClassementDfinitif = new JLabel("Classement D\u00E9finitif");
+		JLabel lblClassementDfinitif = new JLabel("Classement d\u00E9finitif");
 		lblClassementDfinitif.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblClassementDfinitif.setBounds(67, 97, 334, 18);
 		contentPane.add(lblClassementDfinitif);
 		
-		JLabel lblClassementPattape = new JLabel("Classement pat \u00E9tape");
+		JLabel lblClassementPattape = new JLabel("Classement par \u00E9tape");
 		lblClassementPattape.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblClassementPattape.setBounds(494, 97, 334, 18);
 		contentPane.add(lblClassementPattape);

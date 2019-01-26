@@ -64,7 +64,7 @@ public class CreationEdition extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblCrationEdition = new JLabel("Cr\u00E9ation Edition");
+		JLabel lblCrationEdition = new JLabel("Cr\u00E9ation edition");
 		lblCrationEdition.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
 		lblCrationEdition.setBounds(10, 10, 159, 21);
 		contentPane.add(lblCrationEdition);
@@ -168,7 +168,7 @@ public class CreationEdition extends JFrame {
 		btnAnnuler.setBounds(182, 494, 115, 30);
 		contentPane.add(btnAnnuler);
 		
-		JButton btnAjouterEtape = new JButton("Ajouter Etape");
+		JButton btnAjouterEtape = new JButton("Ajouter ¨¦tape");
 		btnAjouterEtape.setFont(new Font("Calibri", Font.PLAIN, 10));
 		btnAjouterEtape.setBounds(281, 248, 99, 15);
 		contentPane.add(btnAjouterEtape);
@@ -190,7 +190,7 @@ public class CreationEdition extends JFrame {
 		contentPane.add(scrollPane);
 		scrollPane.setViewportView(table);
 		
-		JButton btnSupprimerEtape = new JButton("Supprimer Etape");
+		JButton btnSupprimerEtape = new JButton("Supprimer ¨¦tape");
 		btnSupprimerEtape.setFont(new Font("Calibri", Font.PLAIN, 10));
 		btnSupprimerEtape.setBounds(281, 270, 99, 15);
 		contentPane.add(btnSupprimerEtape);

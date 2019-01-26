@@ -61,7 +61,7 @@ public class ConsultationInfoRallye extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblConsultationInformationsRallye = new JLabel("Consultation Informations Rallye");
+		JLabel lblConsultationInformationsRallye = new JLabel("Consultation informations rallye");
 		lblConsultationInformationsRallye.setBounds(27, 13, 307, 38);
 		lblConsultationInformationsRallye.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
 		contentPane.add(lblConsultationInformationsRallye);
@@ -180,7 +180,7 @@ public class ConsultationInfoRallye extends JFrame {
 				cBoxEdition.setToolTipText("");
 				
 				Object[][] info = new Object[choix.getListeEdition().size()+1][4];
-				info[0][0]="Rallye";info[0][1]="Edition";info[0][2]="Date D\u00E9but";info[0][3]="Date D\u00E9but";
+				info[0][0]="Rallye";info[0][1]="Edition";info[0][2]="Date d\u00E9but";info[0][3]="Date d\u00E9but";
 				for(int i=0;i<choix.getListeEdition().size();i++) {
 					info[i+1][0]=choix.getNomRallye();
 					info[i+1][1]=choix.getListeEdition().get(i).getNoEdition();

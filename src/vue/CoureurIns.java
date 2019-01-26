@@ -58,7 +58,7 @@ public class CoureurIns extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblIncriptionDeCoureur = new JLabel("Incription de Coureur");
+		JLabel lblIncriptionDeCoureur = new JLabel("Incription d'un coureur");
 		lblIncriptionDeCoureur.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
 		lblIncriptionDeCoureur.setBounds(135, 25, 201, 38);
 		contentPane.add(lblIncriptionDeCoureur);

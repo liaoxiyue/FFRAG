@@ -65,12 +65,12 @@ public class CoureurInfoIns extends JFrame {
 		lblNomC.setBounds(144, 40, 297, 30);
 		contentPane.add(lblNomC);
 		
-		JLabel lblInformationsParticipation = new JLabel("Informations participation:");
+		JLabel lblInformationsParticipation = new JLabel("Informations participation :");
 		lblInformationsParticipation.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblInformationsParticipation.setBounds(55, 133, 235, 18);
 		contentPane.add(lblInformationsParticipation);
 		
-		JButton btnNewButton = new JButton("Inscrire un nouveau Rallye");
+		JButton btnNewButton = new JButton("S'inscrire ид un nouveau Rallye");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();

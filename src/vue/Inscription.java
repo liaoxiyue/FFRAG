@@ -61,7 +61,7 @@ public class Inscription extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblInscriptionEdition = new JLabel("Inscription Edition");
+		JLabel lblInscriptionEdition = new JLabel("Inscription edition");
 		lblInscriptionEdition.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
 		lblInscriptionEdition.setBounds(126, 13, 198, 40);
 		contentPane.add(lblInscriptionEdition);

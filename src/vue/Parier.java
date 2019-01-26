@@ -79,7 +79,7 @@ public class Parier extends JFrame {
 		JComboBox comboBoxRallye = new JComboBox();
 		ArrayList<Edition> editionAPari = ffrag.editionAPari();
 		String[] listEdition = new String[editionAPari.size()+1];
-		listEdition[0] = "---Choix de Cours---";
+		listEdition[0] = "---Choix de l'¨¦dition---";
 		for(int i = 0; i < editionAPari.size(); i++) {
 			listEdition[i+1] = editionAPari.get(i).getRallye().getNomRallye() + "-" + editionAPari.get(i).getSaison();
 		}
@@ -87,7 +87,7 @@ public class Parier extends JFrame {
 		comboBoxRallye.setBounds(69, 47, 184, 32);
 		contentPane.add(comboBoxRallye);
 		
-		JLabel lblFaireUnPari = new JLabel("Faire un pari maintenant !");
+		JLabel lblFaireUnPari = new JLabel("Faites vos paris !");
 		lblFaireUnPari.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
 		lblFaireUnPari.setBounds(328, 10, 236, 32);
 		contentPane.add(lblFaireUnPari);
@@ -268,7 +268,7 @@ public class Parier extends JFrame {
 					JOptionPane.showMessageDialog(null, "Vous avez bien plac¨¦ un pari de "
 					+ textField.getText() +" Euro sur " 
 							+coureur.getPrenomCoureur() +" "+coureur.getNomCoureur()
-							+" pour " +edition.getRallye().getNomRallye(), "Bien pari", JOptionPane.INFORMATION_MESSAGE);
+							+" pour l'¨¦dition " +edition.getRallye().getNomRallye(), "Validation du pari", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});

@@ -56,7 +56,7 @@ public class ParierFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblVosParis = new JLabel("Vos Paris");
+		JLabel lblVosParis = new JLabel("Vos paris");
 		lblVosParis.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
 		lblVosParis.setBounds(91, 31, 96, 36);
 		contentPane.add(lblVosParis);
@@ -129,7 +129,7 @@ public class ParierFrame extends JFrame {
 		btnFaireUnPari.setBounds(469, 38, 161, 27);
 		contentPane.add(btnFaireUnPari);
 		
-		JButton btnRafraichir = new JButton("rafraichir");
+		JButton btnRafraichir = new JButton("Mettre ид jour mes paris");
 		btnRafraichir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				table = new JTable();

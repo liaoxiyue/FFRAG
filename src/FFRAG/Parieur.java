@@ -58,6 +58,12 @@ public class Parieur {
 		return listParis;
 	}
 	
+	/**
+	 * cette méthode permet d'enregistrer un nouveau pari dans l'arraylist de ce parieur
+	 * @param montantmise
+	 * @param participantmise
+	 * @param editionc
+	 */
 	public void parier(int montantmise, Participant participantmise, Edition editionc){ //affecter un pari � ce parieur
 		Paris paris = new Paris(montantmise, participantmise, editionc);
 		listParis.add(paris);

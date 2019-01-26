@@ -1,6 +1,4 @@
 package FFRAG;
-import java.util.*;
-
 /**
  * Classe courir permettant de manipuler le temps d'un coureur dans differents formats
  * @author 21203630

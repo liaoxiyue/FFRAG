@@ -62,7 +62,7 @@ public class ClassementProbable extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblConsultationclassementprobale = new JLabel("Consultation Classement Probable");
+		JLabel lblConsultationclassementprobale = new JLabel("Consultation classement probable");
 		lblConsultationclassementprobale.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
 		lblConsultationclassementprobale.setBounds(60, 13, 317, 41);
 		contentPane.add(lblConsultationclassementprobale);
@@ -75,7 +75,7 @@ public class ClassementProbable extends JFrame {
 		JComboBox comboBoxRallye = new JComboBox();
 		ArrayList<Edition> editionAPari = ffrag.editionAPari();
 		String[] listEdition = new String[editionAPari.size()+1];
-		listEdition[0] = "---Choix de Cours---";
+		listEdition[0] = "---Choix de l'¨¦dition---";
 		for(int i = 0; i < editionAPari.size(); i++) {
 			listEdition[i+1] = editionAPari.get(i).getRallye().getNomRallye() + "-" + editionAPari.get(i).getSaison();
 		}

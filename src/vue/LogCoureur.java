@@ -55,7 +55,7 @@ public class LogCoureur extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblIdentifierVous = new JLabel("Identifier Vous");
+		JLabel lblIdentifierVous = new JLabel("Identifiez-vous");
 		lblIdentifierVous.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
 		lblIdentifierVous.setBounds(131, 13, 171, 53);
 		contentPane.add(lblIdentifierVous);
@@ -65,7 +65,7 @@ public class LogCoureur extends JFrame {
 		lblNom.setBounds(86, 83, 72, 18);
 		contentPane.add(lblNom);
 		
-		JLabel lblPrenom = new JLabel("Prenom");
+		JLabel lblPrenom = new JLabel("Pr¨¦nom");
 		lblPrenom.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblPrenom.setBounds(86, 116, 72, 18);
 		contentPane.add(lblPrenom);
@@ -80,13 +80,13 @@ public class LogCoureur extends JFrame {
 		txtPrenom.setBounds(240, 112, 86, 24);
 		contentPane.add(txtPrenom);
 		
-		JButton btnNewButton = new JButton("Log In");
+		JButton btnNewButton = new JButton("Se connecter");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Coureur coureur;
 				coureur = ffrag.confirmeCoureur(txtNom.getText(), txtPrenom.getText());
 				if(!(coureur==null)) {
-					System.out.println(coureur.getNomCoureur()+" "+coureur.getPrenomCoureur()+" est log in.");
+					System.out.println(coureur.getNomCoureur()+" "+coureur.getPrenomCoureur()+" est connect¨¦.");
 					dispose();
 					EventQueue.invokeLater(new Runnable() {
 						public void run() {

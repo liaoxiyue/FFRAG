@@ -198,15 +198,22 @@ public class Edition {
 		return champion;
 	}
 	
-	//Calculer temps pr¨¦vu d'une ¨¦tape donn¨¦e pour tous les participants d'une ¨¦dition
+	/**
+	 * Cette m¨¦thode permet de calculer temps pr¨¦vu d'une ¨¦tape donn¨¦e pour tous les participants d'une ¨¦dition
+	 * @param etape : l'¨¦tape choit
+	 * @param vitesse : la vitesse qu'on utilise pour calculer le vitesse pr¨¦vue
+	 * @return tempsPrevuEtape : HashMap
+	 */
 	public HashMap<Participant, Integer> tempsPrevuEtape(Etape etape, Integer vitesse){
 		HashMap<Participant, Integer> pointSaison = new HashMap<Participant, Integer>();
-		int saison = Integer.parseInt(this.getSaison().substring(this.getSaison().lastIndexOf(" ")+1))-1;
-		String saisonAvant = (saison-1)+" / " + saison;
+		/*int saison = Integer.parseInt(this.getSaison().substring(this.getSaison().lastIndexOf(" ")+1))-1;			//cette partie mise en commentaire est pour obtenir la saison pr¨¦c¨¦dente
+		String saisonAvant = (saison-1)+" / " + saison;*/
+		
+		//Calculer le classement des coureur par rapport aux points qu'ils ont obtenu la saison pr¨¦c¨¦dente 
 		for(Participant participant : this.listPart) {
 			int point = 0;
 			for(Participant participation : participant.getCoureur().getListParticipation()) {
-				if(participation.getEdition().getSaison().equals(saisonAvant)) {
+				if(participation.getEdition().getSaison().equals(this.saison)) {
 					point += participation.getPoint();
 				}
 			}
@@ -222,6 +229,7 @@ public class Edition {
 			}		
 		});
 		
+		//Calculer temps pr¨¦vu ¨¦tape 
 		HashMap<Participant, Integer> tempsPrevu = new HashMap<Participant, Integer>();
 		for(int i = 0; i < classementSaison.size(); i++) {
 			float poids = (float)classementSaison.get(i).getKey().getVoiture().getPoids();
@@ -230,6 +238,8 @@ public class Edition {
 			float distance = (float) etape.getDistanceEtape();
 			float nbVirage = (float) etape.getDifficulte();
 			float coefNiveauPilot;
+			
+			//Calsuler le coefficient de niveau de pilot, coefNiveauPilot est d¨¦pendant au classement de la saison pr¨¦c¨¦dente
 			if(i<10) {
 				coefNiveauPilot = (float) (0.95 + (10 - i) * 0.02);
 			}
@@ -243,6 +253,12 @@ public class Edition {
 		return tempsPrevu;
 	}
 	
+	/**
+	 * Cette m¨¦thode permet de savoir le temps pr¨¦vu d'un participant donn¨¦ sur une ¨¦tape
+	 * @param p : participant
+	 * @param e : ¨¦tape
+	 * @return courir
+	 */
 	public Courir getTempsPrevu(Participant p, Etape e) {
 		Courir temps = new Courir(0,0,0,0);
 		HashMap<Participant, Integer> tempsPrevu = this.tempsPrevuEtape(e, 60);
@@ -255,7 +271,13 @@ public class Edition {
 		return temps;		
 	}
 	
+	/**
+	 * Cette m¨¦thode permet de calculer le classement probable d'une ¨¦dition en donnant une vitesse moyenne
+	 * @param vitesse -- vitesse moyenne donn¨¦e
+	 * @return
+	 */
 	public ArrayList<HashMap.Entry<Participant, Integer>> classementProbable(Integer vitesse){
+		//obtenir le classement en claculant la somme des temps prevus de chaque ¨¦tape par apport aux participants
 		HashMap<Participant, Integer> tempsPrevuDefinitif = new HashMap<Participant, Integer>();
 		for(Participant participant : this.listPart) {
 			tempsPrevuDefinitif.put(participant, 0);
@@ -267,7 +289,7 @@ public class Edition {
 				tempsPrevuDefinitif.put(participant, temps);
 			}
 		}
-		
+		//mettre le classement en l'ordre
 		Set<HashMap.Entry<Participant, Integer>> entryset = tempsPrevuDefinitif.entrySet();
 		ArrayList<HashMap.Entry<Participant, Integer>> classementProbable = new ArrayList<HashMap.Entry<Participant, Integer>>(entryset);
 		Collections.sort(classementProbable, new Comparator<HashMap.Entry<Participant, Integer>>(){

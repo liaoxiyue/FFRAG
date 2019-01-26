@@ -50,7 +50,7 @@ public class Organisateurs extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnCreationEdition = new JButton("Creation Edition");
+		JButton btnCreationEdition = new JButton("Creation edition");
 		btnCreationEdition.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EventQueue.invokeLater(new Runnable() {
@@ -76,7 +76,7 @@ public class Organisateurs extends JFrame {
 		lblBienvenuPour.setBounds(285, 34, 202, 53);
 		contentPane.add(lblBienvenuPour);
 		
-		JButton btnConsultationClassementRallye = new JButton("Consultation Classement Rallye");
+		JButton btnConsultationClassementRallye = new JButton("Classement du rallye");
 		btnConsultationClassementRallye.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				EventQueue.invokeLater(new Runnable() {
@@ -95,7 +95,7 @@ public class Organisateurs extends JFrame {
 		btnConsultationClassementRallye.setBounds(380, 168, 270, 27);
 		contentPane.add(btnConsultationClassementRallye);
 
-		JButton btnConsultationClassementSaison = new JButton("Consultation Classement Saison");
+		JButton btnConsultationClassementSaison = new JButton("Classement saison");
 		btnConsultationClassementSaison.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				EventQueue.invokeLater(new Runnable() {
@@ -114,7 +114,7 @@ public class Organisateurs extends JFrame {
 		btnConsultationClassementSaison.setBounds(380, 215, 270, 27);
 		contentPane.add(btnConsultationClassementSaison);
 		
-		JButton btnValitationClassementEtape = new JButton("Valitation Classement Etape");
+		JButton btnValitationClassementEtape = new JButton("Valitation classement ¨¦tape");
 		btnValitationClassementEtape.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -129,7 +129,7 @@ public class Organisateurs extends JFrame {
 		btnValitationClassementEtape.setBounds(380, 128, 270, 27);
 		contentPane.add(btnValitationClassementEtape);
 		
-		JButton btnCreationRallye = new JButton("Creation Rallye");
+		JButton btnCreationRallye = new JButton("Cr¨¦er un rallye");
 		btnCreationRallye.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -144,7 +144,7 @@ public class Organisateurs extends JFrame {
 		btnCreationRallye.setBounds(56, 189, 202, 27);
 		contentPane.add(btnCreationRallye);
 		
-		JButton btnConsultationInfosRallye = new JButton("Consultation Infos Rallye");
+		JButton btnConsultationInfosRallye = new JButton("Consulter infos rallye");
 		btnConsultationInfosRallye.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -159,7 +159,7 @@ public class Organisateurs extends JFrame {
 		btnConsultationInfosRallye.setBounds(56, 239, 202, 27);
 		contentPane.add(btnConsultationInfosRallye);
 		
-		JButton btnConsultationClassementProbable = new JButton("Consultation Classement Probable");
+		JButton btnConsultationClassementProbable = new JButton("Classement Probable");
 		btnConsultationClassementProbable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				EventQueue.invokeLater(new Runnable() {

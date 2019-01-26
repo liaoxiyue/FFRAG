@@ -126,12 +126,12 @@ public class InscriptionParieur extends JFrame {
 		contentPane.add(txtTel);
 		txtTel.setColumns(10);
 		
-		JLabel lblTel = new JLabel("No Telephone");
+		JLabel lblTel = new JLabel("Num¨¦ro de t¨¦l¨¦phone");
 		lblTel.setFont(new Font("Calibri", Font.PLAIN, 15));
 		lblTel.setBounds(142, 147, 138, 14);
 		contentPane.add(lblTel);
 		
-		JLabel lblPrenom = new JLabel("Prenom");
+		JLabel lblPrenom = new JLabel("Pr¨¦nom");
 		lblPrenom.setFont(new Font("Calibri", Font.PLAIN, 15));
 		lblPrenom.setBounds(142, 89, 96, 14);
 		contentPane.add(lblPrenom);

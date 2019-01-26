@@ -1,36 +1,19 @@
 package FFRAG;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-/**
- * 
- * @author 21511708
- *
- */
-import FFRAG.Coureur;
-import FFRAG.Edition;
-import FFRAG.Etape;
-
 public class Paris {
 	private Participant participant;
 	private int mise;
 	private static double beneficeffrag;
 	private Edition ed;
 
-	/**
-	 * Paris concernant une 閐ition compl鑤e non encore valid閑. L鑦e une
-	 * exception si le paris concerne une 閐tion valid閑.
-	 *
-	 * @param montantmise
-	 * @param coureurmise
-	 * @param editionc
-	 */
+	
+	//Constructeur du pari
 	public Paris(int montantmise, Participant participantmise, Edition edition){
 		this.participant = participantmise;
 		this.ed = edition;
 		this.mise = montantmise;
 	}
+	
 	public Participant getParticipant() {
 		return participant;
 	}
@@ -49,10 +32,8 @@ public class Paris {
 
 
 	/**
-	 * Cette fonction bingo permet de voir si la personne sur qui nous avons
-	 * mis� est arriv閑 premi鑢e de l'閐ition
-	 *
-	 * @return vrai si nous avons mis� sur le vainqueur
+	 * La fonction bingo permet de voir si la personne sur qui nous avons misé est arrivée première de l'édiition
+	 * @return vrai si nous avons misé sur le vainqueur
 	 */
 	public boolean bingo() {
 		boolean jackpot = false;
@@ -63,13 +44,9 @@ public class Paris {
 	}
 
 	/**
-	 * Cette fonction permet de recup閞er le gain pour un coureur sur qui j'ai
-	 * pari�. Si ce coureur
-	 * arrive premier de l'閐ition alors mon
-	 * gain total est multipli� par la c魌e.
-	 *
-	 * @return le montant du gain apr鑣 d閐uction du pourcentage pris par la
-	 * FFRAG
+	 * Cette fonction permet de recupérer le gain pour un coureur sur qui j'ai parié.
+	 * Si ce coureur arrive premier à l'édition alors mon gain total est multiplié par la cote.
+	 * @return le montant du gain après déduction du pourcentage pris par la FFRAG
 	 */
 	public String getGain() {
 		String gain = null;

@@ -54,7 +54,7 @@ public class ConnexionParieur extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblConnexionSystemeDe = new JLabel("Connexion Systeme de Pari");
+		JLabel lblConnexionSystemeDe = new JLabel("Connectez-vous ид votre espace");
 		lblConnexionSystemeDe.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
 		lblConnexionSystemeDe.setBounds(93, 13, 249, 36);
 		contentPane.add(lblConnexionSystemeDe);
@@ -111,7 +111,7 @@ public class ConnexionParieur extends JFrame {
 					}
 				}
 				if(parieur==null) {
-					System.out.println("Vous n'etez pas un membre de parieurs. Inscrirez vous.");
+					System.out.println("Vous n'etez pas membre ? Inscrivez-vous vite !");
 					dispose();
 					EventQueue.invokeLater(new Runnable() {
 						public void run() {

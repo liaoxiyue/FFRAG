@@ -48,7 +48,7 @@ public class Voiture {
 	}
 
 	/**
-	 * Cette methode permet de calculer le coefficient corrcetif pour une voiture
+	 * Cette methode permet de calculer le coefficient correctif pour une voiture
 	 * Dans la methode de calcul nous prenons en compte la puissance de la voiture A
 	 * laquelle nous appliquons le coefficient correctif deja fixe pour une voiture
 	 * qui est determine dans la classe Parametres

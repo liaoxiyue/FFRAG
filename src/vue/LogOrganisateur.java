@@ -48,7 +48,7 @@ public class LogOrganisateur extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblCodeAdmin = new JLabel("Code Admin");
+		JLabel lblCodeAdmin = new JLabel("Identifiant administrateur");
 		lblCodeAdmin.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
 		lblCodeAdmin.setBounds(144, 33, 135, 39);
 		contentPane.add(lblCodeAdmin);
@@ -58,7 +58,7 @@ public class LogOrganisateur extends JFrame {
 		contentPane.add(txtMdp);
 		txtMdp.setColumns(10);
 		
-		JButton btnLogIn = new JButton("log in");
+		JButton btnLogIn = new JButton("Se connecter");
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String mdp = txtMdp.getText();

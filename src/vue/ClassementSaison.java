@@ -66,12 +66,12 @@ public class ClassementSaison extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblClassementSaison = new JLabel("Classement Saison");
+		JLabel lblClassementSaison = new JLabel("Classement saison");
 		lblClassementSaison.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
 		lblClassementSaison.setBounds(373, 23, 170, 36);
 		contentPane.add(lblClassementSaison);
 		
-		JLabel lblRallye = new JLabel("Saison:");
+		JLabel lblRallye = new JLabel("Saison :");
 		lblRallye.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblRallye.setBounds(61, 75, 72, 18);
 		contentPane.add(lblRallye);
@@ -187,7 +187,7 @@ public class ClassementSaison extends JFrame {
 					tableSaison.setModel(new DefaultTableModel(
 							list,
 							new String[] {
-									"Coureur", "Nombre de participation", "Meilleur position"
+									"Coureur", "Nombre de participations", "Meilleure position"
 							}
 							));
 					tableSaison.getColumnModel().getColumn(0).setPreferredWidth(160);

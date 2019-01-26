@@ -63,7 +63,7 @@ public class ValitationClasseEtape extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblValidationClassementEtape = new JLabel("Validation Classement Etape");
+		JLabel lblValidationClassementEtape = new JLabel("Validation classement ¨¦tape");
 		lblValidationClassementEtape.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
 		lblValidationClassementEtape.setBounds(243, 23, 267, 39);
 		contentPane.add(lblValidationClassementEtape);
@@ -80,7 +80,7 @@ public class ValitationClasseEtape extends JFrame {
 		cBoxRallye.setToolTipText("");
 		contentPane.add(cBoxRallye);
 		
-		JLabel label = new JLabel("Choix Edition");
+		JLabel label = new JLabel("Choix ¨¦dition");
 		label.setFont(new Font("Calibri", Font.BOLD, 15));
 		label.setBounds(311, 80, 101, 18);
 		contentPane.add(label);
@@ -99,7 +99,7 @@ public class ValitationClasseEtape extends JFrame {
 		cBoxEtape.setBounds(607, 76, 98, 24);
 		contentPane.add(cBoxEtape);
 		
-		JLabel lblChoixEtape = new JLabel("Choix Etape");
+		JLabel lblChoixEtape = new JLabel("Choix ¨¦tape");
 		lblChoixEtape.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblChoixEtape.setBounds(523, 80, 101, 18);
 		contentPane.add(lblChoixEtape);
@@ -136,7 +136,7 @@ public class ValitationClasseEtape extends JFrame {
 			public void itemStateChanged(ItemEvent e) {
 				Rallye choix = ffrag.getRallye(cBoxRallye.getSelectedItem().toString());
 				String[] listEdition = new String[choix.getListeEdition().size()+1];
-				listEdition[0] = "---Choix Edition---";
+				listEdition[0] = "---Choix ¨¦dition---";
 				for(int i = 1; i <= choix.getListeEdition().size(); i++) {
 					listEdition[i] = ""+choix.getListeEdition().get(i-1).getNoEdition();
 				}
@@ -151,7 +151,7 @@ public class ValitationClasseEtape extends JFrame {
 				if(ItemEvent.SELECTED == e.getStateChange()){
 					Edition choix = ffrag.getRallye(cBoxRallye.getSelectedItem().toString()).getEdition(Integer.valueOf(cBoxEdition.getSelectedItem().toString()));
 					String[] listEtape = new String[choix.getListEtape().size()+1];
-					listEtape[0] = "---Choix Etape---";
+					listEtape[0] = "---Choix ¨¦tape---";
 					for(int i = 1; i <= choix.getListEtape().size(); i++) {
 						listEtape[i] = ""+choix.getListEtape().get(i-1).getCodeEtape();
 					}

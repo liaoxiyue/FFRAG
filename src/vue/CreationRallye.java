@@ -65,12 +65,12 @@ public class CreationRallye extends JFrame {
 		lblNomRallye.setBounds(20, 90, 76, 30);
 		contentPane.add(lblNomRallye);
 		
-		JLabel lblVillePrincipale = new JLabel("Ville Principale");
+		JLabel lblVillePrincipale = new JLabel("Ville principale");
 		lblVillePrincipale.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblVillePrincipale.setBounds(20, 147, 104, 30);
 		contentPane.add(lblVillePrincipale);
 		
-		JLabel lblPaysPrincipale = new JLabel("Pays Principale");
+		JLabel lblPaysPrincipale = new JLabel("Pays principale");
 		lblPaysPrincipale.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblPaysPrincipale.setBounds(20, 202, 104, 30);
 		contentPane.add(lblPaysPrincipale);
@@ -94,7 +94,7 @@ public class CreationRallye extends JFrame {
 		btnEnregistrer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ffrag.creationRallye(txtNomRallye.getText(), txtVille.getText(), txtPays.getText());
-				System.out.println("Bien enregistre le Rallye "+ffrag.getListRallye().get(ffrag.getListRallye().size()-1).getNomRallye());
+				System.out.println("Le rallye "+ffrag.getListRallye().get(ffrag.getListRallye().size()-1).getNomRallye()+" a bien ¨¦t¨¦ enregistr¨¦");
 				txtNomRallye.setText("");
 				txtVille.setText("");
 				txtPays.setText("");

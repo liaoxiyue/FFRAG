@@ -64,7 +64,7 @@ public class Coureur {
 	
 	
 	/**
-	 * La methode affecterParticipation permet pour un coureur de stocker dans une liste toutes les participations auxquelles il a participe.
+	 * La m¨¦thode affecterParticipation permet pour un coureur de stocker dans une liste toutes les participations auxquelles il a particip¨¦.
 	 * @param p : sa participation 
 	 */
 	public void affecterParticipation(Participant p) {
@@ -74,7 +74,7 @@ public class Coureur {
 	
 	
 	/**
-	 * La methode getTitreReporte permet de savoir si un coureur a gagne une edition.
+	 * La m¨¦thode getTitreReporte permet de savoir si un coureur a gagn¨¦ une edition.
 	 * @return la position du coureur a une edition 
 	 */
 	public int getTitreReporte() {
@@ -87,6 +87,11 @@ public class Coureur {
 		return titreReporte;
 	}
 	
+	
+	/**
+	 * Cette m¨¦thode permet de savoir le nombre de titre remport¨¦ de ce coureur
+	 * @return titreRemporte
+	 */
 	public int titreRemporte() {
 		int titreRemporte = 0;
 		for(int i = 0; i < listParticipation.size(); i++) {
